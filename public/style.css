@@ -10,12 +10,23 @@ label {
   display: block;
 }
 
+nav {
+  background-color: #c4c4c4;
+  height: 3.5em;
+}
+
 nav a {
-  display: inline-block;
   margin: 1em;
 }
 
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+.welcome-message {
+  background-color: #c4c4c4;
+  width: 11em;
+  padding: 10em;
+  margin: 3em auto;
 }

@@ -1,15 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import Welcome from './Welcome';
 
-/**
- * COMPONENT
- */
-const Home = (props) => {
-  const username = useSelector((state) => state.auth.username);
-
+const Home = () => {
   return (
-    <div>
-      <h3>Welcome, {username}</h3>
+    <div className="home">
+      <Welcome />
     </div>
   );
 };

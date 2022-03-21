@@ -1,18 +1,14 @@
-import React, { Component, Fragment, useEffect } from 'react';
-import { connect, useSelector, useDispatch } from 'react-redux';
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import Home from './components/Home';
+import React from 'react';
 
-/**
- * COMPONENT
- */
+import { Route, Switch } from 'react-router-dom';
+
+import Home from './components/Home';
 
 const Routes = () => {
   return (
     <div>
       <Switch>
-        <Route path="/home" component={Home} />
-        <Redirect to="/home" />
+        <Route path="/" component={Home} />
       </Switch>
     </div>
   );
