@@ -24,6 +24,13 @@ nav a {
   margin: 3em auto;
 }
 
+.rules {
+  background-color: #c4c4c4;
+  width: 25em;
+  padding: 2em;
+  margin: 3em auto;
+}
+
 .join-form {
   width: 35em;
   margin: 0 auto;

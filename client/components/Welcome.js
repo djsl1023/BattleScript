@@ -13,15 +13,20 @@ const Welcome = () => {
     setRoomID(evt.target.value);
   };
 
-  const handleSubmit = async (evt) => {
+  const handleJoinRoom = async (evt) => {
     evt.preventDefault();
+    /*dispatch thunk to update db and store here?*/
+  };
+
+  const handleCreateRoom = async (evt) => {
+    /*dispatch thunk to update db and store here?*/
   };
 
   return (
     <div>
       <div className="welcome-message"></div>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleJoinRoom}>
         <div className="join-form">
           <label htmlFor="username" className="name-label">
             Name{' '}
@@ -38,7 +43,7 @@ const Welcome = () => {
           <button type="submit" className="join-room-btn">
             Join Room
           </button>
-          <button type="button" className="create-room-btn">
+          <button className="create-room-btn" onClick={handleCreateRoom}>
             Create Room
           </button>
         </div>
