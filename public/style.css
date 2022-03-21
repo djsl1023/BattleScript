@@ -6,10 +6,6 @@ a {
   text-decoration: none;
 }
 
-label {
-  display: block;
-}
-
 nav {
   background-color: #c4c4c4;
   height: 3.5em;
@@ -17,16 +13,40 @@ nav {
 
 nav a {
   margin: 1em;
-}
-
-form div {
-  margin: 1em;
-  display: inline-block;
+  position: relative;
+  top: 1.25em;
 }
 
 .welcome-message {
   background-color: #c4c4c4;
   width: 11em;
-  padding: 10em;
+  padding: 15em;
   margin: 3em auto;
+}
+
+.join-form {
+  width: 35em;
+  margin: 0 auto;
+}
+
+.name-label {
+  position: relative;
+  top: -1em;
+  right: -3em;
+}
+.roomID-label {
+  position: relative;
+  top: -1em;
+  right: -4.25em;
+}
+
+.join-room-btn {
+  margin: 1em;
+}
+.create-room-btn {
+  padding: 0.5em;
+  width: 9.75em;
+  margin: 1em 16.5em;
+  border: 0.125em blue solid;
+  border-radius: 0.25em;
 }
