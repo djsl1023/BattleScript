@@ -1,24 +1,21 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../db');
 
-const Lobby = db.define('lobby', {
-  name: {
+const Question = db.define('question', {
+  category: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
     },
   },
-  round: {
-    type: DataTypes.INTEGER,
-    defaultValue: 0,
+  question: {
+    type: DataTypes.TEXT,
+    allowNull: false,
     validate: {
-      min: 0,
-      max: 10,
+      notEmpty: true,
     },
   },
 });
 
-module.exports = Lobby;
-
-//Math.random().toString(36).substr(2, 5)
+module.exports = Question;
