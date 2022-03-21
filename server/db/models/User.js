@@ -36,7 +36,8 @@ const User = db.define(
         fields: ['username', 'lobbyId'],
       },
     },
-  }
+  },
+  { timestamps: false }
 );
 
 module.exports = User;
