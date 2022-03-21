@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User },
+  models: { User, Lobby },
 } = require('../server/db');
 
 /**
@@ -12,21 +12,32 @@ const {
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log('db synced!');
+  const lobbies = [{ name: 'test' }, { name: 'test2' }];
+  const users = [
+    { username: 'cody', lobbyId: 1 },
+    { username: 'murphy', lobbyId: 1 },
+  ];
 
-  // Creating Users
-  const users = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
-  ]);
+  await Promise.all(
+    lobbies.map((lobby) => {
+      return Lobby.create(lobby);
+    })
+  );
 
-  console.log(`seeded ${users.length} users`);
-  console.log(`seeded successfully`);
-  return {
-    users: {
-      cody: users[0],
-      murphy: users[1],
-    },
-  };
+  await Promise.all(
+    users.map((user) => {
+      return User.create(user);
+    })
+  );
+
+  // console.log(`seeded ${users.length} users`);
+  // console.log(`seeded successfully`);
+  // return {
+  //   users: {
+  //     cody: users[0],
+  //     murphy: users[1],
+  //   },
+  // };
 }
 
 /*

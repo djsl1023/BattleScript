@@ -10,14 +10,14 @@ const Humiliation = require('./models/Humiliation');
 
 //associations could go here!
 
-User.belongsToMany(Question, { through: 'Answer' });
-Question.belongsToMany(User, { through: 'Answer' });
+User.belongsToMany(Question, { through: Answer });
+Question.belongsToMany(User, { through: Answer });
 
 Lobby.hasMany(User);
 User.belongsTo(Lobby);
 
-Lobby.belongsToMany(Question, { through: 'LobbyQuestion' });
-Question.belongsToMany(Lobby, { through: 'LobbyQuestion' });
+Lobby.belongsToMany(Question, { through: LobbyQuestion });
+Question.belongsToMany(Lobby, { through: LobbyQuestion });
 
 module.exports = {
   db,
