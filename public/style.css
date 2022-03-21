@@ -6,16 +6,63 @@ a {
   text-decoration: none;
 }
 
-label {
-  display: block;
+nav {
+  background-color: #c4c4c4;
+  height: 3.5em;
 }
 
 nav a {
-  display: inline-block;
   margin: 1em;
+  position: relative;
+  top: 1.25em;
 }
 
-form div {
+.welcome-message {
+  background-color: #c4c4c4;
+  width: 11em;
+  padding: 15em;
+  margin: 3em auto;
+}
+
+.rules {
+  background-color: #c4c4c4;
+  width: 25em;
+  padding: 2em;
+  margin: 3em auto;
+}
+
+.join-form {
+  width: 35em;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.name-label {
+  position: relative;
+  top: -1em;
+  right: -3em;
+}
+.roomID-label {
+  position: relative;
+  top: -1em;
+  right: -4.25em;
+}
+
+.join-room-btn {
   margin: 1em;
-  display: inline-block;
+}
+.create-room-btn {
+  padding: 0.5em;
+  width: 9.75em;
+  margin: 1em 16.5em;
+  border: 0.125em blue solid;
+  border-radius: 0.25em;
+}
+
+.create-room-btn:hover {
+  background-color: #ffffff;
+}
+
+.create-room-btn:active {
+  background-color: #e9ecea;
 }
