@@ -1,22 +1,48 @@
-const Sequelize = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../db');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-const SALT_ROUNDS = 5;
-
-const User = db.define('user', {
-  username: {
-    type: Sequelize.STRING,
-    unique: true,
-    allowNull: false,
+const User = db.define(
+  'user',
+  {
+    username: {
+      type: DataTypes.STRING,
+      key: true,
+      allowNull: false,
+    },
+    isHost: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    correctPoints: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      validate: {
+        min: 0,
+      },
+    },
+    incorrectPoints: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+      validate: {
+        min: 0,
+      },
+    },
   },
-  password: {
-    type: Sequelize.STRING,
+  {
+    uniqueKeys: {
+      actions_unique: {
+        fields: ['username', 'lobbyId'],
+      },
+    },
   },
-});
+  { timestamps: false }
+);
 
 module.exports = User;
+
+//unqiue keys above allows me to make username a key so I can reference it in the unique keys qualification. This allows many users to have the name Hannah, but they must be at different tables.
 
 /**
  * instanceMethods
