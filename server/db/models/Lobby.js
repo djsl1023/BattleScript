@@ -21,4 +21,5 @@ const Lobby = db.define('lobby', {
 
 module.exports = Lobby;
 
+//Do we want to add a # of users field with a "max"? Or do that outside the DB to not permit more than 8 people from joining the lobby.
 //Math.random().toString(36).substr(2, 5)
