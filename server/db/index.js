@@ -6,6 +6,7 @@ const Lobby = require('./models/Lobby');
 const Question = require('./models/Question');
 const LobbyQuestion = require('./models/LobbyQuestion');
 const Answer = require('./models/Answer');
+const Humiliation = require('./models/Humiliation');
 
 //associations could go here!
 
@@ -26,5 +27,6 @@ module.exports = {
     Lobby,
     Question,
     LobbyQuestion,
+    Humiliation,
   },
 };
