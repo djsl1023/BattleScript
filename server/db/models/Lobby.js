@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require('../db');
-const Question = require('./models/Question');
+const Question = require('./Question');
 
 const Lobby = db.define(
   'lobby',

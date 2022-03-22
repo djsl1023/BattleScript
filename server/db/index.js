@@ -15,7 +15,6 @@ User.belongsToMany(Question, { through: Answer });
 Question.belongsToMany(User, { through: Answer });
 
 Question.hasOne(Solution);
-Solution.hasOne(Question);
 
 Lobby.hasMany(User);
 User.belongsTo(Lobby);
