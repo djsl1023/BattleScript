@@ -4,6 +4,7 @@ const db = require('./db');
 const User = require('./models/User');
 const Lobby = require('./models/Lobby');
 const Question = require('./models/Question');
+const Solution = require('./models/Solution');
 const LobbyQuestion = require('./models/LobbyQuestion');
 const Answer = require('./models/Answer');
 const Humiliation = require('./models/Humiliation');
@@ -12,6 +13,9 @@ const Humiliation = require('./models/Humiliation');
 
 User.belongsToMany(Question, { through: Answer });
 Question.belongsToMany(User, { through: Answer });
+
+Question.hasOne(Solution);
+Solution.hasOne(Question);
 
 Lobby.hasMany(User);
 User.belongsTo(Lobby);
@@ -24,6 +28,7 @@ module.exports = {
   models: {
     User,
     Answer,
+    Solution,
     Lobby,
     Question,
     LobbyQuestion,
