@@ -11,7 +11,21 @@ const Question = db.define(
         notEmpty: true,
       },
     },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
     question: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    testSpecs: {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {

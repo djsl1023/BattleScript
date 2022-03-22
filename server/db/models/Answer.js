@@ -4,6 +4,11 @@ const db = require('../db');
 const Answer = db.define(
   'answer',
   {
+    answerId: {
+      type: DataTypes.STRING,
+      key: true,
+      unique: true,
+    },
     answer: {
       type: DataTypes.TEXT,
     },
