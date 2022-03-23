@@ -1,4 +1,4 @@
-// YOUR CODE BELOW
+// Option 1
 function exponentiate(base, power) {
   let result = 1;
 
@@ -8,7 +8,7 @@ function exponentiate(base, power) {
 
   return result;
 }
-
+// Option 2
 function exponentiate2(base, power) {
   if (power === 0) {
     return 1;
