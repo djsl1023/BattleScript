@@ -4,8 +4,8 @@ const db = require('../db');
 const Question = db.define(
   'question',
   {
-    category: {
-      type: DataTypes.STRING,
+    difficulty: {
+      type: DataTypes.ENUM('easy', 'medium', 'hard'),
       allowNull: false,
       validate: {
         notEmpty: true,
