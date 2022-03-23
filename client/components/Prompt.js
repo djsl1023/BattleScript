@@ -4,8 +4,13 @@ import Editor from '@monaco-editor/react';
 const Prompt = () => {
   return (
     <div>
-      <Editor height="50vh" defaultLanguage="javascript" defaultValue="Prompt" />
-      <Editor height="50vh" defaultLanguage="javascript" defaultValue="Solution" />
+      <div className="prompt-solution">
+        <Editor height="95vh" width="45vw" defaultLanguage="javascript" defaultValue="Prompt" />
+      </div>
+
+      <div className="prompt-solution">
+        <Editor height="95vh" width="45vw" defaultLanguage="javascript" defaultValue="Solution" />
+      </div>
     </div>
   );
 };
