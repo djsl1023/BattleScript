@@ -17,6 +17,7 @@ class UserSchema extends Schema {
 class QuestionSchema extends Schema {
   constructor() {
     super();
+    this.id;
     this.difficulty = false;
     this.title = '';
     this.question = '';
@@ -24,6 +25,7 @@ class QuestionSchema extends Schema {
   }
 }
 schema.defineTypes(QuestionSchema, {
+  id: 'int16',
   difficulty: 'string',
   title: 'string',
   question: 'string',
@@ -45,19 +47,27 @@ class GameRoom extends colyseus.Room {
   // When room is initialized
   async onCreate(options) {
     this.setState(new GameState());
-
-    console.log('hello', this.state.GameState);
-    const abcd = this.questions;
-    console.log('Room Created');
+    // const newquest = new QuestionSchema();
     const questionList = await Question.findAll();
-    questionList.forEach((question, i) => {
-      const temp = new QuestionSchema();
+    const mappedList = questionList.map((question) => {
+      let temp = new QuestionSchema();
+      temp.id = question.id;
       temp.difficulty = question.difficulty;
       temp.title = question.title;
       temp.question = question.question;
       temp.testSpecs = question.testSpecs;
-      abcd.push(temp);
+      return temp;
     });
+    console.log(mappedList);
+    this.state.questions = [...mappedList];
+    console.log(this.state.questions[0].id);
+    console.log(this.state.questions[1].id);
+    console.log(this.state.questions[2].difficulty);
+    console.log(this.state.questions[3].question);
+    // newquest.difficulty = 'hard';
+    // this.state.questions[0] = newquest;
+    // console.log(this.state.questions);
+    console.log('Room Created');
   }
 
   // Authorize client based on provided options before WebSocket handshake is complete
