@@ -3,7 +3,15 @@ import { Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Rules from './components/Rules';
 
-const Routes = () => {
+const Routes = (props) => {
+  props.client
+    .joinOrCreate('game', {})
+    .then((room) => {
+      console.log('joined successfully', room);
+    })
+    .catch((e) => {
+      console.error('join error', e);
+    });
   return (
     <div>
       <Switch>
