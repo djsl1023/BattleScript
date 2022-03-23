@@ -1,4 +1,4 @@
-// YOUR CODE BELOW
+//Option 1
 function onlyOdds(num) {
   let sum = 0;
   for (let i = num; i >= 1; i--) {
@@ -9,6 +9,7 @@ function onlyOdds(num) {
   return sum;
 }
 
+//Option 2
 function onlyOdds2(num) {
   let sum = 0;
   while (num >= 1) {
