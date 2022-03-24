@@ -38,6 +38,7 @@ class GameRoom extends colyseus.Room {
     //Set initial game state
     this.setState(new GameState());
     this.dispatcher = new command.Dispatcher(this);
+    this.maxClients = 5;
 
     this.state.roundNumber = this.roundNumber;
     console.log('Room Created');
