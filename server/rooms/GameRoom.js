@@ -7,7 +7,7 @@ const MapSchema = schema.MapSchema;
 const {
   models: { Question },
 } = require('../db');
-const QuestionSchema = require('./schemas/question');
+const { QuestionSchema, AddQuestions } = require('./schemas/question');
 const { UserSchema, AddUser } = require('./schemas/user');
 
 // OVERALL GAME STATE
@@ -28,27 +28,18 @@ schema.defineTypes(GameState, {
 });
 
 class GameRoom extends colyseus.Room {
-  // When room is initialized
+  constructor() {
+    super();
+    this.question = '';
+    this.roundNumber = 1;
+  }
 
   async onCreate(options) {
     //Set initial game state
     this.setState(new GameState());
     this.dispatcher = new command.Dispatcher(this);
 
-    //Get list of questions, Will need tweaking to randomize
-    // const questionList = await Question.findAll();
-    //Map through questions list and create new array of question instances(schemas)
-    // const mappedList = questionList.map((question) => {
-    //   let temp = new QuestionSchema();
-    //   temp.id = question.id;
-    //   temp.difficulty = question.difficulty;
-    //   temp.title = question.title;
-    //   temp.question = question.question;
-    //   temp.testSpecs = question.testSpecs;
-    //   return temp;
-    // });
-    //Set gamestate questions to newly created Array of Question instances(schemas)
-    // this.state.question = [...mappedList];
+    this.state.roundNumber = this.roundNumber;
     console.log('Room Created');
   }
 

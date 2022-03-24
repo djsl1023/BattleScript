@@ -14,7 +14,7 @@ const Humiliation = require('./models/Humiliation');
 User.belongsToMany(Question, { through: Answer });
 Question.belongsToMany(User, { through: Answer });
 
-Question.hasOne(Solution);
+// Question.hasOne(Solution);
 
 Lobby.hasMany(User);
 User.belongsTo(Lobby);
