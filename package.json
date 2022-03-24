@@ -20,7 +20,11 @@
   "author": "Fullstack Academy of Code",
   "license": "MIT",
   "dependencies": {
+<<<<<<< HEAD
     "@colyseus/command": "^0.2.1",
+=======
+    "@monaco-editor/react": "^4.3.1",
+>>>>>>> b8ea40881abc78b13ba1aa650040f66730f512d8
     "bcrypt": "^5.0.0",
     "colyseus": "^0.14.23",
     "colyseus.js": "^0.14.13",
