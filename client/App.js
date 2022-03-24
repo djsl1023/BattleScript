@@ -8,11 +8,11 @@ const App = () => {
   /**Initialize a new colyseus client
    * and save client info to redux store
    */
-  let client = new Colyseus.Client('ws://localhost:8080');
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setClient(client));
-  }, []);
+  // let client = new Colyseus.Client('ws://localhost:8080');
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(setClient(client));
+  // }, []);
 
   // client
   //   .joinOrCreate('game', {})

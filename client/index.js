@@ -5,12 +5,15 @@ import { Router } from 'react-router-dom';
 import history from './history';
 import store from './store';
 import App from './App';
+import ColyseusProvider from './components/ColyseusContext';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history}>
-      <App />
-    </Router>
-  </Provider>,
+  <ColyseusProvider>
+    <Provider store={store}>
+      <Router history={history}>
+        <App />
+      </Router>
+    </Provider>
+  </ColyseusProvider>,
   document.getElementById('app')
 );

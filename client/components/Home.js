@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import Welcome from './Welcome';
 import { setRoom } from '../store/room';
 import { Redirect } from 'react-router';
+import { useColyseus } from './ColyseusContext';
 import Game from './Game';
 
 const Home = () => {
   /* create local state variables
   to keep track of username and roomID
   before submit*/
-  const client = useSelector((state) => state.client);
+  const client = useColyseus();
   const [redirectTo, setRedirectTo] = useState(false);
   const [username, setUsername] = useState('');
   const [roomID, setRoomID] = useState('');
