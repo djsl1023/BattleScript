@@ -8,11 +8,14 @@ const {
   models: { Question },
 } = require('../db');
 const QuestionSchema = require('./schemas/question');
-const { UserSchema, AddUser } = require('./schemas/user');
+const GameStatusSchema = require('./schemas/gameStatus');
+const { UserSchema, AddUser, RemoveUser } = require('./schemas/user');
 
 // OVERALL GAME STATE
 // users : {key: value}
 // question : {}
+// gameStatus: 'lobby', 'prompt', 'failvote', 'passvote', 'tally', 'final'
+
 class GameState extends Schema {
   constructor() {
     super();
@@ -20,11 +23,13 @@ class GameState extends Schema {
     this.users = new MapSchema();
     //Questions array
     this.question = new QuestionSchema();
+    this.gameStatus = 'lobby';
   }
 }
 schema.defineTypes(GameState, {
   users: { map: UserSchema },
   question: QuestionSchema,
+  gameStatus: 'string',
 });
 
 class GameRoom extends colyseus.Room {
@@ -34,6 +39,7 @@ class GameRoom extends colyseus.Room {
     //Set initial game state
     this.setState(new GameState());
     this.dispatcher = new command.Dispatcher(this);
+    this.gameStatus = 'lobby';
 
     //Get list of questions, Will need tweaking to randomize
     // const questionList = await Question.findAll();
@@ -64,7 +70,11 @@ class GameRoom extends colyseus.Room {
   }
 
   // When a client leaves the room
-  onLeave(client, consented) {}
+  onLeave(client, consented) {
+    this.dispatcher.dispatch(new RemoveUser(), {
+      clientId: client.id,
+    });
+  }
 
   // Cleanup callback, called after there are no more clients in the room. (see `autoDispose`)
   async onDispose() {}
