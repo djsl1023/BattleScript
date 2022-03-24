@@ -6,6 +6,7 @@ import roomReducer from './room';
 import clientReducer from './client';
 import userReducer from './users';
 import auth from './auth';
+import client from './client';
 
 const reducer = combineReducers({
   client: clientReducer,

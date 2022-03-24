@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import Routes from './Routes';
 import Navbar from './components/Navbar';
@@ -13,7 +14,6 @@ const App = () => {
   useEffect(() => {
     dispatch(setClient(client));
   }, []);
-
   // client
   //   .joinOrCreate('game', {})
   //   .then((room) => {
