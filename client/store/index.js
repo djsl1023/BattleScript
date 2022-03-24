@@ -3,13 +3,10 @@ import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import roomReducer from './room';
-import clientReducer from './client';
 import userReducer from './users';
 import auth from './auth';
-import client from './client';
 
 const reducer = combineReducers({
-  client: clientReducer,
   room: roomReducer,
   users: userReducer,
 });
