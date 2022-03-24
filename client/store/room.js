@@ -1,3 +1,5 @@
+//REDUX STORE TO SAVE ROOM INSTANCE SO IT CAN BE USED ACROSS
+//COMPONENTS
 const SET_ROOM = 'SET_ROOM';
 
 export const setRoom = (room) => ({

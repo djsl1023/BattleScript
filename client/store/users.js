@@ -1,3 +1,4 @@
+//REDUX STORE FOR CONNECTED USERS
 const ADD_USER = 'ADD_USER';
 
 export const addUser = (key, user) => ({

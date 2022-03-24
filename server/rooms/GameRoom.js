@@ -8,6 +8,8 @@ const {
 } = require('../db');
 
 // INDIVIDUAL STATES THAT MAKE UP GAME STATE
+
+//Individual User Model
 class UserSchema extends Schema {
   constructor() {
     super();
@@ -25,6 +27,7 @@ schema.defineTypes(UserSchema, {
   incorrectPoints: 'int16',
 });
 
+//Individual Question Model
 class QuestionSchema extends Schema {
   constructor() {
     super();
@@ -47,7 +50,9 @@ schema.defineTypes(QuestionSchema, {
 class GameState extends Schema {
   constructor() {
     super();
+    //Users Map with key=client.id, value=user object
     this.users = new MapSchema();
+    //Questions array
     this.questions = new ArraySchema();
   }
 }
@@ -60,8 +65,12 @@ class GameRoom extends colyseus.Room {
   // When room is initialized
 
   async onCreate(options) {
+    //Set initial game state
     this.setState(new GameState());
+
+    //Get list of questions, Will need tweaking to randomize
     const questionList = await Question.findAll();
+    //Map through questions list and create new array of question instances(schemas)
     const mappedList = questionList.map((question) => {
       let temp = new QuestionSchema();
       temp.id = question.id;
@@ -71,6 +80,7 @@ class GameRoom extends colyseus.Room {
       temp.testSpecs = question.testSpecs;
       return temp;
     });
+    //Set gamestate questions to newly created Array of Question instances(schemas)
     this.state.questions = [...mappedList];
     console.log('Room Created');
   }
@@ -80,11 +90,15 @@ class GameRoom extends colyseus.Room {
 
   // When client successfully join the room
   onJoin(client, options, auth) {
+    //when client successfully joins, create a user instance for them
     const newUser = new UserSchema();
+    //take username from options, and set newuser's username
     newUser.username = options.username;
+    //If this is the first user, make them a host
     if (this.state.users.size === 0) {
       newUser.isHost = true;
     }
+    //set new user in game state
     this.state.users.set(client.id, newUser);
   }
 
