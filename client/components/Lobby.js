@@ -8,7 +8,9 @@ const Lobby = () => {
   const room = useSelector((state) => state.room);
 
   const handleStartGame = () => {
-    console.log('start game button clicked');
+    room.send('start', {
+      gameStatus: 'prompt'
+    })
   };
   console.log(room.users);
 

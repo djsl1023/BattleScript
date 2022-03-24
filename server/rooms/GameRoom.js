@@ -55,6 +55,11 @@ class GameRoom extends colyseus.Room {
     // });
     //Set gamestate questions to newly created Array of Question instances(schemas)
     // this.state.question = [...mappedList];
+    this.onMessage('start', (client, { gameStatus }) => {
+      this.state.gameStatus = gameStatus;
+
+      console.log(client.sessionId, "sent 'action' message: ", gameStatus);
+    });
     console.log('Room Created');
   }
 
