@@ -5,7 +5,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import roomReducer from './room';
 import userReducer from './users';
 import auth from './auth';
-import client from './client';
 
 const reducer = combineReducers({
   room: roomReducer,
