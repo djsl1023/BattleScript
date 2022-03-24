@@ -5,6 +5,8 @@ import { useColyseus } from './ColyseusContext';
 import * as Colyseus from 'colyseus.js';
 import { setGameStatus } from '../store/gameStatus';
 import Lobby from './Lobby';
+import Prompt from './Prompt';
+
 /**
  * MAIN GAME INSTANCE, THIS COMPONENT WILL RENDER OTHER COMPONENTS
  * DEPENDING ON GAME STATE.  ALSO HOLDS COLYSEUS ROOM STATE/SYNC LOGIC
@@ -39,6 +41,10 @@ const Game = () => {
     case 'lobby': {
       return <Lobby />;
     }
+    case 'prompt': {
+      return <Prompt />;
+    }
+
     default: {
       return <div>'loading'</div>;
     }
