@@ -38,4 +38,10 @@ class AddUser extends command.Command {
     this.state.users.set(clientId, newUser);
   }
 }
-module.exports = { UserSchema, AddUser };
+class RemoveUser extends command.Command {
+  execute({ clientId }) {
+    this.state.users.delete(clientId);
+  }
+}
+
+module.exports = { UserSchema, AddUser, RemoveUser };
