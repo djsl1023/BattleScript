@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Welcome from './Welcome';
+import { setRoom } from '../store/room';
+import { Redirect } from 'react-router';
+import Game from './Game';
 
 const Home = () => {
   /* create local state variables
   to keep track of username and roomID
   before submit*/
-
+  const client = useSelector((state) => state.client);
+  const [redirectTo, setRedirectTo] = useState(false);
   const [username, setUsername] = useState('');
   const [roomID, setRoomID] = useState('');
 
@@ -30,22 +34,50 @@ const Home = () => {
 
   const handleJoinRoom = async (evt) => {
     evt.preventDefault();
+    client
+      .joinById(roomID, {
+        /* options */
+        username: username,
+      })
+      .then((room) => {
+        dispatch(setRoom(room));
+        console.log('joined successfully', room);
+        setRedirectTo(true);
+      })
+      .catch((e) => {
+        console.error('join error', e);
+      });
     /* dispatch thunk to update
       db and store
       when this is called?*/
   };
 
   const handleCreateRoom = async (evt) => {
+    client
+      .create('game', {
+        /* options */
+        username: username,
+      })
+      .then((room) => {
+        dispatch(setRoom(room));
+        console.log('joined successfully', room);
+        setRedirectTo(true);
+      })
+      .catch((e) => {
+        console.error('join error', e);
+      });
     /* dispatch thunk to update
       db and store
       when this is called?*/
   };
-
+  if (redirectTo) {
+    return <Redirect to="/game" />;
+  }
   return (
     <div>
       <Welcome />
 
-      <form onSubmit={handleJoinRoom}>
+      <form>
         <div className="join-form">
           <label htmlFor="username" className="name-label">
             Name{' '}
@@ -58,15 +90,17 @@ const Home = () => {
           </label>
 
           <input name="roomID" onChange={handleRoomID} value={roomID} />
-
-          <button type="submit" className="join-room-btn">
-            Join Room
-          </button>
-          <button className="create-room-btn" onClick={handleCreateRoom}>
-            Create Room
-          </button>
         </div>
       </form>
+      <button
+        type="submit"
+        className="create-room-btn"
+        onClick={handleJoinRoom}>
+        Join Room
+      </button>
+      <button className="create-room-btn" onClick={handleCreateRoom}>
+        Create Room
+      </button>
     </div>
   );
 };

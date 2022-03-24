@@ -2,6 +2,7 @@ const colyseus = require('colyseus');
 const schema = require('@colyseus/schema');
 const Schema = schema.Schema;
 const ArraySchema = schema.ArraySchema;
+const MapSchema = schema.MapSchema;
 const {
   models: { Lobby, User, Question },
 } = require('../db');
@@ -11,8 +12,18 @@ class UserSchema extends Schema {
   constructor() {
     super();
     this.username = '';
+    this.isHost = false;
+    this.correctPoints = 0;
+    this.incorrectPoints = 0;
   }
 }
+
+schema.defineTypes(UserSchema, {
+  username: 'string',
+  isHost: 'boolean',
+  correctPoints: 'int16',
+  incorrectPoints: 'int16',
+});
 
 class QuestionSchema extends Schema {
   constructor() {
@@ -36,18 +47,20 @@ schema.defineTypes(QuestionSchema, {
 class GameState extends Schema {
   constructor() {
     super();
+    this.users = new MapSchema();
     this.questions = new ArraySchema();
   }
 }
 schema.defineTypes(GameState, {
+  users: { map: UserSchema },
   questions: [QuestionSchema],
 });
 
 class GameRoom extends colyseus.Room {
   // When room is initialized
+
   async onCreate(options) {
     this.setState(new GameState());
-    // const newquest = new QuestionSchema();
     const questionList = await Question.findAll();
     const mappedList = questionList.map((question) => {
       let temp = new QuestionSchema();
@@ -58,15 +71,7 @@ class GameRoom extends colyseus.Room {
       temp.testSpecs = question.testSpecs;
       return temp;
     });
-    console.log(mappedList);
     this.state.questions = [...mappedList];
-    console.log(this.state.questions[0].id);
-    console.log(this.state.questions[1].id);
-    console.log(this.state.questions[2].difficulty);
-    console.log(this.state.questions[3].question);
-    // newquest.difficulty = 'hard';
-    // this.state.questions[0] = newquest;
-    // console.log(this.state.questions);
     console.log('Room Created');
   }
 
@@ -75,14 +80,19 @@ class GameRoom extends colyseus.Room {
 
   // When client successfully join the room
   onJoin(client, options, auth) {
-    console.log('hello', client);
+    const newUser = new UserSchema();
+    newUser.username = options.username;
+    if (this.state.users.size === 0) {
+      newUser.isHost = true;
+    }
+    this.state.users.set(client.id, newUser);
   }
 
   // When a client leaves the room
   onLeave(client, consented) {}
 
   // Cleanup callback, called after there are no more clients in the room. (see `autoDispose`)
-  onDispose() {}
+  async onDispose() {}
 }
 
 module.exports = GameRoom;
