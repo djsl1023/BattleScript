@@ -4,19 +4,19 @@ const schema = require('@colyseus/schema');
 const Schema = schema.Schema;
 //const ArraySchema = schema.ArraySchema;
 const MapSchema = schema.MapSchema;
-const {
-  QuestionSchema,
-  getQuestions,
-  insertQuestion,
-} = require('./schemas/question');
+const { QuestionSchema, getQuestions, insertQuestion } = require('./schemas/question');
 const { UserSchema, AddUser, RemoveUser } = require('./schemas/user');
 const { AnswerSchema, AddAnswer } = require('./schemas/answer');
-const { VoteSchema, AddVote } = require('./schemas/vote');
+const { VoteSchema, AddVotes } = require('./schemas/vote');
 
 // OVERALL GAME STATE
 // users : {key: value}
 // question : {}
 // gameStatus: 'lobby', 'prompt', 'failvote', 'passvote', 'tally', 'final'
+//failAnswers: {clientId: answer}
+//passAnswers: {clientId: answer}
+//failVotes: {solutionClientId: votes}
+//passVotes:  {solutionClientId: votes}
 
 class GameState extends Schema {
   constructor() {
@@ -73,14 +73,15 @@ class GameRoom extends colyseus.Room {
       });
     });
     this.onMessage('failvote', (client, { solutionId }) => {
-      this.dispatcher.dispatch(new AddVote(), {
+      this.dispatcher.dispatch(new AddVotes(), {
         //the client above is the info for the person voting, the solutionId is the id of the person they are voting for. We want to access the object for the person whose answer is voted. i.e. the SolutionId
         clientId: solutionId,
         failVote: 1,
       });
     });
     this.onMessage('passvote', (client, { solutionId }) => {
-      this.dispatcher.dispatch(new AddVote(), {
+      console.log('passvote');
+      this.dispatcher.dispatch(new AddVotes(), {
         clientId: solutionId,
         passVote: 1,
       });
