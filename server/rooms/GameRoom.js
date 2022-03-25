@@ -5,20 +5,11 @@ const Schema = schema.Schema;
 const ArraySchema = schema.ArraySchema;
 const MapSchema = schema.MapSchema;
 const {
-  models: { Question },
-} = require('../db');
-<<<<<<< HEAD
-const {
   QuestionSchema,
   getQuestions,
   insertQuestion,
 } = require('./schemas/question');
-const { UserSchema, AddUser } = require('./schemas/user');
-=======
-const QuestionSchema = require('./schemas/question');
-const GameStatusSchema = require('./schemas/gameStatus');
 const { UserSchema, AddUser, RemoveUser } = require('./schemas/user');
->>>>>>> origin/main
 
 // OVERALL GAME STATE
 // users : {key: value}
@@ -52,33 +43,16 @@ class GameRoom extends colyseus.Room {
     //Set initial game state
     this.setState(new GameState());
     this.dispatcher = new command.Dispatcher(this);
-<<<<<<< HEAD
     this.questions = await getQuestions();
     this.maxClients = 5;
     // this.state.roundNumber = this.roundNumber;
-=======
     this.gameStatus = 'lobby';
 
-    //Get list of questions, Will need tweaking to randomize
-    // const questionList = await Question.findAll();
-    //Map through questions list and create new array of question instances(schemas)
-    // const mappedList = questionList.map((question) => {
-    //   let temp = new QuestionSchema();
-    //   temp.id = question.id;
-    //   temp.difficulty = question.difficulty;
-    //   temp.title = question.title;
-    //   temp.question = question.question;
-    //   temp.testSpecs = question.testSpecs;
-    //   return temp;
-    // });
-    //Set gamestate questions to newly created Array of Question instances(schemas)
-    // this.state.question = [...mappedList];
     this.onMessage('start', (client, { gameStatus }) => {
       this.state.gameStatus = gameStatus;
 
       console.log(client.sessionId, "sent 'action' message: ", gameStatus);
     });
->>>>>>> origin/main
     console.log('Room Created');
     // this.dispatcher.dispatch(new AddQuestions());
     this.dispatcher.dispatch(new insertQuestion(), {
