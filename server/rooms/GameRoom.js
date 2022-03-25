@@ -10,6 +10,7 @@ const {
   insertQuestion,
 } = require('./schemas/question');
 const { UserSchema, AddUser, RemoveUser } = require('./schemas/user');
+const { MessagesSchema, AddMessage } = require('./schemas/messages');
 
 // OVERALL GAME STATE
 // users : {key: value}
@@ -24,12 +25,14 @@ class GameState extends Schema {
     //Questions array
     this.question = new QuestionSchema();
     this.gameStatus = 'lobby';
+    this.messages = new MessagesSchema();
   }
 }
 schema.defineTypes(GameState, {
   users: { map: UserSchema },
   question: QuestionSchema,
   gameStatus: 'string',
+  messages: MessagesSchema,
 });
 
 class GameRoom extends colyseus.Room {
@@ -37,6 +40,7 @@ class GameRoom extends colyseus.Room {
     super();
     this.questions = [];
     this.roundNumber = 1;
+    this.message = [];
   }
 
   async onCreate(options) {
@@ -47,11 +51,22 @@ class GameRoom extends colyseus.Room {
     this.maxClients = 5;
     // this.state.roundNumber = this.roundNumber;
     this.gameStatus = 'lobby';
+    this.messages = ['chatroom'];
 
     this.onMessage('start', (client, { gameStatus }) => {
       this.state.gameStatus = gameStatus;
-
       console.log(client.sessionId, "sent 'action' message: ", gameStatus);
+    });
+
+    this.onMessage('chat', (client, message) => {
+      // this.dispatcher.dispatch(new AddMessage(), {
+      //   message: message,
+      // });
+      // this.state.messages.message = [...this.state.messages.message, message];
+      client.send('chat', { user: client.id, message: message });
+      // // newMessage.message = message;
+      console.log('backendddd', message);
+      // console.log(this.state.messages);
     });
     console.log('Room Created');
     // this.dispatcher.dispatch(new AddQuestions());

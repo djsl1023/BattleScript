@@ -6,11 +6,13 @@ import roomReducer from './room';
 import userReducer from './users';
 import gameStatusReducer from './gameStatus';
 import auth from './auth';
+import messageReducer from './message';
 
 const reducer = combineReducers({
   room: roomReducer,
   users: userReducer,
   gameStatus: gameStatusReducer,
+  message: messageReducer,
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
