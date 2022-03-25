@@ -5,12 +5,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import roomReducer from './room';
 import userReducer from './users';
 import gameStatusReducer from './gameStatus';
+import promptReducer from './prompt';
 import auth from './auth';
 
 const reducer = combineReducers({
   room: roomReducer,
   users: userReducer,
   gameStatus: gameStatusReducer,
+  prompt: promptReducer,
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
