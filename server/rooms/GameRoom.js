@@ -10,6 +10,7 @@ const {
   insertQuestion,
 } = require('./schemas/question');
 const { UserSchema, AddUser, RemoveUser } = require('./schemas/user');
+const { AnswerSchema, AddAnswer } = require('./schemas/answer');
 
 // OVERALL GAME STATE
 // users : {key: value}
@@ -24,12 +25,16 @@ class GameState extends Schema {
     //Questions array
     this.question = new QuestionSchema();
     this.gameStatus = 'lobby';
+    this.failVoting = new MapSchema();
+    this.passVoting = new MapSchema();
   }
 }
 schema.defineTypes(GameState, {
   users: { map: UserSchema },
   question: QuestionSchema,
   gameStatus: 'string',
+  failVoting: { map: AnswerSchema },
+  passVoting: { map: AnswerSchema },
 });
 
 class GameRoom extends colyseus.Room {
@@ -53,8 +58,22 @@ class GameRoom extends colyseus.Room {
 
       console.log(client.sessionId, "sent 'action' message: ", gameStatus);
     });
+    this.onMessage('submit', (client, { answer, testResult }) => {
+      this.dispatcher.dispatch(new AddAnswer(), {
+        roundNumber: this.roundNumber,
+        clientId: client.id,
+        clientAnswer: answer,
+        testResult: testResult,
+      });
+    });
+    this.onMessage('vote', (client, { solutionId }) => {
+      this.dispatcher.dispatch(new AddVotes(), {
+        roundNumber: this.roundNumber,
+        clientId: solutionId,
+      });
+    });
+
     console.log('Room Created');
-    // this.dispatcher.dispatch(new AddQuestions());
     this.dispatcher.dispatch(new insertQuestion(), {
       roundNumber: this.roundNumber,
       questions: this.questions,
