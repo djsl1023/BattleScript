@@ -32,9 +32,12 @@ const Question = db.define(
         notEmpty: true,
       },
     },
-    lastUsed: {
-      type: DataTypes.DATE,
-      defaultValue: null,
+    solution: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
     },
   },
   { timestamps: false }
