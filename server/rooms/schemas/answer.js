@@ -2,6 +2,7 @@ const schema = require('@colyseus/schema');
 const Sequelize = require('sequelize');
 const Schema = schema.Schema;
 const command = require('@colyseus/command');
+const { VoteSchema } = require('./vote');
 
 class AnswerSchema extends Schema {
   constructor() {
@@ -9,10 +10,11 @@ class AnswerSchema extends Schema {
     this.clientId;
     this.answer = '';
     this.isCorrect = false;
+    //this.votes
   }
 }
 schema.defineTypes(AnswerSchema, {
-  clientId: 'number',
+  clientId: 'string',
   answer: 'string',
   isCorrect: 'boolean',
 });
@@ -20,20 +22,24 @@ schema.defineTypes(AnswerSchema, {
 //Commands
 
 class AddAnswer extends command.Command {
-  execute({ roundNumber, clientId, clientAnswer, testResult }) {
-    console.log(roundNumber);
-    let temp = new AnswerSchema();
-    temp.clientId = clientId;
-    temp.answer = clientAnswer;
-    temp.isCorrect = testResult;
-    if (!temp.isCorrect) {
+  execute({ clientId, clientAnswer, testResult }) {
+    //when an answer is submitted we are adding it to the answers map
+    let tempAnswer = new AnswerSchema();
+    //creating the Vote Schema so it is ready to render upon the voting round.
+    let tempVote = new VoteSchema();
+    tempAnswer.clientId = clientId;
+    tempAnswer.answer = clientAnswer;
+    tempAnswer.isCorrect = testResult;
+    tempVote.votes = 0;
+    tempVote.clientId = clientId;
+    if (!tempAnswer.isCorrect) {
       //failVote round
-      this.state.failVoting.set(clientId, temp);
-      this.state.numFailVotes.set(clientId);
+      this.state.failAnswers.set(clientId, tempAnswer);
+      this.state.failVotes.set(clientId, tempAnswer);
     } else {
       //passVote round
-      this.state.passVoting.set(clientId, temp);
-      this.state.numPassVotes.set(clientId);
+      this.state.passAnswers.set(clientId, tempAnswer);
+      this.state.passVotes.set(clientId, tempAnswer);
     }
   }
 }
