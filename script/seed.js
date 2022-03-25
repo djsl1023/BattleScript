@@ -375,7 +375,7 @@ mostVowels('try my gym'); // => ''`,
       currentWord = '';
       currentVowelCount = 0;
     }
-  }
+  };
   return maxWord;
   function isVowel(char) {
     let vowels = 'aeiouAEIOU';
@@ -386,7 +386,7 @@ mostVowels('try my gym'); // => ''`,
       return false;
     }
   }
-}
+};
 `,
     },
     {
