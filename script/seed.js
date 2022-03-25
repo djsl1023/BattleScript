@@ -33,22 +33,22 @@ async function seed() {
       testSpecs: `describe('onlyOdds', () => {
 
   it('is a function', () => {
-    expect(typeof onlyOdds).toEqual('function');
+    expect(typeof onlyOdds).to.equal('function');
   });
 
   it('returns a number', () => {
     let returnedValue = onlyOdds(6);
-    expect(typeof returnedValue).toEqual('number');
+    expect(typeof returnedValue).to.equal('number');
   });
 
   it('returns the sum of all odd nums between the provided argument and 0', () => {
     let returnedValue = onlyOdds(10);
-    expect(returnedValue).toEqual(9 + 7 + 5 + 3 + 1);
+    expect(returnedValue).to.equal(9 + 7 + 5 + 3 + 1);
   });
 
   it('returns 0 if inputted argument is less than 1', () => {
     let returnedValue = onlyOdds(-5);
-    expect(returnedValue).toEqual(0);
+    expect(returnedValue).to.equal(0);
   });
 
 });`,
@@ -90,17 +90,17 @@ crazyCaps('fullstack is amazing'); // => fUlLsTaCk iS AmAzInG!`,
       testSpecs: `describe('crazyCaps', () => {
 
   it('is a function', () => {
-    expect(typeof crazyCaps).toEqual('function');
+    expect(typeof crazyCaps).to.equal('function');
   });
 
   it('returns a string', () => {
     let returnedValue = crazyCaps('any value');
-    expect(typeof returnedValue).toEqual('string');
+    expect(typeof returnedValue).to.equal('string');
   });
 
   it('returns a string with alternating lower-case and upper-case letters', () => {
     let returnedValue = crazyCaps('this is crazy');
-    expect(returnedValue).toEqual('tHiS Is cRaZy');
+    expect(returnedValue).to.equal('tHiS Is cRaZy');
   });
 
 });
@@ -137,17 +137,17 @@ bacteriaTime(1, 8); // => 60`,
       testSpecs: `describe('bacteriaTime', () => {
 
   it('is a function', () => {
-    expect(typeof bacteriaTime).toEqual('function');
+    expect(typeof bacteriaTime).to.equal('function');
   });
 
   it('returns the number of minutes required to reach the target', () => {
     let returnedValue = bacteriaTime(1, 8);
-    expect(returnedValue).toEqual(60);
+    expect(returnedValue).to.equal(60);
   });
 
   it('returns the number of minutes required to reach a large target', () => {
     let returnedValue = bacteriaTime(3, 6000);
-    expect(returnedValue).toEqual(220);
+    expect(returnedValue).to.equal(220);
   });
 
 });`,
@@ -182,22 +182,22 @@ exponentiate(3, 4)    // => 81`,
       testSpecs: `describe('exponentiate', () => {
 
   it('is a function', () => {
-    expect(typeof exponentiate).toEqual('function');
+    expect(typeof exponentiate).to.equal('function');
   });
 
   it('returns a number', () => {
     let returnedValue = exponentiate(1, 1);
-    expect(typeof returnedValue).toEqual('number');
+    expect(typeof returnedValue).to.equal('number');
   });
 
   it('returns the value of the first num raised to the second', () => {
     let returnedValue = exponentiate(3, 6);
-    expect(returnedValue).toEqual(Math.pow(3, 6));
+    expect(returnedValue).to.equal(Math.pow(3, 6));
   });
 
   it('returns 1 if the power is 0', () => {
     let returnedValue = exponentiate(20, 0);
-    expect(returnedValue).toEqual(1);
+    expect(returnedValue).to.equal(1);
   });
 
 });`,
@@ -261,27 +261,27 @@ workshop problems, though!
       testSpecs: `describe('mySlice', () => {
 
   it('is a function', () => {
-    expect(typeof mySlice).toEqual('function');
+    expect(typeof mySlice).to.equal('function');
   });
 
   it('returns a string', () => {
     let returnedValue = mySlice('a piece of pie');
-    expect(typeof returnedValue).toEqual('string');
+    expect(typeof returnedValue).to.equal('string');
   });
 
   it('returns a new string starting at the startIdx', () => {
     let returnedValue = mySlice('a piece of pie', 2);
-    expect(returnedValue).toEqual('piece of pie');
+    expect(returnedValue).to.equal('piece of pie');
   });
 
   it('returns a new string with the correct starting and ending indices', () => {
     let returnedValue = mySlice('a piece of pie', 2, 7);
-    expect(returnedValue).toEqual('piece');
+    expect(returnedValue).to.equal('piece');
   });
 
   it('returns the original string if no indices are inputted', () => {
     let returnedValue = mySlice('a piece of pie');
-    expect(returnedValue).toEqual('a piece of pie');
+    expect(returnedValue).to.equal('a piece of pie');
   });
 
 });`,
@@ -327,27 +327,27 @@ mostVowels('try my gym'); // => ''`,
       testSpecs: `describe('mostVowels', () => {
 
   it('is a function', () => {
-    expect(typeof mostVowels).toEqual('function');
+    expect(typeof mostVowels).to.equal('function');
   });
 
   it('returns a string', () => {
     let returnedValue = mostVowels('Wit beyond measure is man\'s greatest treasure.');
-    expect(typeof returnedValue).toEqual('string');
+    expect(typeof returnedValue).to.equal('string');
   });
 
   it('returns the word with the most vowels', () => {
     let returnedValue = mostVowels('Wit beyond measure is man\'s greatest treasure.');
-    expect(returnedValue).toEqual('measure');
+    expect(returnedValue).to.equal('measure');
   });
 
   it('returns the word with the most vowels even if it\'s the last string in the sentence', () => {
     let returnedValue = mostVowels('Give her hell from us, Peeves.');
-    expect(returnedValue).toEqual('Peeves');
+    expect(returnedValue).to.equal('Peeves');
   });
 
   it('returns an empty string if none of the inputted words have vowels', () => {
     let returnedValue = mostVowels('why dry my sly lynx?');
-    expect(returnedValue).toEqual('');
+    expect(returnedValue).to.equal('');
   });
 
 });
@@ -375,7 +375,7 @@ mostVowels('try my gym'); // => ''`,
       currentWord = '';
       currentVowelCount = 0;
     }
-  }
+  };
   return maxWord;
   function isVowel(char) {
     let vowels = 'aeiouAEIOU';
@@ -386,7 +386,7 @@ mostVowels('try my gym'); // => ''`,
       return false;
     }
   }
-}
+};
 `,
     },
     {

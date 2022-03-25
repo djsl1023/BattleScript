@@ -4,6 +4,7 @@ import { addUser, removeUser } from '../store/users';
 import { useColyseus } from './ColyseusContext';
 import * as Colyseus from 'colyseus.js';
 import { setGameStatus } from '../store/gameStatus';
+import { setPrompt } from '../store/prompt';
 import Lobby from './Lobby';
 import Prompt from './Prompt';
 
@@ -32,9 +33,13 @@ const Game = () => {
 
     dispatch(removeUser(users));
   };
-
   room.state.listen('gameStatus', (curr, prev) => {
     dispatch(setGameStatus(curr));
+  });
+  //AFTER SENDING GETQUESTION(lobby.js) TO SERVER, LISTENS FOR BROADCAST,
+  //SET QUESTION TO CLIENT STATE
+  room.onMessage('getPrompt', (prompt) => {
+    dispatch(setPrompt(prompt));
   });
 
   switch (gameStatus) {

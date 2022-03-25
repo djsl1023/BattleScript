@@ -59,7 +59,17 @@ class GameRoom extends colyseus.Room {
     this.maxClients = 5;
     // this.state.roundNumber = this.roundNumber;
     this.gameStatus = 'lobby';
-
+    //CLIENT SENDS MESSAGE TO GET QUESTION, SENDS QUESTION TO CLIENT
+    this.onMessage('getPrompt', (client, data) => {
+      let prompt = {
+        id: this.state.question.id,
+        difficulty: this.state.question.difficulty,
+        title: this.state.question.title,
+        question: this.state.question.question,
+        testSpecs: this.state.question.testSpecs,
+      };
+      this.broadcast('getPrompt', prompt);
+    });
     this.onMessage('start', (client, { gameStatus }) => {
       this.state.gameStatus = gameStatus;
 
