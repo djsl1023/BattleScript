@@ -1,28 +1,27 @@
 import React from 'react';
-
-const players = [
-  { id: 1, username: 'cody' },
-  { id: 2, username: 'murphy' },
-  { id: 3, username: 'cody' },
-  { id: 4, username: 'ben' },
-  { id: 5, username: 'star' },
-  { id: 6, username: 'elliot' },
-  { id: 7, username: 'henry' },
-  { id: 8, username: 'fira' },
-];
+import { useSelector, useDispatch } from 'react-redux';
+import { addUser } from '../store/users';
 
 const Lobby = () => {
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users);
+  const room = useSelector((state) => state.room);
+  //
   const handleStartGame = () => {
-    console.log('start game button clicked');
+    room.send('start', {
+      gameStatus: 'prompt',
+    });
   };
+  console.log(room.users);
 
   return (
     <div>
       <div className="lobby-container">
-        {players.map((player) => {
+        <p>Room ID: {room.id}</p>
+        {Object.keys(users).map((clientId) => {
           return (
-            <div key={player.id} className="player">
-              <p>{player.username}</p>
+            <div key={clientId} className="player">
+              <p>{users[clientId].username}</p>
               <img
                 src={
                   'https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg'
@@ -39,5 +38,14 @@ const Lobby = () => {
     </div>
   );
 };
+
+// return (
+//   <div>
+//     <div>Room Code: {room.id}</div>
+//     {Object.keys(users).map((key) => {
+//       return <div key={key}>Hello {users[key].username}</div>;
+//     })}
+//   </div>
+// );
 
 export default Lobby;
