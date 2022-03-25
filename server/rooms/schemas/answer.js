@@ -35,11 +35,11 @@ class AddAnswer extends command.Command {
     if (!tempAnswer.isCorrect) {
       //failVote round
       this.state.failAnswers.set(clientId, tempAnswer);
-      this.state.failVotes.set(clientId, tempAnswer);
+      this.state.failVotes.set(clientId, tempVote);
     } else {
       //passVote round
       this.state.passAnswers.set(clientId, tempAnswer);
-      this.state.passVotes.set(clientId, tempAnswer);
+      this.state.passVotes.set(clientId, tempVote);
     }
   }
 }
