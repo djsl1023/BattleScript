@@ -6,6 +6,12 @@ import roomReducer from './room';
 import userReducer from './users';
 import gameStatusReducer from './gameStatus';
 import promptReducer from './prompt';
+import questionReducer from './question';
+import answersReducer from './failAnswers';
+import failedAnswersReducer from './failAnswers';
+import failedVotesReducer from './failVoting';
+import passedAnswersReducer from './passAnswers';
+import passedVotesReducer from './passVoting';
 import auth from './auth';
 import resultReducer from './result';
 
@@ -15,6 +21,12 @@ const reducer = combineReducers({
   gameStatus: gameStatusReducer,
   prompt: promptReducer,
   result: resultReducer,
+  question: questionReducer,
+  answer: answersReducer,
+  failedAnswers: failedAnswersReducer,
+  passedAnswers: passedAnswersReducer,
+  failedVotes: failedVotesReducer,
+  passedVotes: passedVotesReducer,
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))

@@ -2,19 +2,21 @@ const colyseus = require('colyseus');
 const command = require('@colyseus/command');
 const schema = require('@colyseus/schema');
 const Schema = schema.Schema;
-const ArraySchema = schema.ArraySchema;
+//const ArraySchema = schema.ArraySchema;
 const MapSchema = schema.MapSchema;
-const {
-  QuestionSchema,
-  getQuestions,
-  insertQuestion,
-} = require('./schemas/question');
+const { QuestionSchema, getQuestions, insertQuestion } = require('./schemas/question');
 const { UserSchema, AddUser, RemoveUser } = require('./schemas/user');
+const { AnswerSchema, AddAnswer } = require('./schemas/answer');
+const { VoteSchema, AddVotes } = require('./schemas/vote');
 
 // OVERALL GAME STATE
 // users : {key: value}
 // question : {}
 // gameStatus: 'lobby', 'prompt', 'failvote', 'passvote', 'tally', 'final'
+//failAnswers: {clientId: answer}
+//passAnswers: {clientId: answer}
+//failVotes: {solutionClientId: votes}
+//passVotes:  {solutionClientId: votes}
 
 class GameState extends Schema {
   constructor() {
@@ -24,12 +26,22 @@ class GameState extends Schema {
     //Questions array
     this.question = new QuestionSchema();
     this.gameStatus = 'lobby';
+    //votes and answers were separate so that the objects being passed back and forth are smaller.
+    this.failAnswers = new MapSchema();
+    this.passAnswers = new MapSchema();
+    this.failVotes = new MapSchema();
+    this.passVotes = new MapSchema();
   }
 }
 schema.defineTypes(GameState, {
   users: { map: UserSchema },
   question: QuestionSchema,
   gameStatus: 'string',
+  // answer: map all answers
+  failAnswers: { map: AnswerSchema },
+  passAnswers: { map: AnswerSchema },
+  failVotes: { map: VoteSchema },
+  passVotes: { map: VoteSchema },
 });
 
 class GameRoom extends colyseus.Room {
@@ -63,8 +75,29 @@ class GameRoom extends colyseus.Room {
 
       console.log(client.sessionId, "sent 'action' message: ", gameStatus);
     });
+    this.onMessage('submit', (client, { answer, testResult }) => {
+      this.dispatcher.dispatch(new AddAnswer(), {
+        clientId: client.id,
+        clientAnswer: answer,
+        testResult: testResult,
+      });
+    });
+    this.onMessage('failvote', (client, { solutionId }) => {
+      this.dispatcher.dispatch(new AddVotes(), {
+        //the client above is the info for the person voting, the solutionId is the id of the person they are voting for. We want to access the object for the person whose answer is voted. i.e. the SolutionId
+        clientId: solutionId,
+        failVote: 1,
+      });
+    });
+    this.onMessage('passvote', (client, { solutionId }) => {
+      console.log('passvote');
+      this.dispatcher.dispatch(new AddVotes(), {
+        clientId: solutionId,
+        passVote: 1,
+      });
+    });
+
     console.log('Room Created');
-    // this.dispatcher.dispatch(new AddQuestions());
     this.dispatcher.dispatch(new insertQuestion(), {
       roundNumber: this.roundNumber,
       questions: this.questions,
