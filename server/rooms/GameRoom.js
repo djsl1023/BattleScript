@@ -42,6 +42,7 @@ class GameRoom extends colyseus.Room {
 
     this.state.roundNumber = this.roundNumber;
     console.log('Room Created');
+    this.dispatcher.dispatch(new AddQuestions());
   }
 
   // Authorize client based on provided options before WebSocket handshake is complete
