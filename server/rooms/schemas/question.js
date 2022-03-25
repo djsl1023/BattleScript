@@ -2,9 +2,10 @@ const schema = require('@colyseus/schema');
 const Sequelize = require('sequelize');
 const Schema = schema.Schema;
 const command = require('@colyseus/command');
-const {
-  models: { Question },
-} = require('../../db');
+// const {
+//   models: { Question },
+// } = require('../../db');
+const Question = require('../../db/models/Question');
 const db = require('../../db');
 //Schema
 class QuestionSchema extends Schema {
@@ -27,7 +28,29 @@ schema.defineTypes(QuestionSchema, {
   solution: 'string',
 });
 
+async function getQuestions() {
+  let questionList = await Question.findAll({
+    // order: [['id', Sequelize.literal('RANDOM')]],
+    order: [Sequelize.literal('RANDOM()')],
+    limit: 3,
+  });
+  return questionList;
+}
 //Commands
+
+class insertQuestion extends command.Command {
+  execute({ roundNumber, questions }) {
+    console.log(roundNumber);
+    let currQuestion = questions[roundNumber - 1];
+    let temp = new QuestionSchema();
+    temp.id = currQuestion.id;
+    temp.difficulty = currQuestion.difficulty;
+    temp.title = currQuestion.title;
+    temp.question = currQuestion.question;
+    temp.testSpecs = currQuestion.testSpecs;
+    this.state.question = temp;
+  }
+}
 class AddQuestions extends command.Command {
   async execute() {
     // Get list of questions, Will need tweaking to randomize
@@ -66,4 +89,4 @@ class AddQuestions extends command.Command {
   }
 }
 
-module.exports = { QuestionSchema, AddQuestions };
+module.exports = { QuestionSchema, AddQuestions, getQuestions, insertQuestion };

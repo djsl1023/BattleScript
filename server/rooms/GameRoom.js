@@ -7,7 +7,11 @@ const MapSchema = schema.MapSchema;
 const {
   models: { Question },
 } = require('../db');
-const { QuestionSchema, AddQuestions } = require('./schemas/question');
+const {
+  QuestionSchema,
+  getQuestions,
+  insertQuestion,
+} = require('./schemas/question');
 const { UserSchema, AddUser } = require('./schemas/user');
 
 // OVERALL GAME STATE
@@ -30,7 +34,7 @@ schema.defineTypes(GameState, {
 class GameRoom extends colyseus.Room {
   constructor() {
     super();
-    this.question = '';
+    this.questions = [];
     this.roundNumber = 1;
   }
 
@@ -38,11 +42,15 @@ class GameRoom extends colyseus.Room {
     //Set initial game state
     this.setState(new GameState());
     this.dispatcher = new command.Dispatcher(this);
+    this.questions = await getQuestions();
     this.maxClients = 5;
-
-    this.state.roundNumber = this.roundNumber;
+    // this.state.roundNumber = this.roundNumber;
     console.log('Room Created');
-    this.dispatcher.dispatch(new AddQuestions());
+    // this.dispatcher.dispatch(new AddQuestions());
+    this.dispatcher.dispatch(new insertQuestion(), {
+      roundNumber: this.roundNumber,
+      questions: this.questions,
+    });
   }
 
   // Authorize client based on provided options before WebSocket handshake is complete
@@ -54,6 +62,7 @@ class GameRoom extends colyseus.Room {
       username: options.username,
       clientId: client.id,
     });
+    console.log(this.state.question);
   }
 
   // When a client leaves the room
