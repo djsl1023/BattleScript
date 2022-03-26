@@ -13,14 +13,12 @@ import failedVotesReducer from './failVoting';
 import passedAnswersReducer from './passAnswers';
 import passedVotesReducer from './passVoting';
 import auth from './auth';
-import resultReducer from './result';
 
 const reducer = combineReducers({
   room: roomReducer,
   users: userReducer,
   gameStatus: gameStatusReducer,
   prompt: promptReducer,
-  result: resultReducer,
   question: questionReducer,
   answer: answersReducer,
   failedAnswers: failedAnswersReducer,
