@@ -1,15 +1,14 @@
-//REDUX STORE FOR CONNECTED USERS
-const SET_PASSED_ANSWERS = 'SET_PASSED_ANSWERS';
+const ADD_PASSED_ANSWERS = 'ADD_PASSED_ANSWERS';
 
-export const setPassedAnswers = (key, passedAnswers) => ({
-  type: SET_PASSED_ANSWERS,
+export const addPassedAnswers = (key, passedAnswers) => ({
+  type: ADD_PASSED_ANSWERS,
   passedAnswers,
   key,
 });
 
 export default function passedAnswersReducer(state = {}, action) {
   switch (action.type) {
-    case SET_PASSED_ANSWERS:
+    case ADD_PASSED_ANSWERS:
       return { ...state, [action.key]: action.passedAnswers };
 
     default:
