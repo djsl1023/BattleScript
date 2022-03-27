@@ -38,17 +38,31 @@ class AddAnswer extends command.Command {
 
       this.state.failAnswers.set(clientId, tempAnswer);
       this.state.failVotes.set(clientId, tempVote);
-      if (this.state.failAnswers.size === this.state.users.size) {
-        this.state.gameStatus = 'voting';
-      }
+
+      /* change game state gameStatus to voting if answers for every user have been submitted
+       */
+
+      // if (
+      //   this.state.failAnswers.size === this.state.users.size ||
+      //   this.state.failAnswers.size + this.state.passAnswers.size === this.state.users.size
+      // ) {
+      //   this.state.gameStatus = 'voting';
+      // }
     } else {
       //passVote round
 
       this.state.passAnswers.set(clientId, tempAnswer);
       this.state.passVotes.set(clientId, tempVote);
-      if (this.state.passAnswers.size === this.state.users.size) {
-        this.state.gameStatus = 'voting';
-      }
+
+      /* change game state gameStatus to voting if answers for every user have been submitted
+       */
+
+      // if (
+      //   this.state.passAnswers.size === this.state.users.size ||
+      //   this.state.failAnswers.size + this.state.passAnswers.size === this.state.users.size
+      // ) {
+      //   this.state.gameStatus = 'voting';
+      // }
     }
   }
 }
