@@ -7,6 +7,7 @@ import { setGameStatus } from '../store/gameStatus';
 import { setPrompt } from '../store/prompt';
 import Lobby from './Lobby';
 import Prompt from './Prompt';
+import Voting from './Voting';
 
 /**
  * MAIN GAME INSTANCE, THIS COMPONENT WILL RENDER OTHER COMPONENTS
@@ -48,6 +49,9 @@ const Game = () => {
     }
     case 'prompt': {
       return <Prompt />;
+    }
+    case 'voting': {
+      return <Voting />;
     }
 
     default: {

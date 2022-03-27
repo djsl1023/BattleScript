@@ -32,14 +32,23 @@ class AddAnswer extends command.Command {
     tempAnswer.isCorrect = testResult;
     tempVote.votes = 0;
     tempVote.clientId = clientId;
+
     if (!tempAnswer.isCorrect) {
       //failVote round
+
       this.state.failAnswers.set(clientId, tempAnswer);
       this.state.failVotes.set(clientId, tempVote);
+      if (this.state.failAnswers.size === this.state.users.size) {
+        this.state.gameStatus = 'voting';
+      }
     } else {
       //passVote round
+
       this.state.passAnswers.set(clientId, tempAnswer);
       this.state.passVotes.set(clientId, tempVote);
+      if (this.state.passAnswers.size === this.state.users.size) {
+        this.state.gameStatus = 'voting';
+      }
     }
   }
 }
