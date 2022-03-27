@@ -332,16 +332,16 @@ mostVowels('try my gym'); // => ''`,
   });
 
   it('returns a string', () => {
-    let returnedValue = mostVowels('Wit beyond measure is man's greatest treasure.');
+    let returnedValue = mostVowels('Wit beyond measure is mans greatest treasure.');
     expect(typeof returnedValue).to.equal('string');
   });
 
   it('returns the word with the most vowels', () => {
-    let returnedValue = mostVowels('Wit beyond measure is man's greatest treasure.');
+    let returnedValue = mostVowels('Wit beyond measure is mans greatest treasure.');
     expect(returnedValue).to.equal('measure');
   });
 
-  it('returns the word with the most vowels even if it's the last string in the sentence', () => {
+  it('returns the word with the most vowels even if its the last string in the sentence', () => {
     let returnedValue = mostVowels('Give her hell from us, Peeves.');
     expect(returnedValue).to.equal('Peeves');
   });
