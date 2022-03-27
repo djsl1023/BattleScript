@@ -7,6 +7,7 @@ import { setGameStatus } from '../store/gameStatus';
 import { setPrompt } from '../store/prompt';
 import Lobby from './Lobby';
 import Prompt from './Prompt';
+import Tally from './Tally';
 
 /**
  * MAIN GAME INSTANCE, THIS COMPONENT WILL RENDER OTHER COMPONENTS
@@ -48,6 +49,10 @@ const Game = () => {
     }
     case 'prompt': {
       return <Prompt />;
+    }
+
+    case 'tally': {
+      return <Tally />;
     }
 
     default: {
