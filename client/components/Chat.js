@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import * as Colyseus from 'colyseus.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { addMessage } from '../store/message';
+
+const AlwaysScrollToBottom = () => {
+  const elementRef = useRef();
+  useEffect(() => elementRef.current.scrollIntoView());
+  return <div ref={elementRef} />;
+};
 
 const Chat = () => {
   const dispatch = useDispatch();
@@ -17,11 +23,9 @@ const Chat = () => {
   };
   const handleChange = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
     setCurrMessage(e.target.value);
   };
   room.state.messages.onAdd = (message, key) => {
-    console.log('message', message);
     dispatch(addMessage(message));
   };
 
@@ -31,15 +35,16 @@ const Chat = () => {
       {!messages.length ? (
         <div>no messages </div>
       ) : (
-        <div className="chat-box">
+        <ul className="chat-box">
           {messages.map((message, index) => {
             return (
-              <p key={index}>
+              <li key={index} className="messages">
                 {message.username}: {message.message}
-              </p>
+                <AlwaysScrollToBottom />
+              </li>
             );
           })}
-        </div>
+        </ul>
       )}
       <form id="form" onSubmit={(e) => handleSubmit(e)}>
         <input
@@ -48,7 +53,7 @@ const Chat = () => {
           onChange={(e) => handleChange(e)}
           value={currMessage || ''}
         />
-        <input type="submit" value="Send Message" />
+        <input type="submit" value="Send" />
       </form>
     </div>
   );
