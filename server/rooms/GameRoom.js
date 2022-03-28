@@ -13,7 +13,7 @@ const {
 const { UserSchema, AddUser, RemoveUser } = require('./schemas/user');
 const { MessagesSchema, AddMessage } = require('./schemas/messages');
 const { AnswerSchema, AddAnswer } = require('./schemas/answer');
-const { VoteSchema, AddVotes } = require('./schemas/vote');
+const { AddVotes } = require('./schemas/vote');
 
 // OVERALL GAME STATE
 // users : {key: value}
@@ -21,8 +21,8 @@ const { VoteSchema, AddVotes } = require('./schemas/vote');
 // gameStatus: 'lobby', 'prompt', 'failvote', 'passvote', 'tally', 'final'
 //failAnswers: {clientId: answer}
 //passAnswers: {clientId: answer}
-//failVotes: {solutionClientId: votes}
-//passVotes:  {solutionClientId: votes}
+//failVotes: {solutionClientId: votecount}
+//passVotes:  {solutionClientId: votecount}
 
 class GameState extends Schema {
   constructor() {
@@ -48,8 +48,8 @@ schema.defineTypes(GameState, {
   // answer: map all answers
   failAnswers: { map: AnswerSchema },
   passAnswers: { map: AnswerSchema },
-  failVotes: { map: VoteSchema },
-  passVotes: { map: VoteSchema },
+  failVotes: { map: 'number' },
+  passVotes: { map: 'number' },
 });
 
 class GameRoom extends colyseus.Room {
@@ -57,6 +57,7 @@ class GameRoom extends colyseus.Room {
     super();
     this.questions = [];
     this.roundNumber = 1;
+    this.voteCount = 0;
   }
 
   async onCreate(options) {
@@ -78,25 +79,34 @@ class GameRoom extends colyseus.Room {
       };
       this.broadcast('getPrompt', prompt);
     });
+    // START GAME
     this.onMessage('start', (client, { gameStatus }) => {
       this.state.gameStatus = gameStatus;
-      console.log(client.sessionId, "sent 'action' message: ", gameStatus);
     });
-    //CHAT
 
+    //CHAT
     this.onMessage('chat', (client, message) => {
       this.dispatcher.dispatch(new AddMessage(), {
         username: this.state.users[client.id].username,
         message,
       });
     });
-    //CHAT
+    //SUBMIT ANSWER
     this.onMessage('submit', (client, { answer, testResult }) => {
       this.dispatcher.dispatch(new AddAnswer(), {
         clientId: client.id,
         clientAnswer: answer,
         testResult: testResult,
       });
+      /**After submission, check if all users have submitted, if so
+       * move onto failvoting round
+       */
+      if (
+        this.state.users.size ===
+        this.state.failAnswers.size + this.state.passAnswers.size
+      ) {
+        this.state.gameStatus = 'failvote';
+      }
     });
     this.onMessage('failvote', (client, { solutionId }) => {
       this.dispatcher.dispatch(new AddVotes(), {
@@ -104,13 +114,30 @@ class GameRoom extends colyseus.Room {
         clientId: solutionId,
         failVote: 1,
       });
+
+      this.voteCount++;
+      console.log(this.voteCount);
+      if (this.voteCount === this.state.users.size) {
+        this.voteCount = 0;
+        this.state.failVotes.forEach((value, key) => {
+          this.state.users[key].incorrectPoints += value * 75;
+        });
+        this.state.gameStatus = 'passvote';
+      }
     });
     this.onMessage('passvote', (client, { solutionId }) => {
-      console.log('passvote');
       this.dispatcher.dispatch(new AddVotes(), {
         clientId: solutionId,
         passVote: 1,
       });
+      this.voteCount++;
+      if (this.voteCount === this.state.users.size) {
+        this.voteCount = 0;
+        this.state.passVotes.forEach((value, key) => {
+          this.state.users[key].correctPoints += value * 250;
+        });
+        this.state.gameStatus = 'tally';
+      }
     });
     console.log('Room Created');
     this.dispatcher.dispatch(new insertQuestion(), {
@@ -128,7 +155,6 @@ class GameRoom extends colyseus.Room {
       username: options.username,
       clientId: client.id,
     });
-    console.log(this.state.question);
   }
 
   // When a client leaves the room

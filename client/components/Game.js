@@ -1,15 +1,18 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addUser, removeUser } from '../store/users';
+import { addUser, removeUser, updateUser } from '../store/users';
 import { addMessage } from '../store/message';
 import { useColyseus } from './ColyseusContext';
 import * as Colyseus from 'colyseus.js';
 import { setGameStatus } from '../store/gameStatus';
 import { setPrompt } from '../store/prompt';
+import { setFailedVotes } from '../store/failVoting';
+import { setPassedVotes } from '../store/passVoting';
 import Lobby from './Lobby';
 import Prompt from './Prompt';
 import Chat from './Chat';
 import Tally from './Tally';
+import Vote from './Vote';
 import Footer from './Footer';
 
 /**
@@ -29,6 +32,13 @@ const Game = () => {
 
   room.state.users.onAdd = (user, key) => {
     dispatch(addUser(key, user));
+    user.onChange = (changes) => {
+      changes.forEach((change) => {
+        dispatch(
+          updateUser({ key: key, field: change.field, value: change.value })
+        );
+      });
+    };
     console.log(user, 'has been added at', key);
   };
 
@@ -61,7 +71,20 @@ const Game = () => {
           </div>
         );
       }
-
+      case 'failvote': {
+        return (
+          <div>
+            <Vote key="1" />;
+          </div>
+        );
+      }
+      case 'passvote': {
+        return (
+          <div>
+            <Vote key="2" />;
+          </div>
+        );
+      }
       case 'tally': {
         return <Tally />;
       }
