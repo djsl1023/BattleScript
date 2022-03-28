@@ -20,6 +20,24 @@ const Lobby = () => {
     <div>
       <div className="lobby-container">
         <p>Room ID: {room.id}</p>
+        <div className="table">
+          <div id="abv-table">
+            <li className="seat">Seat1</li>
+            <li className="seat">Seat2</li>
+            <li className="seat">Seat3</li>
+          </div>
+          <img
+            id="table-img"
+            src={
+              'https://betandbeat.com/wp-content/uploads/2021/03/oval-poker-table.svg'
+            }
+          ></img>
+          <div id="below-table">
+            <li className="seat">Seat4</li>
+            <li className="seat">Seat5</li>
+            <li className="seat">Seat6</li>
+          </div>
+        </div>
         {Object.keys(users).map((clientId) => {
           return (
             <div key={clientId} className="player">

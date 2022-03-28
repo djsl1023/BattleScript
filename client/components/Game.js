@@ -10,6 +10,7 @@ import Lobby from './Lobby';
 import Prompt from './Prompt';
 import Chat from './Chat';
 import Tally from './Tally';
+import Footer from './Footer';
 
 /**
  * MAIN GAME INSTANCE, THIS COMPONENT WILL RENDER OTHER COMPONENTS
@@ -55,6 +56,7 @@ const Game = () => {
         <div>
           <Lobby />
           <Chat room={room} />
+          <Footer room={room} />
         </div>
       );
     }
@@ -63,6 +65,7 @@ const Game = () => {
         <div>
           <Prompt />
           <Chat room={room} />
+          <Footer room={room} />
         </div>
       );
     }
