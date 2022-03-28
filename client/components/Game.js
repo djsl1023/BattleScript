@@ -5,9 +5,11 @@ import { addMessage } from '../store/message';
 import { useColyseus } from './ColyseusContext';
 import * as Colyseus from 'colyseus.js';
 import { setGameStatus } from '../store/gameStatus';
+import { setPrompt } from '../store/prompt';
 import Lobby from './Lobby';
 import Prompt from './Prompt';
 import Chat from './Chat';
+import Tally from './Tally';
 
 /**
  * MAIN GAME INSTANCE, THIS COMPONENT WILL RENDER OTHER COMPONENTS
@@ -38,9 +40,13 @@ const Game = () => {
 
     dispatch(removeUser(users));
   };
-
   room.state.listen('gameStatus', (curr, prev) => {
     dispatch(setGameStatus(curr));
+  });
+  //AFTER SENDING GETQUESTION(lobby.js) TO SERVER, LISTENS FOR BROADCAST,
+  //SET QUESTION TO CLIENT STATE
+  room.onMessage('getPrompt', (prompt) => {
+    dispatch(setPrompt(prompt));
   });
 
   switch (gameStatus) {
@@ -59,6 +65,10 @@ const Game = () => {
           <Chat room={room} />
         </div>
       );
+    }
+
+    case 'tally': {
+      return <Tally />;
     }
 
     default: {

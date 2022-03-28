@@ -8,6 +8,8 @@ const Lobby = () => {
   const room = useSelector((state) => state.room);
   //
   const handleStartGame = () => {
+    // ON START, SEND MESSAGE TO SERVER TO GET THE QUESTION
+    room.send('getPrompt');
     room.send('start', {
       gameStatus: 'prompt',
     });
