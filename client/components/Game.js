@@ -31,10 +31,6 @@ const Game = () => {
     dispatch(addUser(key, user));
     console.log(user, 'has been added at', key);
   };
-  room.state.messages.onAdd = (message) => {
-    dispatch(addMessage(message));
-    console.log('hello');
-  };
 
   room.state.users.onRemove = (user, key) => {
     delete users[key];
@@ -49,35 +45,41 @@ const Game = () => {
   room.onMessage('getPrompt', (prompt) => {
     dispatch(setPrompt(prompt));
   });
+  const renderSwitch = (gameStatus) => {
+    switch (gameStatus) {
+      case 'lobby': {
+        return (
+          <div>
+            <Lobby />
+          </div>
+        );
+      }
+      case 'prompt': {
+        return (
+          <div>
+            <Prompt />
+          </div>
+        );
+      }
 
-  switch (gameStatus) {
-    case 'lobby': {
-      return (
-        <div>
-          <Lobby />
-          <Chat room={room} />
-          <Footer room={room} />
-        </div>
-      );
-    }
-    case 'prompt': {
-      return (
-        <div>
-          <Prompt />
-          <Chat room={room} />
-          <Footer room={room} />
-        </div>
-      );
-    }
+      case 'tally': {
+        return <Tally />;
+      }
 
-    case 'tally': {
-      return <Tally />;
+      default: {
+        return <div>'loading'</div>;
+      }
     }
+  };
 
-    default: {
-      return <div>'loading'</div>;
-    }
-  }
+  return (
+    <div>
+      <div>{renderSwitch(gameStatus)}</div>
+      <div>
+        <Chat />
+      </div>
+    </div>
+  );
 };
 
 export default Game;

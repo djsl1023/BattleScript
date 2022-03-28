@@ -3,39 +3,41 @@ import * as Colyseus from 'colyseus.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { addMessage } from '../store/message';
 
-const Chat = (props) => {
+const Chat = () => {
   const dispatch = useDispatch();
+  const [currMessage, setCurrMessage] = useState('');
   const messages = useSelector((state) => state.message);
+  const room = useSelector((state) => state.room);
 
-  let message = '';
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.room.send('chat', message);
+    room.send('chat', { message: currMessage });
 
-    message = '';
+    setCurrMessage('');
   };
   const handleChange = (e) => {
-    message = e.target.value;
+    e.preventDefault();
+    console.log(e.target.value);
+    setCurrMessage(e.target.value);
+  };
+  room.state.messages.onAdd = (message, key) => {
+    console.log('message', message);
+    dispatch(addMessage(message));
   };
 
-  props.room.onMessage('chat', (message) => {
-    console.log('frontttttt endddd', message.message);
-    messages.push(message);
-    console.log(messages, '----- ');
-    // props.room.state.messages.set = (message) => {
-    //   dispatch(addMessage(message));
-    // };
-  });
   return (
     <div>
-      {console.log(props.room)}
       <h1> Hi From Chat </h1>
       {!messages.length ? (
         <div>no messages </div>
       ) : (
-        <div>
+        <div className="chat-box">
           {messages.map((message, index) => {
-            return <p key={index}> {message}</p>;
+            return (
+              <p key={index}>
+                {message.username}: {message.message}
+              </p>
+            );
           })}
         </div>
       )}
@@ -44,7 +46,7 @@ const Chat = (props) => {
           name="newMessage"
           type="text"
           onChange={(e) => handleChange(e)}
-          // value={message}
+          value={currMessage || ''}
         />
         <input type="submit" value="Send Message" />
       </form>
