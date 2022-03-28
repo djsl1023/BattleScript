@@ -78,19 +78,20 @@ class GameRoom extends colyseus.Room {
       };
       this.broadcast('getPrompt', prompt);
     });
+    // START GAME
     this.onMessage('start', (client, { gameStatus }) => {
       this.state.gameStatus = gameStatus;
       console.log(client.sessionId, "sent 'action' message: ", gameStatus);
     });
-    //CHAT
 
+    //CHAT
     this.onMessage('chat', (client, message) => {
       this.dispatcher.dispatch(new AddMessage(), {
         username: this.state.users[client.id].username,
         message,
       });
     });
-    //CHAT
+    //SUBMIT ANSWER
     this.onMessage('submit', (client, { answer, testResult }) => {
       this.dispatcher.dispatch(new AddAnswer(), {
         clientId: client.id,
@@ -137,6 +138,7 @@ class GameRoom extends colyseus.Room {
       username: options.username,
       clientId: client.id,
     });
+    console.log(this.state.question);
   }
 
   // When a client leaves the room

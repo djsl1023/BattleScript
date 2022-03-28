@@ -10,6 +10,7 @@ import Lobby from './Lobby';
 import Prompt from './Prompt';
 import Chat from './Chat';
 import Tally from './Tally';
+import Vote from './Vote';
 
 /**
  * MAIN GAME INSTANCE, THIS COMPONENT WILL RENDER OTHER COMPONENTS
@@ -60,7 +61,12 @@ const Game = () => {
           </div>
         );
       }
-
+      case 'failvote': {
+        return <Vote />;
+      }
+      case 'passvote': {
+        return <Vote />;
+      }
       case 'tally': {
         return <Tally />;
       }
