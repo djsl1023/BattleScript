@@ -1,12 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../store/users';
+import { addMessage } from '../store/message';
 import { useColyseus } from './ColyseusContext';
 import * as Colyseus from 'colyseus.js';
 import { setGameStatus } from '../store/gameStatus';
 import { setPrompt } from '../store/prompt';
 import Lobby from './Lobby';
 import Prompt from './Prompt';
+import Chat from './Chat';
+import Tally from './Tally';
 
 /**
  * MAIN GAME INSTANCE, THIS COMPONENT WILL RENDER OTHER COMPONENTS
@@ -41,19 +44,41 @@ const Game = () => {
   room.onMessage('getPrompt', (prompt) => {
     dispatch(setPrompt(prompt));
   });
+  const renderSwitch = (gameStatus) => {
+    switch (gameStatus) {
+      case 'lobby': {
+        return (
+          <div>
+            <Lobby />
+          </div>
+        );
+      }
+      case 'prompt': {
+        return (
+          <div>
+            <Prompt />
+          </div>
+        );
+      }
 
-  switch (gameStatus) {
-    case 'lobby': {
-      return <Lobby />;
-    }
-    case 'prompt': {
-      return <Prompt />;
-    }
+      case 'tally': {
+        return <Tally />;
+      }
 
-    default: {
-      return <div>'loading'</div>;
+      default: {
+        return <div>'loading'</div>;
+      }
     }
-  }
+  };
+
+  return (
+    <div>
+      <div>{renderSwitch(gameStatus)}</div>
+      <div>
+        <Chat />
+      </div>
+    </div>
+  );
 };
 
 export default Game;

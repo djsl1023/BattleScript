@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body {
   font-family: sans-serif;
 }
@@ -88,8 +91,23 @@ nav a {
   top: -16em;
   right: -6em;
 }
-
+.prompt-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 .prompt-solution {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   margin: 3em 0 0 2em;
+  width: 35vw;
+  height: 80vh;
+}
+.submit-prompt-button {
+  width: 80%;
+}
+.finished-submission-list {
+  margin: 3em 0 0 2em;
+  display: flex;
+  flex-direction: column;
 }

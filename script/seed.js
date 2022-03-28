@@ -118,7 +118,8 @@ crazyCaps('fullstack is amazing'); // => fUlLsTaCk iS AmAzInG!`,
       crazyString += char;
     }
   }
-  return crazyString;`,
+  return crazyString;
+}`,
     },
     {
       title: 'Bacteria Time',
@@ -331,16 +332,16 @@ mostVowels('try my gym'); // => ''`,
   });
 
   it('returns a string', () => {
-    let returnedValue = mostVowels('Wit beyond measure is man\'s greatest treasure.');
+    let returnedValue = mostVowels('Wit beyond measure is mans greatest treasure.');
     expect(typeof returnedValue).to.equal('string');
   });
 
   it('returns the word with the most vowels', () => {
-    let returnedValue = mostVowels('Wit beyond measure is man\'s greatest treasure.');
+    let returnedValue = mostVowels('Wit beyond measure is mans greatest treasure.');
     expect(returnedValue).to.equal('measure');
   });
 
-  it('returns the word with the most vowels even if it\'s the last string in the sentence', () => {
+  it('returns the word with the most vowels even if its the last string in the sentence', () => {
     let returnedValue = mostVowels('Give her hell from us, Peeves.');
     expect(returnedValue).to.equal('Peeves');
   });
@@ -421,34 +422,33 @@ myIndexOf('twice twice', 'ice'); => 2
 myIndexOf('twice twice', 'ice', 5); => 8
 
 myIndexOf('happy string', 'sad'); => -1`,
-      testSpecs: `function myIndexOf(source, searchValue, startIdx) {
-  if (startIdx === undefined) {
-    startIdx = 0;
-  }
+      testSpecs: `describe('myIndexOf', () => {
 
-  for (let i = startIdx; i <= source.length - searchValue.length; i++) {
-    let substring = source.slice(i, i + searchValue.length);
+  it('is a function', () => {
+    expect(typeof myIndexOf).to.equal('function');
+  });
 
-    if (substring === searchValue) {
-      // ...return the current index
-      return i;
-    }
-  }
+  it('returns a number', () => {
+    let returnedValue = myIndexOf('i love apples', 'apples');
+    expect(typeof returnedValue).to.equal('number');
+  });
 
-  return -1;
-}
+  it('returns the first instance of the searchValue in the source', () => {
+    let returnedValue = myIndexOf('here and there', 'here');
+    expect(returnedValue).to.equal(0);
+  });
 
-function myIndexOf2(source, searchValue, startIdx = 0) {
-  for (let i = startIdx; i <= source.length - searchValue.length; i++) {
-    let substring = source.slice(i, i + searchValue.length);
+  it('returns the first instance of the searchValue at or after the startIdx', () => {
+    let returnedValue = myIndexOf('here and there', 'here', 4);
+    expect(returnedValue).to.equal(10);
+  });
 
-    if (substring === searchValue) {
-      return i;
-    }
-  }
+  it('returns -1 if the searchValue is not in the source', () => {
+    let returnedValue = myIndexOf('here and there', 'nowhere');
+    expect(returnedValue).to.equal(-1);
+  });
 
-  return -1;
-}
+})
 `,
       difficulty: `medium`,
       solution: `// Option 1

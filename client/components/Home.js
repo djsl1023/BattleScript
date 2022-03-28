@@ -96,7 +96,8 @@ const Home = () => {
       <button
         type="submit"
         className="create-room-btn"
-        onClick={handleJoinRoom}>
+        onClick={handleJoinRoom}
+      >
         Join Room
       </button>
       <button className="create-room-btn" onClick={handleCreateRoom}>

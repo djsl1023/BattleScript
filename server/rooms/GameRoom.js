@@ -2,6 +2,7 @@ const colyseus = require('colyseus');
 const command = require('@colyseus/command');
 const schema = require('@colyseus/schema');
 const Schema = schema.Schema;
+const ArraySchema = schema.ArraySchema;
 //const ArraySchema = schema.ArraySchema;
 const MapSchema = schema.MapSchema;
 const {
@@ -10,6 +11,7 @@ const {
   insertQuestion,
 } = require('./schemas/question');
 const { UserSchema, AddUser, RemoveUser } = require('./schemas/user');
+const { MessagesSchema, AddMessage } = require('./schemas/messages');
 const { AnswerSchema, AddAnswer } = require('./schemas/answer');
 const { VoteSchema, AddVotes } = require('./schemas/vote');
 
@@ -30,6 +32,7 @@ class GameState extends Schema {
     //Questions array
     this.question = new QuestionSchema();
     this.gameStatus = 'lobby';
+    this.messages = new ArraySchema();
     //votes and answers were separate so that the objects being passed back and forth are smaller.
     this.failAnswers = new MapSchema();
     this.passAnswers = new MapSchema();
@@ -41,6 +44,7 @@ schema.defineTypes(GameState, {
   users: { map: UserSchema },
   question: QuestionSchema,
   gameStatus: 'string',
+  messages: [MessagesSchema],
   // answer: map all answers
   failAnswers: { map: AnswerSchema },
   passAnswers: { map: AnswerSchema },
@@ -76,9 +80,17 @@ class GameRoom extends colyseus.Room {
     });
     this.onMessage('start', (client, { gameStatus }) => {
       this.state.gameStatus = gameStatus;
-
       console.log(client.sessionId, "sent 'action' message: ", gameStatus);
     });
+    //CHAT
+
+    this.onMessage('chat', (client, message) => {
+      this.dispatcher.dispatch(new AddMessage(), {
+        username: this.state.users[client.id].username,
+        message,
+      });
+    });
+    //CHAT
     this.onMessage('submit', (client, { answer, testResult }) => {
       this.dispatcher.dispatch(new AddAnswer(), {
         clientId: client.id,
@@ -109,7 +121,6 @@ class GameRoom extends colyseus.Room {
         passVote: 1,
       });
     });
-
     console.log('Room Created');
     this.dispatcher.dispatch(new insertQuestion(), {
       roundNumber: this.roundNumber,
