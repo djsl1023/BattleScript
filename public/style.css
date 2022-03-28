@@ -178,13 +178,13 @@ a {
   border-radius: 50%;
 }
 
-.start-game-btn {
-  /* width: 20em;
+/* .start-game-btn {
+  width: 20em;
   margin: 0 auto;
   position: relative;
   top: -16em;
-  right: -6em; */
-}
+  right: -6em;
+} */
 .prompt-container {
   display: flex;
   flex-direction: row;
@@ -207,16 +207,18 @@ a {
 }
 
 #chat-comp {
-  margin-left: auto;
-  margin-right: 2rem;
   position: absolute;
-  background-color: #2c3437;
+  top: -12em;
+  right: 0em;
+  background-color: #e9ecea;
+  height: 12em;
+  overflow: auto;
 }
 .footer {
   position: fixed;
   left: 0;
   bottom: 0;
-  height: 40px;
+  height: 5em;
   width: 100%;
   background-color: #2c3437;
   text-align: center;
@@ -244,4 +246,11 @@ a {
   margin-left: auto;
   margin-right: 2rem;
   margin-top: 1rem;
+}
+
+.messages {
+  align-items: left;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }

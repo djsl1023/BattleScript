@@ -75,9 +75,8 @@ const Game = () => {
   return (
     <div>
       <div>{renderSwitch(gameStatus)}</div>
-      <div>
-        <Chat />
-      </div>
+
+      <Footer />
     </div>
   );
 };
