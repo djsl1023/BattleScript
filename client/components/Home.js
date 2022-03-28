@@ -77,32 +77,44 @@ const Home = () => {
   return (
     <div>
       <Welcome />
-
-      <form>
-        <div className="join-form">
-          <label htmlFor="username" className="name-label">
-            Name{' '}
-          </label>
-
-          <input name="username" onChange={handleUsername} value={username} />
-
-          <label htmlFor="roomID" className="roomID-label">
-            Room ID{' '}
-          </label>
-
-          <input name="roomID" onChange={handleRoomID} value={roomID} />
+      <div>
+        <form>
+          <div className="join-create-form">
+            <div className="form-w-title">
+              <label htmlFor="username" className="name-label">
+                Name{' '}
+              </label>
+              <input
+                name="username"
+                onChange={handleUsername}
+                value={username}
+              />
+            </div>
+            <div className="form-w-title">
+              <label htmlFor="roomID" className="roomID-label">
+                Room ID{' '}
+              </label>
+              <input name="roomID" onChange={handleRoomID} value={roomID} />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div className="join-create-form">
+        <div className="form-w-title">
+          <button
+            type="submit"
+            className="create-room-btn"
+            onClick={handleJoinRoom}
+          >
+            Join Room
+          </button>
         </div>
-      </form>
-      <button
-        type="submit"
-        className="create-room-btn"
-        onClick={handleJoinRoom}
-      >
-        Join Room
-      </button>
-      <button className="create-room-btn" onClick={handleCreateRoom}>
-        Create Room
-      </button>
+        <div className="form-w-title">
+          <button className="create-room-btn" onClick={handleCreateRoom}>
+            Create Room
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

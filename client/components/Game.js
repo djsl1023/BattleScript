@@ -13,6 +13,7 @@ import Prompt from './Prompt';
 import Chat from './Chat';
 import Tally from './Tally';
 import Vote from './Vote';
+import Footer from './Footer';
 
 /**
  * MAIN GAME INSTANCE, THIS COMPONENT WILL RENDER OTHER COMPONENTS

@@ -77,7 +77,10 @@ const Prompt = () => {
         <div id="mocha"></div>
         <script>
           window.iFrameResizer = {
+            // for testing on local host
             targetOrigin: 'http://localhost:8080'
+            // for deploying on heroku
+            // targetOrigin: 'https://fsa-battlescript.herokuapp.com/'
           }
         </script>
         <script src="../iframeResizer.contentWindow.min.js"></script>
@@ -125,7 +128,10 @@ const Prompt = () => {
             srcDoc={testHTML}
             sandbox="allow-scripts allow-same-origin"
             scrolling="true"
-            checkOrigin={[`http://localhost:8080`]}
+            // for testing on local host
+            // checkOrigin={[`http://:8080`]}
+            // for heroku deployment
+            checkOrigin={[`https://fsa-battlescript.herokuapp.com/`]}
           />
         </div>
       ) : (
@@ -141,7 +147,8 @@ const Prompt = () => {
           />
           <button
             className="submit-prompt-button"
-            onClick={() => clickHandler()}>
+            onClick={() => clickHandler()}
+          >
             Submit
           </button>
         </div>
