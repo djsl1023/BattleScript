@@ -11,7 +11,7 @@ const Chat = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    room.send('chat', { message: currMessage });
+    room.send('chat', currMessage);
 
     setCurrMessage('');
   };
