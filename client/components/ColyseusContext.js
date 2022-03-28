@@ -5,7 +5,7 @@ import * as Colyseus from 'colyseus.js';
 // let client = new Colyseus.Client('ws://localhost:8080');
 
 // for deployment to heroku
-let client = new Colyseus.Client('https://fsa-battlescript.herokuapp.com/');
+let client = new Colyseus.Client('ws://fsa-battlescript.herokuapp.com/');
 
 export const ColyseusContext = createContext(client);
 
