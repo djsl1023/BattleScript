@@ -9,7 +9,7 @@ export const addMessage = (message) => ({
 export default function messageReducer(state = [], action) {
   switch (action.type) {
     case ADD_MESSAGE:
-      return { ...state.push(action.message) };
+      return [...state, action.message];
     default:
       return state;
   }
