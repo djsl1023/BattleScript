@@ -4,10 +4,17 @@ const app = require('./app');
 const seed = require('../script/seed');
 const GameRoom = require('./rooms/GameRoom');
 const colyseus = require('colyseus');
-const http = require('http');
+// const http = require('http');
+const https = require('https');
+const fs = require('fs');
+
+const options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem'),
+};
 
 const gameServer = new colyseus.Server({
-  server: http.createServer(app),
+  server: https.createServer(options, app),
 });
 const init = async () => {
   try {
