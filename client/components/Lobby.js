@@ -14,7 +14,6 @@ const Lobby = () => {
       gameStatus: 'prompt',
     });
   };
-  console.log(room.users);
 
   return (
     <div>

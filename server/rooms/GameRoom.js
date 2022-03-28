@@ -4,7 +4,11 @@ const schema = require('@colyseus/schema');
 const Schema = schema.Schema;
 //const ArraySchema = schema.ArraySchema;
 const MapSchema = schema.MapSchema;
-const { QuestionSchema, getQuestions, insertQuestion } = require('./schemas/question');
+const {
+  QuestionSchema,
+  getQuestions,
+  insertQuestion,
+} = require('./schemas/question');
 const { UserSchema, AddUser, RemoveUser } = require('./schemas/user');
 const { AnswerSchema, AddAnswer } = require('./schemas/answer');
 const { VoteSchema, AddVotes } = require('./schemas/vote');
@@ -81,6 +85,15 @@ class GameRoom extends colyseus.Room {
         clientAnswer: answer,
         testResult: testResult,
       });
+      /**After submission, check if all users have submitted, if so
+       * move onto failvoting round
+       */
+      if (
+        this.state.users.size ===
+        this.state.failAnswers.size + this.state.passAnswers.size
+      ) {
+        this.state.gameStatus = 'failvote';
+      }
     });
     this.onMessage('failvote', (client, { solutionId }) => {
       this.dispatcher.dispatch(new AddVotes(), {
@@ -113,7 +126,6 @@ class GameRoom extends colyseus.Room {
       username: options.username,
       clientId: client.id,
     });
-    console.log(this.state.question);
   }
 
   // When a client leaves the room
