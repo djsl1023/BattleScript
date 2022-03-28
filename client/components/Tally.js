@@ -11,7 +11,14 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const options = {
   responsive: true,
@@ -44,22 +51,14 @@ export default function Tally() {
   correctPoints and incorrectPoints
   */
 
-  // const correctPoints = clients.map((client) => {
-  //   return users[client].correctPoints;
-  // });
-  // const incorrectPoints = clients.map((client) => {
-  //   return users[client].username;
-  // });
+  const correctPoints = clientIds.map((client) => {
+    return users[client].correctPoints;
+  });
+  const incorrectPoints = clientIds.map((client) => {
+    return users[client].incorrectPoints;
+  });
 
-  /*
-  using dummy data for correctPoints
-  and incorrectPoints for now, works for up to 5 users
-  */
-
-  const correctPoints = ['2', '5', '1', '0', '3'];
-  const incorrectPoints = ['3', '0', '4', '5', '2'];
-
-  const dummyData = {
+  const data = {
     labels,
     datasets: [
       {
@@ -75,5 +74,5 @@ export default function Tally() {
     ],
   };
 
-  return <Bar options={options} data={dummyData} />;
+  return <Bar options={options} data={data} />;
 }
