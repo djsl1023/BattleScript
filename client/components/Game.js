@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addUser, removeUser } from '../store/users';
+import { addUser, removeUser, updateUser } from '../store/users';
 import { addMessage } from '../store/message';
 import { useColyseus } from './ColyseusContext';
 import * as Colyseus from 'colyseus.js';
@@ -31,6 +31,13 @@ const Game = () => {
 
   room.state.users.onAdd = (user, key) => {
     dispatch(addUser(key, user));
+    user.onChange = (changes) => {
+      changes.forEach((change) => {
+        dispatch(
+          updateUser({ key: key, field: change.field, value: change.value })
+        );
+      });
+    };
     console.log(user, 'has been added at', key);
   };
 
@@ -64,10 +71,18 @@ const Game = () => {
         );
       }
       case 'failvote': {
-        return <Vote />;
+        return (
+          <div>
+            <Vote key="1" />;
+          </div>
+        );
       }
       case 'passvote': {
-        return <Vote />;
+        return (
+          <div>
+            <Vote key="2" />;
+          </div>
+        );
       }
       case 'tally': {
         return <Tally />;

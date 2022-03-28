@@ -119,6 +119,9 @@ class GameRoom extends colyseus.Room {
       console.log(this.voteCount);
       if (this.voteCount === this.state.users.size) {
         this.voteCount = 0;
+        this.state.failVotes.forEach((value, key) => {
+          this.state.users[key].incorrectPoints += value * 75;
+        });
         this.state.gameStatus = 'passvote';
       }
     });
@@ -130,6 +133,9 @@ class GameRoom extends colyseus.Room {
       this.voteCount++;
       if (this.voteCount === this.state.users.size) {
         this.voteCount = 0;
+        this.state.passVotes.forEach((value, key) => {
+          this.state.users[key].correctPoints += value * 250;
+        });
         this.state.gameStatus = 'tally';
       }
     });

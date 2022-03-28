@@ -10,7 +10,6 @@ const Vote = () => {
   const [voted, setVoted] = useState(false);
   const [votedFor, setVotedFor] = useState('');
   const [userFocus, setUserFocus] = useState('');
-  const gameState = useSelector((state) => state.gameState);
   const users = useSelector((state) => state.users);
   const room = useSelector((state) => state.room);
   const currPrompt = useSelector((state) => state.prompt);
@@ -41,10 +40,6 @@ const Vote = () => {
       dispatch(setPassedVotes(key, vote));
     };
   }
-  useEffect(() => {
-    setVoted(false);
-    setVotedFor('');
-  }, [gameState]);
 
   //Get editor reference so we can use it later to change contents
   function handleEditorDidMount(editor, monaco) {
