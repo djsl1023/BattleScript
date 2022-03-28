@@ -26,19 +26,18 @@ class AddAnswer extends command.Command {
     //when an answer is submitted we are adding it to the answers map
     let tempAnswer = new AnswerSchema();
     //creating the Vote Schema so it is ready to render upon the voting round.
-    let tempVote = new VoteSchema();
+    // let tempVote = new VoteSchema();
     tempAnswer.clientId = clientId;
     tempAnswer.answer = clientAnswer;
     tempAnswer.isCorrect = testResult;
-    tempVote.votes = 0;
-    tempVote.clientId = clientId;
+    // tempVote.votes = 0;
+    // tempVote.clientId = clientId;
 
     if (!tempAnswer.isCorrect) {
       //failVote round
 
       this.state.failAnswers.set(clientId, tempAnswer);
-      this.state.failVotes.set(clientId, tempVote);
-
+      this.state.failVotes.set(clientId, 0);
       /* change game state gameStatus to voting if answers for every user have been submitted
        */
 
@@ -52,8 +51,7 @@ class AddAnswer extends command.Command {
       //passVote round
 
       this.state.passAnswers.set(clientId, tempAnswer);
-      this.state.passVotes.set(clientId, tempVote);
-
+      this.state.passVotes.set(clientId, 0);
       /* change game state gameStatus to voting if answers for every user have been submitted
        */
 

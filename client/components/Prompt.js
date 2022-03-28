@@ -5,6 +5,8 @@ import testSpecs from './mocha/testSpec';
 import IframeResizer from 'iframe-resizer-react';
 import { addFailedAnswers } from '../store/failAnswers';
 import { addPassedAnswers } from '../store/passAnswers';
+import { setFailedVotes } from '../store/failVoting';
+import { setPassedVotes } from '../store/passVoting';
 
 const Prompt = () => {
   const dispatch = useDispatch();
@@ -17,9 +19,15 @@ const Prompt = () => {
   const currPrompt = useSelector((state) => state.prompt);
   const failedAnswers = useSelector((state) => state.failedAnswers);
   const passedAnswers = useSelector((state) => state.passedAnswers);
+
   const users = useSelector((state) => state.users);
   const didMountRef = useRef(false);
-
+  room.state.failVotes.onAdd = (votes, key) => {
+    dispatch(setFailedVotes(key, votes));
+  };
+  room.state.passVotes.onAdd = (votes, key) => {
+    dispatch(setPassedVotes(key, votes));
+  };
   room.state.failAnswers.onAdd = (answer, key) => {
     dispatch(addFailedAnswers(key, answer));
   };
@@ -32,7 +40,6 @@ const Prompt = () => {
     function windowHandler(e) {
       if (typeof e.data === 'string') {
         const result = JSON.parse(e.data);
-        console.log(result);
         if (result === true) {
           setTestResult(true);
           setLoaded(true);

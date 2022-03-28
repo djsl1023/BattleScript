@@ -6,12 +6,10 @@ export const setFailedVotes = (key, failedVotes) => ({
   failedVotes,
   key,
 });
-
 export default function failedVotesReducer(state = {}, action) {
   switch (action.type) {
     case SET_FAILED_VOTES:
       return { ...state, [action.key]: action.failedVotes };
-
     default:
       return state;
   }

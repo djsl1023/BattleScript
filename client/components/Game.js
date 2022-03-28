@@ -6,6 +6,8 @@ import { useColyseus } from './ColyseusContext';
 import * as Colyseus from 'colyseus.js';
 import { setGameStatus } from '../store/gameStatus';
 import { setPrompt } from '../store/prompt';
+import { setFailedVotes } from '../store/failVoting';
+import { setPassedVotes } from '../store/passVoting';
 import Lobby from './Lobby';
 import Prompt from './Prompt';
 import Chat from './Chat';
