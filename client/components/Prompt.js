@@ -80,7 +80,7 @@ const Prompt = () => {
             // for testing on local host
             //targetOrigin: 'http://localhost:8080'
             // for deploying on heroku
-            // targetOrigin: 'https://capstone-battlescript.herokuapp.com/'
+            targetOrigin: 'https://capstone-battlescript.herokuapp.com/'
           }
         </script>
         <script src="../iframeResizer.contentWindow.min.js"></script>
