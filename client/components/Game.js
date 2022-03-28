@@ -1,12 +1,14 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../store/users';
+import { addMessage } from '../store/message';
 import { useColyseus } from './ColyseusContext';
 import * as Colyseus from 'colyseus.js';
 import { setGameStatus } from '../store/gameStatus';
 import { setPrompt } from '../store/prompt';
 import Lobby from './Lobby';
 import Prompt from './Prompt';
+import Chat from './Chat';
 import Tally from './Tally';
 
 /**
@@ -28,6 +30,10 @@ const Game = () => {
     dispatch(addUser(key, user));
     console.log(user, 'has been added at', key);
   };
+  room.state.messages.onAdd = (message) => {
+    dispatch(addMessage(message));
+    console.log('hello');
+  };
 
   room.state.users.onRemove = (user, key) => {
     delete users[key];
@@ -45,10 +51,20 @@ const Game = () => {
 
   switch (gameStatus) {
     case 'lobby': {
-      return <Lobby />;
+      return (
+        <div>
+          <Lobby />
+          <Chat room={room} />
+        </div>
+      );
     }
     case 'prompt': {
-      return <Prompt />;
+      return (
+        <div>
+          <Prompt />
+          <Chat room={room} />
+        </div>
+      );
     }
 
     case 'tally': {
