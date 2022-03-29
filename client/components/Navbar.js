@@ -1,22 +1,27 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Rules from './Rules';
+import { userLeaveRoom } from '../store';
+import { useDispatch } from 'react-redux';
 
 const Navbar = () => {
   const [isShown, setShown] = useState(false);
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(userLeaveRoom());
+  };
   return (
     <div>
       <nav>
         <div className="navbar">
-          <Link to="/">
+          <Link to="/" onClick={handleClick}>
             <li className="nav-list">Home </li>
           </Link>
           <li className="nav-list">
             <button
               className="rules-btn"
               onMouseEnter={() => setShown(true)}
-              onMouseLeave={() => setShown(false)}
-            >
+              onMouseLeave={() => setShown(false)}>
               Rules
             </button>
             {isShown && (
