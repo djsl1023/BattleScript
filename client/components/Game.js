@@ -18,6 +18,8 @@ import Timer from './Timer';
 import { setTimer } from '../store/timer';
 import HostBar from './HostBar';
 import { setHostKey } from '../store/hostKey';
+import NoneFail from './NoneFail';
+import NonePass from './NonePass';
 
 /**
  * MAIN GAME INSTANCE, THIS COMPONENT WILL RENDER OTHER COMPONENTS
@@ -73,7 +75,6 @@ const Game = () => {
       case 'lobby': {
         return (
           <div>
-            <HostBar />
             <Lobby />
           </div>
         );
@@ -81,23 +82,34 @@ const Game = () => {
       case 'prompt': {
         return (
           <div>
-            <HostBar />
             <Prompt />
+          </div>
+        );
+      }
+      case 'nonefail': {
+        return (
+          <div>
+            <NoneFail />
           </div>
         );
       }
       case 'failvote': {
         return (
           <div>
-            <HostBar />
             <Vote key="1" />;
+          </div>
+        );
+      }
+      case 'nonepass': {
+        return (
+          <div>
+            <NonePass />
           </div>
         );
       }
       case 'passvote': {
         return (
           <div>
-            <HostBar />
             <Vote key="2" />;
           </div>
         );
@@ -105,7 +117,6 @@ const Game = () => {
       case 'tally': {
         return (
           <div>
-            <HostBar />
             <Tally />
           </div>
         );
@@ -119,6 +130,7 @@ const Game = () => {
 
   return (
     <div>
+      <HostBar />
       <div>{renderSwitch(gameStatus)}</div>
 
       <Footer room={room} />

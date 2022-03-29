@@ -62,57 +62,53 @@ const Vote = () => {
     setVotedFor(users[userFocus].username);
     room.send(gameStatus, { solutionId: userFocus });
   };
-  if (submissions.length <= 0) {
-    return <div>No submissions</div>;
-  } else {
-    return (
-      <div className="prompt-container">
-        <div className="prompt-solution">
-          <Editor
-            height="95vh"
-            width="45vw"
-            defaultLanguage="javascript"
-            defaultValue={currPrompt.question}
-            options={{
-              readOnly: true,
-              wordWrap: true,
-            }}
-          />
-        </div>
-        <div className="prompt-solution">
-          <Editor
-            height="95vh"
-            width="45vw"
-            defaultLanguage="javascript"
-            defaultValue="//Select a user from the side to see their code! ----------------->"
-            options={{
-              readOnly: true,
-              wordWrap: true,
-            }}
-            onMount={handleEditorDidMount}
-          />
-          <button
-            className="submit-prompt-button"
-            onClick={(e) => voteHandler(e, userFocus, room.state.gameStatus)}
-            disabled={voted}>
-            {voted ? `You've already voted for ${votedFor}!` : 'Vote!'}
-          </button>
-        </div>
-        <div className="user-list">
-          {Object.keys(submissions).map((userKey) => {
-            return (
-              <div key={userKey}>
-                <button value={userKey} onClick={() => changeFocus(userKey)}>
-                  {users[userKey].username}:{' '}
-                  {voteList[userKey] ? voteList[userKey] : 0}
-                </button>
-              </div>
-            );
-          })}
-        </div>
+  return (
+    <div className="prompt-container">
+      <div className="prompt-solution">
+        <Editor
+          height="95vh"
+          width="45vw"
+          defaultLanguage="javascript"
+          defaultValue={currPrompt.question}
+          options={{
+            readOnly: true,
+            wordWrap: true,
+          }}
+        />
       </div>
-    );
-  }
+      <div className="prompt-solution">
+        <Editor
+          height="95vh"
+          width="45vw"
+          defaultLanguage="javascript"
+          defaultValue="//Select a user from the side to see their code! ----------------->"
+          options={{
+            readOnly: true,
+            wordWrap: true,
+          }}
+          onMount={handleEditorDidMount}
+        />
+        <button
+          className="submit-prompt-button"
+          onClick={(e) => voteHandler(e, userFocus, room.state.gameStatus)}
+          disabled={voted}>
+          {voted ? `You've already voted for ${votedFor}!` : 'Vote!'}
+        </button>
+      </div>
+      <div className="user-list">
+        {Object.keys(submissions).map((userKey) => {
+          return (
+            <div key={userKey}>
+              <button value={userKey} onClick={() => changeFocus(userKey)}>
+                {users[userKey].username}:{' '}
+                {voteList[userKey] ? voteList[userKey] : 0}
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default Vote;
