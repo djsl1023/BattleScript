@@ -5,11 +5,7 @@ const Schema = schema.Schema;
 const ArraySchema = schema.ArraySchema;
 //const ArraySchema = schema.ArraySchema;
 const MapSchema = schema.MapSchema;
-const {
-  QuestionSchema,
-  getQuestions,
-  insertQuestion,
-} = require('./schemas/question');
+const { QuestionSchema, getQuestions, insertQuestion } = require('./schemas/question');
 const { UserSchema, AddUser, RemoveUser } = require('./schemas/user');
 const { MessagesSchema, AddMessage } = require('./schemas/messages');
 const { AnswerSchema, AddAnswer } = require('./schemas/answer');
@@ -93,7 +89,7 @@ class GameRoom extends colyseus.Room {
         return;
       }
       this.roundNumber++;
-      if (this.roundNumber <= 4) {
+      if (this.roundNumber <= 1) {
         this.dispatcher.dispatch(new insertQuestion(), {
           roundNumber: this.roundNumber,
           questions: this.questions,
@@ -104,6 +100,7 @@ class GameRoom extends colyseus.Room {
         this.state.passVotes.clear();
         this.state.gameStatus = 'prompt';
       } else {
+        console.log('test');
         this.state.gameStatus = 'final';
       }
     });
@@ -118,13 +115,8 @@ class GameRoom extends colyseus.Room {
       }, 0);
 
       this.delayedInterval = this.clock.setInterval(() => {
-        console.log(
-          'Time now ' +
-            new Date(timeToAnswer - this.clock.elapsedTime).getSeconds()
-        );
-        this.state.timer = new Date(
-          timeToAnswer - this.clock.elapsedTime
-        ).getSeconds();
+        console.log('Time now ' + new Date(timeToAnswer - this.clock.elapsedTime).getSeconds());
+        this.state.timer = new Date(timeToAnswer - this.clock.elapsedTime).getSeconds();
       }, 1000);
 
       // After timeToAnswer is finished clear the timeout;
@@ -163,10 +155,7 @@ class GameRoom extends colyseus.Room {
       /**After submission, check if all users have submitted, if so
        * move onto failvoting round
        */
-      if (
-        this.state.users.size ===
-        this.state.failAnswers.size + this.state.passAnswers.size
-      ) {
+      if (this.state.users.size === this.state.failAnswers.size + this.state.passAnswers.size) {
         if (this.state.failAnswers.size === 0) {
           this.state.gameStatus = 'nonefail';
         } else {
@@ -211,6 +200,25 @@ class GameRoom extends colyseus.Room {
         this.state.gameStatus = 'tally';
       }
     });
+
+    this.onMessage('restart', async (client) => {
+      this.state.users.forEach((value, key) => {
+        this.state.users[key].correctPoints = 0;
+        this.state.users[key].incorrectPoints = 0;
+      });
+      this.state.failAnswers.clear();
+      this.state.passAnswers.clear();
+      this.state.failVotes.clear();
+      this.state.passVotes.clear();
+      this.roundNumber = 1;
+      this.state.gameStatus = 'lobby';
+      this.questions = await getQuestions();
+      this.dispatcher.dispatch(new insertQuestion(), {
+        roundNumber: this.roundNumber,
+        questions: this.questions,
+      });
+    });
+
     console.log('Room Created');
     this.dispatcher.dispatch(new insertQuestion(), {
       roundNumber: this.roundNumber,

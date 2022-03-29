@@ -20,6 +20,7 @@ import HostBar from './HostBar';
 import { setHostKey } from '../store/hostKey';
 import NoneFail from './NoneFail';
 import NonePass from './NonePass';
+import Final from './Final';
 
 /**
  * MAIN GAME INSTANCE, THIS COMPONENT WILL RENDER OTHER COMPONENTS
@@ -41,9 +42,7 @@ const Game = () => {
       dispatch(addUser(key, user));
       user.onChange = (changes) => {
         changes.forEach((change) => {
-          dispatch(
-            updateUser({ key: key, field: change.field, value: change.value })
-          );
+          dispatch(updateUser({ key: key, field: change.field, value: change.value }));
         });
       };
       console.log(user, 'has been added at', key);
@@ -120,6 +119,13 @@ const Game = () => {
         return (
           <div>
             <Tally />
+          </div>
+        );
+      }
+      case 'final': {
+        return (
+          <div>
+            <Final />
           </div>
         );
       }

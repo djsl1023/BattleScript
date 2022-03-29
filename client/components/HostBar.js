@@ -20,6 +20,10 @@ const HostBar = () => {
   const handleContinueGame = () => {
     room.send('continue');
   };
+
+  const handleRestartGame = () => {
+    room.send('restart');
+  };
   const renderSwitch = (gameStatus) => {
     switch (gameStatus) {
       case 'tally':
@@ -35,6 +39,13 @@ const HostBar = () => {
         return (
           <div className="start-game-btn ">
             <button onClick={handleStartGame}>Start Game</button>
+          </div>
+        );
+      }
+      case 'final': {
+        return (
+          <div className="restart-game-btn ">
+            <button onClick={handleRestartGame}>Restart Game</button>
           </div>
         );
       }
