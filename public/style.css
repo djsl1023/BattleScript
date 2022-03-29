@@ -208,6 +208,8 @@ a {
   height: 80vh;
 }
 .submit-prompt-button {
+  position: relative;
+  top: -3em;
   width: 80%;
 }
 .finished-submission-list {
