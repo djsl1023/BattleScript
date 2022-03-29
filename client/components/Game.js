@@ -42,7 +42,9 @@ const Game = () => {
       dispatch(addUser(key, user));
       user.onChange = (changes) => {
         changes.forEach((change) => {
-          dispatch(updateUser({ key: key, field: change.field, value: change.value }));
+          dispatch(
+            updateUser({ key: key, field: change.field, value: change.value })
+          );
         });
       };
       console.log(user, 'has been added at', key);
@@ -83,6 +85,7 @@ const Game = () => {
       case 'prompt': {
         return (
           <div>
+            <Timer />
             <Prompt />
           </div>
         );

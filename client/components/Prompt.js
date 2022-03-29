@@ -20,6 +20,7 @@ const Prompt = () => {
   const currPrompt = useSelector((state) => state.prompt);
   const failedAnswers = useSelector((state) => state.failedAnswers);
   const passedAnswers = useSelector((state) => state.passedAnswers);
+  const timer = useSelector((state) => state.timer);
 
   const users = useSelector((state) => state.users);
   const didMountRef = useRef(false);
@@ -39,6 +40,10 @@ const Prompt = () => {
   room.state.passAnswers.onAdd = (answer, key) => {
     dispatch(addPassedAnswers(key, answer));
   };
+  if (timer === 0 && !submitted) {
+    createTest();
+    setSubmitted(true);
+  }
   useEffect(() => {
     //LISTEN FROM LOWER WINDOW FOR UPDATE
     window.addEventListener('message', windowHandler);
@@ -150,7 +155,10 @@ const Prompt = () => {
               wordWrap: true,
             }}
           />
-          <button className="submit-prompt-button" onClick={() => clickHandler()}>
+          <button
+            className="submit-prompt-button"
+            onClick={() => clickHandler()}
+          >
             Submit
           </button>
         </div>
