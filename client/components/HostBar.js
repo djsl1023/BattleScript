@@ -18,7 +18,12 @@ const HostBar = () => {
     room.send('startTimer');
   };
   const handleContinueGame = () => {
-    room.send('continue');
+    if (gameStatus === 'tally') {
+      room.send('startTimer');
+      room.send('continue');
+    } else {
+      room.send('continue');
+    }
   };
 
   const handleRestartGame = () => {
