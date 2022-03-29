@@ -7,6 +7,7 @@ import { addFailedAnswers } from '../store/failAnswers';
 import { addPassedAnswers } from '../store/passAnswers';
 import { setFailedVotes } from '../store/failVoting';
 import { setPassedVotes } from '../store/passVoting';
+import { userNewRound } from '../store';
 
 const Prompt = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,10 @@ const Prompt = () => {
 
   const users = useSelector((state) => state.users);
   const didMountRef = useRef(false);
+
+  useEffect(() => {
+    dispatch(userNewRound());
+  }, []);
   room.state.failVotes.onAdd = (votes, key) => {
     dispatch(setFailedVotes(key, votes));
   };
@@ -129,7 +134,7 @@ const Prompt = () => {
             sandbox="allow-scripts allow-same-origin"
             scrolling="true"
             // for testing on local host
-            // checkOrigin={[`http://:8080`]}
+            //checkOrigin={[`http://localhost:8080`]}
             // for heroku deployment
             checkOrigin={[`https://fsa-battlescript.herokuapp.com/`]}
           />

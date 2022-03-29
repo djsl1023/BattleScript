@@ -69,7 +69,7 @@ class GameRoom extends colyseus.Room {
     this.setState(new GameState());
     this.dispatcher = new command.Dispatcher(this);
     this.questions = await getQuestions();
-    this.maxClients = 5;
+    this.maxClients = 6;
     // this.state.roundNumber = this.roundNumber;
     this.gameStatus = 'lobby';
     //CLIENT SENDS MESSAGE TO GET QUESTION, SENDS QUESTION TO CLIENT
@@ -82,6 +82,30 @@ class GameRoom extends colyseus.Room {
         testSpecs: this.state.question.testSpecs,
       };
       this.broadcast('getPrompt', prompt);
+    });
+    //Continue game listener
+    this.onMessage('continue', (client, data) => {
+      if (this.state.gameStatus === 'nonefail') {
+        this.state.gameStatus = 'passvote';
+        return;
+      } else if (this.state.gameStatus === 'nonepass') {
+        this.state.gameStatus = 'tally';
+        return;
+      }
+      this.roundNumber++;
+      if (this.roundNumber <= 4) {
+        this.dispatcher.dispatch(new insertQuestion(), {
+          roundNumber: this.roundNumber,
+          questions: this.questions,
+        });
+        this.state.failAnswers.clear();
+        this.state.passAnswers.clear();
+        this.state.failVotes.clear();
+        this.state.passVotes.clear();
+        this.state.gameStatus = 'prompt';
+      } else {
+        this.state.gameStatus = 'final';
+      }
     });
     //StartTimer in each round
     this.onMessage('startTimer', (client, data) => {
@@ -143,9 +167,14 @@ class GameRoom extends colyseus.Room {
         this.state.users.size ===
         this.state.failAnswers.size + this.state.passAnswers.size
       ) {
-        this.state.gameStatus = 'failvote';
+        if (this.state.failAnswers.size === 0) {
+          this.state.gameStatus = 'nonefail';
+        } else {
+          this.state.gameStatus = 'failvote';
+        }
       }
     });
+    //FAIL VOTING ROUND
     this.onMessage('failvote', (client, { solutionId }) => {
       this.dispatcher.dispatch(new AddVotes(), {
         //the client above is the info for the person voting, the solutionId is the id of the person they are voting for. We want to access the object for the person whose answer is voted. i.e. the SolutionId
@@ -160,9 +189,14 @@ class GameRoom extends colyseus.Room {
         this.state.failVotes.forEach((value, key) => {
           this.state.users[key].incorrectPoints += value * 75;
         });
-        this.state.gameStatus = 'passvote';
+        if (this.state.passAnswers.size === 0) {
+          this.state.gameStatus = 'nonepass';
+        } else {
+          this.state.gameStatus = 'passvote';
+        }
       }
     });
+    //PASS VOTING ROUND
     this.onMessage('passvote', (client, { solutionId }) => {
       this.dispatcher.dispatch(new AddVotes(), {
         clientId: solutionId,
