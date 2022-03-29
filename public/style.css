@@ -16,6 +16,13 @@ a {
   align-items: center;
   height: 40px;
 }
+.hostbar {
+  background-color: #6d8790;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 40px;
+}
 .nav-list {
   list-style: none;
   margin-right: 2rem;

@@ -16,6 +16,8 @@ import Vote from './Vote';
 import Footer from './Footer';
 import Timer from './Timer';
 import { setTimer } from '../store/timer';
+import HostBar from './HostBar';
+import { setHostKey } from '../store/hostKey';
 
 /**
  * MAIN GAME INSTANCE, THIS COMPONENT WILL RENDER OTHER COMPONENTS
@@ -57,6 +59,10 @@ const Game = () => {
     // console.log(curr);
     dispatch(setTimer(curr));
   });
+  room.state.listen('hostKey', (curr, prev) => {
+    // console.log(curr);
+    dispatch(setHostKey(curr));
+  });
   //AFTER SENDING GETQUESTION(lobby.js) TO SERVER, LISTENS FOR BROADCAST,
   //SET QUESTION TO CLIENT STATE
   room.onMessage('getPrompt', (prompt) => {
@@ -67,6 +73,7 @@ const Game = () => {
       case 'lobby': {
         return (
           <div>
+            <HostBar />
             <Lobby />
           </div>
         );
@@ -74,6 +81,7 @@ const Game = () => {
       case 'prompt': {
         return (
           <div>
+            <HostBar />
             <Prompt />
           </div>
         );
@@ -81,6 +89,7 @@ const Game = () => {
       case 'failvote': {
         return (
           <div>
+            <HostBar />
             <Vote key="1" />;
           </div>
         );
@@ -88,12 +97,18 @@ const Game = () => {
       case 'passvote': {
         return (
           <div>
+            <HostBar />
             <Vote key="2" />;
           </div>
         );
       }
       case 'tally': {
-        return <Tally />;
+        return (
+          <div>
+            <HostBar />
+            <Tally />
+          </div>
+        );
       }
 
       default: {

@@ -32,6 +32,7 @@ class GameState extends Schema {
     //Questions array
     this.question = new QuestionSchema();
     this.gameStatus = 'lobby';
+    this.hostKey = '';
     this.timer = 0;
     this.messages = new ArraySchema();
     //votes and answers were separate so that the objects being passed back and forth are smaller.
@@ -45,6 +46,7 @@ schema.defineTypes(GameState, {
   users: { map: UserSchema },
   question: QuestionSchema,
   gameStatus: 'string',
+  hostKey: 'string',
   timer: 'number',
   messages: [MessagesSchema],
   // answer: map all answers
