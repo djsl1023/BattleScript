@@ -13,6 +13,7 @@ const Lobby = () => {
     room.send('start', {
       gameStatus: 'prompt',
     });
+    room.send('startTimer');
   };
 
   return (

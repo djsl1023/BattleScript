@@ -14,6 +14,8 @@ import Chat from './Chat';
 import Tally from './Tally';
 import Vote from './Vote';
 import Footer from './Footer';
+import Timer from './Timer';
+import { setTimer } from '../store/timer';
 
 /**
  * MAIN GAME INSTANCE, THIS COMPONENT WILL RENDER OTHER COMPONENTS
@@ -49,6 +51,11 @@ const Game = () => {
   };
   room.state.listen('gameStatus', (curr, prev) => {
     dispatch(setGameStatus(curr));
+  });
+
+  room.state.listen('timer', (curr, prev) => {
+    // console.log(curr);
+    dispatch(setTimer(curr));
   });
   //AFTER SENDING GETQUESTION(lobby.js) TO SERVER, LISTENS FOR BROADCAST,
   //SET QUESTION TO CLIENT STATE

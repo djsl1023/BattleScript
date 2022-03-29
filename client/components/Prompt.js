@@ -147,7 +147,8 @@ const Prompt = () => {
           />
           <button
             className="submit-prompt-button"
-            onClick={() => clickHandler()}>
+            onClick={() => clickHandler()}
+          >
             Submit
           </button>
         </div>
