@@ -28,7 +28,7 @@ async function getQuestions() {
   let questionList = await Question.findAll({
     // order: [['id', Sequelize.literal('RANDOM')]],
     order: [Sequelize.literal('RANDOM()')],
-    limit: 3,
+    limit: 4,
   });
   return questionList;
 }
