@@ -45,8 +45,9 @@ a {
   background-color: #2c3437;
 }
 #center-logo {
+  position: relative;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 0 auto;
 }
 #github-logo {
   width: 30px;
@@ -81,6 +82,8 @@ a {
   font-weight: 700;
   border-right: 4px solid orange;
   box-sizing: border-box;
+  position: relative;
+  left: -7em;
 }
 
 @keyframes typing {
@@ -176,10 +179,10 @@ a {
   margin-left: auto;
   margin-right: auto;
 }
-.player {
+/* .player {
   display: inline-block;
   margin: 5em 0.75em;
-}
+} */
 .player-avatar {
   width: 3em;
   border-radius: 50%;
@@ -252,7 +255,6 @@ a {
   transition: all 200ms ease-in;
   margin-left: auto;
   margin-right: 2rem;
-  margin-top: 1rem;
 }
 
 .messages {

@@ -9,13 +9,24 @@ const Lobby = () => {
 
   return (
     <div>
+      <h4> Lobby </h4>
       <div className="lobby-container">
-        <p>Room ID: {room.id}</p>
         <div className="table">
           <div id="abv-table">
-            <li className="seat">Seat1</li>
-            <li className="seat">Seat2</li>
-            <li className="seat">Seat3</li>
+            {Object.keys(users).map((clientId, idx) => {
+              if (idx < 3)
+                return (
+                  <li key={clientId} className="seat">
+                    <p>{users[clientId].username}</p>
+                    <img
+                      src={
+                        'https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg'
+                      }
+                      className="player-avatar"
+                    />
+                  </li>
+                );
+            })}
           </div>
           <img
             id="table-img"
@@ -24,36 +35,25 @@ const Lobby = () => {
             }
           ></img>
           <div id="below-table">
-            <li className="seat">Seat4</li>
-            <li className="seat">Seat5</li>
-            <li className="seat">Seat6</li>
+            {Object.keys(users).map((clientId, idx) => {
+              if (idx >= 3)
+                return (
+                  <li key={clientId} className="seat">
+                    <p>{users[clientId].username}</p>
+                    <img
+                      src={
+                        'https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg'
+                      }
+                      className="player-avatar"
+                    />
+                  </li>
+                );
+            })}
           </div>
         </div>
-        {Object.keys(users).map((clientId) => {
-          return (
-            <div key={clientId} className="player">
-              <p>{users[clientId].username}</p>
-              <img
-                src={
-                  'https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg'
-                }
-                className="player-avatar"
-              />
-            </div>
-          );
-        })}
       </div>
     </div>
   );
 };
-
-// return (
-//   <div>
-//     <div>Room Code: {room.id}</div>
-//     {Object.keys(users).map((key) => {
-//       return <div key={key}>Hello {users[key].username}</div>;
-//     })}
-//   </div>
-// );
 
 export default Lobby;

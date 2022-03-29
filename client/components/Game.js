@@ -121,7 +121,7 @@ const Game = () => {
     <div>
       <div>{renderSwitch(gameStatus)}</div>
 
-      <Footer />
+      <Footer room={room} />
     </div>
   );
 };
