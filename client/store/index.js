@@ -15,9 +15,16 @@ import messageReducer from './message';
 import timerReducer from './timer';
 import hostKeyReducer from './hostKey';
 const USER_LEAVE_ROOM = 'USER_LEAVE_ROOM';
+const USER_NEW_ROUND = 'USER_NEW_ROUND';
 export const userLeaveRoom = (action) => {
   return {
     type: USER_LEAVE_ROOM,
+    action,
+  };
+};
+export const userNewRound = (action) => {
+  return {
+    type: USER_NEW_ROUND,
     action,
   };
 };
@@ -25,6 +32,29 @@ const rootReducer = (state, action) => {
   switch (action.type) {
     case USER_LEAVE_ROOM:
       return reducer(undefined, action);
+    case USER_NEW_ROUND: {
+      const {
+        room,
+        users,
+        gameStatus,
+        message,
+        prompt,
+        answer,
+        timer,
+        hostKey,
+      } = state;
+      state = {
+        room,
+        users,
+        gameStatus,
+        message,
+        prompt,
+        answer,
+        timer,
+        hostKey,
+      };
+      return reducer(state, action);
+    }
     default:
       return reducer(state, action);
   }

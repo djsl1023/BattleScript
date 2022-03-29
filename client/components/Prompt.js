@@ -7,6 +7,7 @@ import { addFailedAnswers } from '../store/failAnswers';
 import { addPassedAnswers } from '../store/passAnswers';
 import { setFailedVotes } from '../store/failVoting';
 import { setPassedVotes } from '../store/passVoting';
+import { userNewRound } from '../store';
 
 const Prompt = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,10 @@ const Prompt = () => {
 
   const users = useSelector((state) => state.users);
   const didMountRef = useRef(false);
+
+  useEffect(() => {
+    dispatch(userNewRound());
+  }, []);
   room.state.failVotes.onAdd = (votes, key) => {
     dispatch(setFailedVotes(key, votes));
   };
