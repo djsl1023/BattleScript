@@ -6,16 +6,18 @@ const Footer = (props) => {
 
   return (
     <div className="footer">
+      {console.log(props.room.id, 'fooooooottttt')}
       {isShown ? (
         <div id="chat-comp">
-          <Chat room={props.room} />
+          <Chat />
         </div>
       ) : null}
-      <li className="footer-list">
+      <ul className="footer-list">
+        <li>ROOM ID: {props.room.id}</li>
         <button className="chat-btn" onClick={() => setShown(!isShown)}>
           CHAT
         </button>
-      </li>
+      </ul>
     </div>
   );
 };
