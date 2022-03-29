@@ -16,7 +16,21 @@ import auth from './auth';
 import messageReducer from './message';
 import timerReducer from './timer';
 import hostKeyReducer from './hostKey';
-
+const USER_LEAVE_ROOM = 'USER_LEAVE_ROOM';
+export const userLeaveRoom = (action) => {
+  return {
+    type: USER_LEAVE_ROOM,
+    action,
+  };
+};
+const rootReducer = (state, action) => {
+  switch (action.type) {
+    case USER_LEAVE_ROOM:
+      return reducer(undefined, action);
+    default:
+      return reducer(state, action);
+  }
+};
 const reducer = combineReducers({
   room: roomReducer,
   users: userReducer,
@@ -35,7 +49,7 @@ const reducer = combineReducers({
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
-const store = createStore(reducer, middleware);
+const store = createStore(rootReducer, middleware);
 
 export default store;
 export * from './auth';
