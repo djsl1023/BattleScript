@@ -78,7 +78,7 @@ const Prompt = () => {
         <script>
           window.iFrameResizer = {
             // for testing on local host
-            //targetOrigin: 'http://localhost:8080'
+            // targetOrigin: 'http://localhost:8080'
             // for deploying on heroku
             targetOrigin: 'https://capstone-battlescript.herokuapp.com/'
           }
@@ -147,7 +147,8 @@ const Prompt = () => {
           />
           <button
             className="submit-prompt-button"
-            onClick={() => clickHandler()}>
+            onClick={() => clickHandler()}
+          >
             Submit
           </button>
         </div>

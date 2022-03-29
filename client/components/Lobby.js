@@ -6,14 +6,6 @@ const Lobby = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
   const room = useSelector((state) => state.room);
-  //
-  const handleStartGame = () => {
-    // ON START, SEND MESSAGE TO SERVER TO GET THE QUESTION
-    room.send('getPrompt');
-    room.send('start', {
-      gameStatus: 'prompt',
-    });
-  };
 
   return (
     <div>
@@ -50,9 +42,6 @@ const Lobby = () => {
             </div>
           );
         })}
-      </div>
-      <div className="start-game-btn ">
-        <button onClick={handleStartGame}>Start Game</button>
       </div>
     </div>
   );

@@ -30,6 +30,7 @@ class AddUser extends command.Command {
     //If this is the first user, make them a host
     if (this.state.users.size === 0) {
       newUser.isHost = true;
+      this.state.hostKey = clientId;
     }
     //set new user in game state
     /**users: {client.id, newUser,
