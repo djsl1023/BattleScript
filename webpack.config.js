@@ -1,4 +1,7 @@
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 module.exports = {
+  plugins: [new MiniCssExtractPlugin()],
   entry: ['./client/index.js'],
   output: {
     path: __dirname,
@@ -14,6 +17,20 @@ module.exports = {
         options: {
           presets: ['@babel/preset-react'],
         },
+      },
+      {
+        test: /\.css$/i,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+        ],
       },
     ],
   },

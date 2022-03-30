@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import styles from '../styles/Welcome.module.css';
 
 const Welcome = () => {
   return (
-    <div className="welcome-message">
-      <div className="typewriter">
-        <div className="typewriter-text">Hello, Welcome to BATTLESCRIPT</div>
-      </div>
+    <div className={styles.welcomeMessage}>
+      {/* <div className={styles.typewriter}>
+        <div className={styles.typewriterText}> */}
+      Hello, Welcome to BATTLESCRIPT
+      {/* </div>
+      </div> */}
     </div>
   );
 };
