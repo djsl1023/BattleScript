@@ -26,6 +26,7 @@ const Prompt = () => {
   const didMountRef = useRef(false);
 
   useEffect(() => {
+    room.send('startTimer');
     dispatch(userNewRound());
   }, []);
   room.state.failVotes.onAdd = (votes, key) => {
@@ -157,8 +158,7 @@ const Prompt = () => {
           />
           <button
             className="submit-prompt-button"
-            onClick={() => clickHandler()}
-          >
+            onClick={() => clickHandler()}>
             Submit
           </button>
         </div>

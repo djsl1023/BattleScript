@@ -6,7 +6,6 @@ const Footer = (props) => {
 
   return (
     <div className="footer">
-      {console.log(props.room.id, 'fooooooottttt')}
       {isShown ? (
         <div id="chat-comp">
           <Chat />

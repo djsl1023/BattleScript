@@ -28,7 +28,6 @@ export default function userReducer(state = {}, action) {
       return { ...action.users };
     }
     case UPDATE_USER: {
-      console.log(action);
       state[action.key][action.field] = action.value;
       return { ...state };
     }
