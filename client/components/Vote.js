@@ -62,12 +62,11 @@ const Vote = () => {
     setVotedFor(users[userFocus].username);
     room.send(gameStatus, { solutionId: userFocus });
   };
+
   return (
     <div className="prompt-container">
       <div className="prompt-solution">
         <Editor
-          height="95vh"
-          width="45vw"
           defaultLanguage="javascript"
           defaultValue={currPrompt.question}
           options={{
@@ -78,8 +77,6 @@ const Vote = () => {
       </div>
       <div className="prompt-solution">
         <Editor
-          height="95vh"
-          width="45vw"
           defaultLanguage="javascript"
           defaultValue="//Select a user from the side to see their code! ----------------->"
           options={{
@@ -95,17 +92,24 @@ const Vote = () => {
           {voted ? `You've already voted for ${votedFor}!` : 'Vote!'}
         </button>
       </div>
-      <div className="user-list">
-        {Object.keys(submissions).map((userKey) => {
-          return (
-            <div key={userKey}>
-              <button value={userKey} onClick={() => changeFocus(userKey)}>
-                {users[userKey].username}:{' '}
-                {voteList[userKey] ? voteList[userKey] : 0}
-              </button>
-            </div>
-          );
-        })}
+
+      <div className="finished-submission-list">
+        <div>
+          Players
+          <ul>
+            {Object.keys(submissions).map((userKey) => {
+              return (
+                <li>
+                  <div key={userKey}>
+                    <button value={userKey} onClick={() => changeFocus(userKey)}>
+                      {users[userKey].username}: {voteList[userKey] ? voteList[userKey] : 0}
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   );

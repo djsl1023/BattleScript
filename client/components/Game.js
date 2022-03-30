@@ -44,9 +44,7 @@ const Game = () => {
       dispatch(addUser(key, user));
       user.onChange = (changes) => {
         changes.forEach((change) => {
-          dispatch(
-            updateUser({ key: key, field: change.field, value: change.value })
-          );
+          dispatch(updateUser({ key: key, field: change.field, value: change.value }));
         });
       };
       console.log(user, 'has been added at', key);
@@ -102,7 +100,7 @@ const Game = () => {
       case 'failvote': {
         return (
           <div>
-            <Vote key="1" />;
+            <Vote key="1" />
           </div>
         );
       }
@@ -116,7 +114,7 @@ const Game = () => {
       case 'passvote': {
         return (
           <div>
-            <Vote key="2" />;
+            <Vote key="2" />
           </div>
         );
       }
