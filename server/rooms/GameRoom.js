@@ -98,13 +98,20 @@ class GameRoom extends colyseus.Room {
           roundNumber: this.roundNumber,
           questions: this.questions,
         });
+        let prompt = {
+          id: this.state.question.id,
+          difficulty: this.state.question.difficulty,
+          title: this.state.question.title,
+          question: this.state.question.question,
+          testSpecs: this.state.question.testSpecs,
+        };
         this.state.failAnswers.clear();
         this.state.passAnswers.clear();
         this.state.failVotes.clear();
         this.state.passVotes.clear();
+        this.broadcast('getPrompt', prompt);
         this.state.gameStatus = 'prompt';
       } else {
-        console.log('test');
         this.state.gameStatus = 'final';
       }
     });
@@ -186,7 +193,6 @@ class GameRoom extends colyseus.Room {
       });
 
       this.voteCount++;
-      console.log(this.voteCount);
       if (this.voteCount === this.state.users.size) {
         this.voteCount = 0;
         this.state.failVotes.forEach((value, key) => {
