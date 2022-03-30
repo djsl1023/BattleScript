@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Editor from '@monaco-editor/react';
 import { useSelector, useDispatch } from 'react-redux';
 import testSpecs from './mocha/testSpec';
-import IframeResizer from 'iframe-resizer-react';
 import { addFailedAnswers } from '../store/failAnswers';
 import { addPassedAnswers } from '../store/passAnswers';
 import { setFailedVotes } from '../store/failVoting';
@@ -86,15 +85,6 @@ const Prompt = () => {
       </head>
       <body>
         <div id="mocha"></div>
-        <script>
-          window.iFrameResizer = {
-            // for testing on local host
-            // targetOrigin: 'http://localhost:8080'
-            // for deploying on heroku
-            targetOrigin: 'https://capstone-battlescript.herokuapp.com/'
-          }
-        </script>
-        <script src="../iframeResizer.contentWindow.min.js"></script>
         <script src="https://unpkg.com/chai@4.1.2/chai.js"></script>
         <script src="https://unpkg.com/mocha@4.0.1/mocha.js"></script>
 
@@ -134,15 +124,10 @@ const Prompt = () => {
 
       {submitted ? (
         <div className="prompt-solution">
-          <IframeResizer
+          <iframe
             id="mochaTester"
             srcDoc={testHTML}
             sandbox="allow-scripts allow-same-origin"
-            scrolling="true"
-            // for testing on local host
-            // checkOrigin={[`http://localhost:8080`]}
-            // for heroku deployment
-            checkOrigin={[`https://fsa-battlescript.herokuapp.com/`]}
           />
         </div>
       ) : (
