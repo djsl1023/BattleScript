@@ -38,11 +38,11 @@
 
 #centerLogo {
   position: relative;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
 }
 
 #githubLogo {
   width: 30px;
   object-fit: contain;
+  margin-right: 3rem;
 }

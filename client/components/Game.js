@@ -21,6 +21,8 @@ import { setHostKey } from '../store/hostKey';
 import NoneFail from './NoneFail';
 import NonePass from './NonePass';
 import Final from './Final';
+import styles from '../styles/Button.module.css';
+import ChatBtn from './ChatBtn';
 
 /**
  * MAIN GAME INSTANCE, THIS COMPONENT WILL RENDER OTHER COMPONENTS
@@ -143,8 +145,10 @@ const Game = () => {
     <div>
       <HostBar />
       <div>{renderSwitch(gameStatus)}</div>
-
-      <Footer room={room} />
+      <div id={styles.chatButton}>
+        <ChatBtn />
+      </div>
+      {/* <Footer room={room} /> */}
     </div>
   );
 };

@@ -18,67 +18,6 @@ a {
   height: 40px;
 }
 
-/* #center-logo {
-  position: relative;
-  margin-left: auto;
-  margin-right: 0 auto;
-}
-#github-logo {
-  width: 30px;
-  object-fit: contain;
-} */
-.nav-list:last-child {
-  margin-left: auto;
-  margin-right: 2rem;
-}
-
-.welcome-message {
-  background-color: #0e0700;
-  width: 15em;
-  padding: 15em;
-  margin: 3em auto;
-}
-.typewriter {
-  margin: 0;
-  padding: 0;
-  font-family: Courier, monospace;
-  display: inline-block;
-}
-
-.typewriter-text {
-  color: white;
-  display: inline-block;
-  overflow: hidden;
-  letter-spacing: 2px;
-  animation: typing 5s steps(30, end), blink 0.75s step-end infinite;
-  white-space: wrap;
-  font-size: 30px;
-  font-weight: 700;
-  border-right: 4px solid orange;
-  box-sizing: border-box;
-  position: relative;
-  left: -7em;
-}
-
-@keyframes typing {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes blink {
-  from,
-  to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: orange;
-  }
-}
-
 .join-create-form {
   width: 35em;
   margin: 0 auto;
@@ -153,22 +92,12 @@ a {
   margin-left: auto;
   margin-right: auto;
 }
-/* .player {
-  display: inline-block;
-  margin: 5em 0.75em;
-} */
+
 .player-avatar {
   width: 3em;
   border-radius: 50%;
 }
 
-/* .start-game-btn {
-  width: 20em;
-  margin: 0 auto;
-  position: relative;
-  top: -16em;
-  right: -6em;
-} */
 .prompt-container {
   display: flex;
   flex-direction: row;

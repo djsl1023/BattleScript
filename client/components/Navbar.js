@@ -41,7 +41,7 @@ const Navbar = () => {
             <a href="https://github.com/FSCapstone/Capstone_Team_14_JS">
               <img
                 id={styles.githubLogo}
-                src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN0Uu0auB-_30X62d-vUYM-jhN4TkqPqgv6A&usqp=CAU"
               />
             </a>
           </li>

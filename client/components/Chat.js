@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import * as Colyseus from 'colyseus.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { addMessage } from '../store/message';
+import styles from '../styles/Chat.module.css';
 
 const AlwaysScrollToBottom = () => {
   const elementRef = useRef();
