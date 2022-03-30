@@ -141,9 +141,7 @@ const Prompt = () => {
               wordWrap: true,
             }}
           />
-          <button
-            className="submit-prompt-button"
-            onClick={() => clickHandler()}>
+          <button className="submit-prompt-button" onClick={() => clickHandler()}>
             Submit
           </button>
         </div>
