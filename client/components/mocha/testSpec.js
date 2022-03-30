@@ -20,8 +20,7 @@ after(function(){
   }
 });` +
     specs +
-    `mocha.checkLeaks();
-mocha.run();`
+    `mocha.run();`
   );
 }
 

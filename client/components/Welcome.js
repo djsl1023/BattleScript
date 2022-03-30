@@ -4,11 +4,14 @@ import styles from '../styles/Welcome.module.css';
 const Welcome = () => {
   return (
     <div className={styles.welcomeMessage}>
-      {/* <div className={styles.typewriter}>
-        <div className={styles.typewriterText}> */}
-      Hello, Welcome to BATTLESCRIPT
-      {/* </div>
-      </div> */}
+      <div className={styles.typewriter}>
+        <h1 className={styles.typewriterText}>
+          Hello, Welcome To BATTLESCRIPT
+        </h1>
+      </div>
+      <div>
+        <h2 className={styles.typewriterText2}>Select An Option Below</h2>
+      </div>
     </div>
   );
 };

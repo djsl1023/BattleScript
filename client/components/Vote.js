@@ -88,7 +88,7 @@ const Vote = () => {
         <button
           className="submit-prompt-button"
           onClick={(e) => voteHandler(e, userFocus, room.state.gameStatus)}
-          disabled={voted}>
+          disabled={userFocus === '' || voted}>
           {voted ? `You've already voted for ${votedFor}!` : 'Vote!'}
         </button>
       </div>

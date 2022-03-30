@@ -58,7 +58,9 @@ const Game = () => {
     room.state.listen('gameStatus', (curr, prev) => {
       dispatch(setGameStatus(curr));
     });
-
+    room.state.messages.onAdd = (message, key) => {
+      dispatch(addMessage(message));
+    };
     room.state.listen('timer', (curr, prev) => {
       // console.log(curr);
       dispatch(setTimer(curr));

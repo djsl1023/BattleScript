@@ -14,7 +14,9 @@ const Rules = () => {
         <h3>Game Rules</h3>
         <li>
           For each round, players are presented with a prompt to solve before
-          the timer expires.
+          the timer expires. If you don't know the answer, try to write
+          something funny or creative! You'll have a chance to earn points
+          anyway
         </li>
         <li>
           Following this, players vote annoymously on their favorite solutions
