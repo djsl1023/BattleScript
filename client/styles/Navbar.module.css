@@ -1,0 +1,48 @@
+.navbar {
+  background-color: #000e07;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 40px;
+}
+
+.navList {
+  list-style: none;
+  padding-right: 2rem;
+  margin-left: 1rem;
+  padding-left: 2rem;
+  text-decoration: none;
+  color: white;
+  transition: all 200ms ease-in;
+  cursor: pointer;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 1rem;
+}
+
+.rulesBtn {
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 1rem;
+  background-color: #000e07;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 200ms ease-in;
+}
+
+#rulesComp {
+  position: absolute;
+  top: 3em;
+  background-color: #000e07;
+  color: #d1d3d4;
+}
+
+#centerLogo {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#githubLogo {
+  width: 30px;
+  object-fit: contain;
+}
