@@ -9,38 +9,32 @@ const Timer = () => {
   const timer = useSelector((state) => state.timer);
 
   let completed = ((150 - timer) / 150) * 100;
-  console.log(timer);
-  const containerStyles = {
-    display: 'flex',
-    height: 20,
-    width: '100%',
-    paddingLeft: '1em',
-    //white
-    backgroundColor: '#e0e0de',
-    animation: `animate-stripes 0.6s linear infinite`,
-    borderRadius: 50,
-    // margin: 50,
-    marginTop: 50,
-    marginBottom: 50,
-    marginleft: 20,
-    // padding: 10,
 
-    //     margin: '100px auto',
-    // marginTop: '220px',
-    // width: '400px',
-    // textAlign: 'center',
-    // position: 'relative',
+  const container = {
+    margin: '10px auto',
+    marginTop: '22px',
+    width: '75%',
+    textAlign: 'center',
+    position: 'relative',
+  };
+
+  const backgroundBar = {
+    borderRadius: '30px',
+    backgroundColor: '#2c3437',
+    animation: 'gradualshake 0.3s infinite 120s, boldshake 0.3s infinite 135s',
+  };
+  const containerStyles = {
+    borderRadius: '30px',
+    backgroundColor: '#f3c623',
+    width: `${completed}%`,
+    animation: 'test 150s',
   };
 
   const fillerStyles = {
-    height: '100%',
-    width: `${completed}%`,
-    //contrast
-    backgroundColor: '#D17659',
-    borderRadius: 'inherit',
-    textAlign: 'right',
-    // paddingLeft: 10,
-    // animation: `progress ${timer}s`,
+    height: '18px',
+    borderRadius: '30px',
+    transition: '.4s linear',
+    transitionProperty: 'width, backgroundColor',
   };
 
   const labelStyles = {
@@ -48,14 +42,17 @@ const Timer = () => {
     color: 'white',
     fontWeight: 'bold',
   };
-
   return (
     <div>
-      <div style={containerStyles}>
-        <div className="fillerStyles" style={fillerStyles}>
-          <span style={labelStyles}>{`${Math.floor(timer / 60)}:${String(
-            Math.ceil(timer % 60)
-          ).padStart(2, '0')}`}</span>
+      <div style={container}>
+        <div style={backgroundBar}>
+          <div style={containerStyles}>
+            <div style={fillerStyles}>
+              <span style={labelStyles}>{`${Math.floor(timer / 60)}:${String(
+                Math.ceil(timer % 60)
+              ).padStart(2, '0')}`}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
