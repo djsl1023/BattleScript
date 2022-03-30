@@ -119,7 +119,7 @@ class GameRoom extends colyseus.Room {
     this.onMessage('startTimer', (client, data) => {
       this.clock.clear();
       //amount of time to answer each question.
-      let timeToAnswer = 5000;
+      let timeToAnswer = 150000;
       this.state.timer = timeToAnswer / 1000;
       this.clock.setTimeout(() => {
         this.clock.start();

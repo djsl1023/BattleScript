@@ -9,21 +9,32 @@ const Timer = () => {
   const timer = useSelector((state) => state.timer);
 
   let completed = ((150 - timer) / 150) * 100;
-  console.log(timer);
+
+  const container = {
+    margin: '10px auto',
+    marginTop: '22px',
+    width: '75%',
+    textAlign: 'center',
+    position: 'relative',
+  };
+
+  const backgroundBar = {
+    borderRadius: '30px',
+    backgroundColor: '#2c3437',
+    animation: 'gradualshake 0.3s infinite 120s, boldshake 0.3s infinite 135s',
+  };
   const containerStyles = {
-    height: 20,
-    width: '100%',
-    backgroundColor: '#e0e0de',
-    borderRadius: 50,
-    margin: 50,
+    borderRadius: '30px',
+    backgroundColor: '#f3c623',
+    width: `${completed}%`,
+    animation: 'test 150s',
   };
 
   const fillerStyles = {
-    height: '100%',
-    width: `${completed}%`,
-    backgroundColor: '#D17659',
-    borderRadius: 'inherit',
-    textAlign: 'right',
+    height: '18px',
+    borderRadius: '30px',
+    transition: '.4s linear',
+    transitionProperty: 'width, backgroundColor',
   };
 
   const labelStyles = {
@@ -31,12 +42,17 @@ const Timer = () => {
     color: 'white',
     fontWeight: 'bold',
   };
-
   return (
     <div>
-      <div style={containerStyles}>
-        <div style={fillerStyles}>
-          <span style={labelStyles}>{timer}</span>
+      <div style={container}>
+        <div style={backgroundBar}>
+          <div style={containerStyles}>
+            <div style={fillerStyles}>
+              <span style={labelStyles}>{`${Math.floor(timer / 60)}:${String(
+                Math.ceil(timer % 60)
+              ).padStart(2, '0')}`}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
