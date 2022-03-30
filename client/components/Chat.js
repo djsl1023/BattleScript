@@ -26,9 +26,6 @@ const Chat = () => {
     e.preventDefault();
     setCurrMessage(e.target.value);
   };
-  room.state.messages.onAdd = (message, key) => {
-    dispatch(addMessage(message));
-  };
 
   return (
     <div>

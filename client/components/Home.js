@@ -5,6 +5,7 @@ import { setRoom } from '../store/room';
 import { Redirect } from 'react-router';
 import { useColyseus } from './ColyseusContext';
 import Game from './Game';
+import styles from '../styles/Home.module.css';
 
 const Home = () => {
   /* create local state variables
@@ -14,6 +15,7 @@ const Home = () => {
   const [redirectTo, setRedirectTo] = useState(false);
   const [username, setUsername] = useState('');
   const [roomID, setRoomID] = useState('');
+  const [createOrJoin, setCreateOrJoin] = useState('');
 
   /* create a reference to the dispatch
    function from redux store*/
@@ -24,6 +26,7 @@ const Home = () => {
   from username input*/
 
   const handleUsername = async (evt) => {
+    evt.preventDefault();
     setUsername(evt.target.value);
   };
 
@@ -71,17 +74,117 @@ const Home = () => {
       db and store
       when this is called?*/
   };
+  const renderSwitch = (type) => {
+    switch (type) {
+      case 'create': {
+        return (
+          <div className={styles.createRoom}>
+            <form>
+              <div className={styles.joincreateform}>
+                <div className={styles.formwtitle}>
+                  <label htmlFor="username" className={styles.namelabel}>
+                    Name{' '}
+                  </label>
+                  <input
+                    name="username"
+                    onChange={handleUsername}
+                    value={username}
+                  />
+                </div>
+              </div>
+            </form>
+            <div className={styles.joincreateform}>
+              <div className={styles.formwtitle}>
+                <button
+                  className={styles.homeButton}
+                  type="submit"
+                  onClick={handleCreateRoom}>
+                  Create Room
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      }
+      case 'join': {
+        return (
+          <div>
+            <form>
+              <div className={styles.joincreateform}>
+                <div className={styles.formwtitle}>
+                  <label htmlFor="username" className={styles.namelabel}>
+                    Name{' '}
+                  </label>
+                  <input
+                    name="username"
+                    onChange={handleUsername}
+                    value={username}
+                  />
+                </div>
+                <div className={styles.formwtitle}>
+                  <label htmlFor="roomID" className={styles.roomIDlabel}>
+                    Room ID{' '}
+                  </label>
+                  <input name="roomID" onChange={handleRoomID} value={roomID} />
+                </div>
+              </div>
+            </form>
+            <div className={styles.joincreateform}>
+              <div className={styles.formwtitle}>
+                <button
+                  type="submit"
+                  className={styles.homeButton}
+                  onClick={handleJoinRoom}>
+                  Join Room
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      }
+      default: {
+        return (
+          <div className={styles.buttonContainer}>
+            <div>
+              <button
+                className={styles.homeButton}
+                onClick={() => setCreateOrJoin('create')}>
+                Create Lobby
+              </button>
+            </div>
+            <div className={styles.buttonContainer}>
+              <button
+                className={styles.homeButton}
+                onClick={() => setCreateOrJoin('join')}>
+                Join A Lobby
+              </button>
+            </div>
+          </div>
+        );
+      }
+    }
+  };
   if (redirectTo) {
     return <Redirect to="/game" />;
   }
   return (
-    <div>
-      <Welcome />
-      <div>
+    <div className={styles.homeContainer}>
+      <div className={styles.welcome}>
+        <Welcome />
+      </div>
+      <div className={styles.input}>{renderSwitch(createOrJoin)}</div>
+      <video
+        autoPlay
+        muted
+        loop
+        id={styles.bgVideo}
+        src="./homebg.mp4"
+        type="video/mp4"></video>
+      {/* <div>
         <form>
-          <div className="join-create-form">
-            <div className="form-w-title">
-              <label htmlFor="username" className="name-label">
+          <div className={styles.joincreateform}>
+            <div className={styles.formwtitle}>
+              <label htmlFor="username" className={styles.namelabel}>
                 Name{' '}
               </label>
               <input
@@ -90,8 +193,8 @@ const Home = () => {
                 value={username}
               />
             </div>
-            <div className="form-w-title">
-              <label htmlFor="roomID" className="roomID-label">
+            <div className={styles.formwtitle}>
+              <label htmlFor="roomID" className={styles.roomIDlabel}>
                 Room ID{' '}
               </label>
               <input name="roomID" onChange={handleRoomID} value={roomID} />
@@ -99,22 +202,21 @@ const Home = () => {
           </div>
         </form>
       </div>
-      <div className="join-create-form">
-        <div className="form-w-title">
+      <div className={styles.joincreateform}>
+        <div className={styles.formwtitle}>
           <button
             type="submit"
-            className="create-room-btn"
-            onClick={handleJoinRoom}
-          >
+            className={styles.createroombtn}
+            onClick={handleJoinRoom}>
             Join Room
           </button>
         </div>
-        <div className="form-w-title">
-          <button className="create-room-btn" onClick={handleCreateRoom}>
+        <div className={styles.formwtitle}>
+          <button className={styles.createroombtn} onClick={handleCreateRoom}>
             Create Room
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
