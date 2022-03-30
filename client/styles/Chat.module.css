@@ -1,0 +1,25 @@
+#partyChat {
+  color: black;
+  font-family: 'Monaco', 'Courier New', monospace;
+  border-bottom: solid;
+  border-bottom-left-radius: 0.25em;
+  border-bottom-right-radius: 0.25em;
+  padding-bottom: 0.2em;
+  padding-top: 0;
+  margin-top: 0.15em;
+}
+
+.messages {
+  align-items: left;
+  list-style-type: none;
+  margin: 0.15em;
+  padding: 0.15em;
+  border-bottom-style: groove;
+  border-radius: 0.25em;
+  font-family: 'Monaco', 'Courier New', monospace;
+}
+
+#chatList {
+  padding: 0.25em;
+  margin: 0.25em;
+}
