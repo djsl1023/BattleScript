@@ -78,7 +78,7 @@ const Home = () => {
     switch (type) {
       case 'create': {
         return (
-          <div>
+          <div className={styles.createRoom}>
             <form>
               <div className={styles.joincreateform}>
                 <div className={styles.formwtitle}>
