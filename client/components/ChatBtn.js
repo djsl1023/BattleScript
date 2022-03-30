@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Chat from './Chat';
+import styles from '../styles/Button.module.css';
 // import Icon from '../Images/chaticon2.png';
 
 const ChatBtn = () => {
@@ -8,12 +9,12 @@ const ChatBtn = () => {
   return (
     <div>
       {isShown ? (
-        <div id="chat-comp">
+        <div id={styles.chatComp}>
           <Chat />
         </div>
       ) : null}
-      <button className="chat-btn" onClick={() => setShown(!isShown)}>
-        Chat
+      <button id={styles.chatButton} onClick={() => setShown(!isShown)}>
+        <img id={styles.icon} src="./Images/cIcon.png" />
       </button>
     </div>
   );

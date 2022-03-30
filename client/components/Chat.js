@@ -32,14 +32,14 @@ const Chat = () => {
 
   return (
     <div>
-      <h1> Hi From Chat </h1>
+      <h1 id={styles.partyChat}> Party Chat </h1>
       {!messages.length ? (
-        <div>no messages </div>
+        <div>Trash Talking Encouraged </div>
       ) : (
-        <ul className="chat-box">
+        <ul id={styles.chatList}>
           {messages.map((message, index) => {
             return (
-              <li key={index} className="messages">
+              <li key={index} className={styles.messages}>
                 {message.username}: {message.message}
                 <AlwaysScrollToBottom />
               </li>

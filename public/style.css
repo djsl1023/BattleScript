@@ -123,6 +123,8 @@ a {
 
 #chat-comp {
   position: absolute;
+  height: 50em;
+  width: 15em;
   top: -12em;
   right: 0em;
   background-color: #e9ecea;
@@ -162,12 +164,12 @@ a {
   margin-right: 2rem;
 }
 
-.messages {
+/* .messages {
   align-items: left;
   list-style-type: none;
   margin: 0;
   padding: 0;
-}
+} */
 
 @keyframes test {
   0% {

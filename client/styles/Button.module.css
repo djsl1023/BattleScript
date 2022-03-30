@@ -4,3 +4,19 @@
   right: 5em;
   color: black;
 }
+
+#icon {
+  width: 3em;
+  height: 3em;
+  border: none;
+}
+#chatComp {
+  position: absolute;
+  height: 50em;
+  width: 15em;
+  top: -12em;
+  right: 0em;
+  background-color: #6d8790a0;
+  height: 12em;
+  overflow: auto;
+}
