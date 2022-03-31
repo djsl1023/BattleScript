@@ -1,14 +1,23 @@
 .navbar {
-  background-color: #000e07;
+  /* background-color: #000e07;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 40px;
+  height: 40px; */
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin: auto;
+  height: 4rem;
+  background-color: rgba(44, 47, 49, 0.65);
+  color: gray;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .navList {
   list-style: none;
-  padding-right: 2rem;
   margin-left: 1rem;
   padding-left: 2rem;
   text-decoration: none;
@@ -18,21 +27,34 @@
   font-family: 'Monaco', 'Courier New', monospace;
   font-size: 1rem;
 }
-
+.navBlock {
+  display: flex;
+  flex-direction: row;
+  min-width: 10%;
+}
+.navLogo {
+  justify-content: flex-end;
+  min-width: 10%;
+}
 .rulesBtn {
   font-family: 'Monaco', 'Courier New', monospace;
   font-size: 1rem;
-  background-color: #000e07;
+  background-color: rgba(44, 47, 49, 0);
   color: white;
   border: none;
   cursor: pointer;
   transition: all 200ms ease-in;
 }
 
+.navTitle {
+  position: absolute;
+  top: 3.3%;
+  left: 45%;
+}
 #rulesComp {
   position: absolute;
   top: 3em;
-  background-color: #000e07;
+  background-color: rgba(44, 47, 49, 0.65);
   color: #d1d3d4;
 }
 
@@ -44,5 +66,4 @@
 #githubLogo {
   width: 30px;
   object-fit: contain;
-  margin-right: 3rem;
 }

@@ -21,7 +21,6 @@ const Home = () => {
    function from redux store*/
 
   const dispatch = useDispatch();
-
   /* set username state to value
   from username input*/
 
@@ -180,43 +179,6 @@ const Home = () => {
         id={styles.bgVideo}
         src="./homebg.mp4"
         type="video/mp4"></video>
-      {/* <div>
-        <form>
-          <div className={styles.joincreateform}>
-            <div className={styles.formwtitle}>
-              <label htmlFor="username" className={styles.namelabel}>
-                Name{' '}
-              </label>
-              <input
-                name="username"
-                onChange={handleUsername}
-                value={username}
-              />
-            </div>
-            <div className={styles.formwtitle}>
-              <label htmlFor="roomID" className={styles.roomIDlabel}>
-                Room ID{' '}
-              </label>
-              <input name="roomID" onChange={handleRoomID} value={roomID} />
-            </div>
-          </div>
-        </form>
-      </div>
-      <div className={styles.joincreateform}>
-        <div className={styles.formwtitle}>
-          <button
-            type="submit"
-            className={styles.createroombtn}
-            onClick={handleJoinRoom}>
-            Join Room
-          </button>
-        </div>
-        <div className={styles.formwtitle}>
-          <button className={styles.createroombtn} onClick={handleCreateRoom}>
-            Create Room
-          </button>
-        </div>
-      </div> */}
     </div>
   );
 };

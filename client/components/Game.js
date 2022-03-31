@@ -37,14 +37,16 @@ const Game = () => {
   // const client = useSelector((state) => state.client);
   const room = useSelector((state) => state.room);
   const users = useSelector((state) => state.users);
-
+  console.log('roooooooom ', room);
   const gameStatus = useSelector((state) => state.gameStatus);
   useEffect(() => {
     room.state.users.onAdd = (user, key) => {
       dispatch(addUser(key, user));
       user.onChange = (changes) => {
         changes.forEach((change) => {
-          dispatch(updateUser({ key: key, field: change.field, value: change.value }));
+          dispatch(
+            updateUser({ key: key, field: change.field, value: change.value })
+          );
         });
       };
       console.log(user, 'has been added at', key);
