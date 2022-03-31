@@ -25,7 +25,8 @@ const Timer = () => {
   };
   const containerStyles = {
     borderRadius: '30px',
-    backgroundColor: '#f3c623',
+    backgroundColor: '#8B0000',
+    boxShadow: '0 0 40px #8B0000',
     width: `${completed}%`,
     animation: 'test 150s',
   };
