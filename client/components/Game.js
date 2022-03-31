@@ -111,6 +111,7 @@ const Game = () => {
       case 'nonepass': {
         return (
           <div>
+            <Timer />
             <NonePass />
           </div>
         );

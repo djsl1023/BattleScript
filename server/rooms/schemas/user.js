@@ -42,6 +42,18 @@ class AddUser extends command.Command {
 class RemoveUser extends command.Command {
   execute({ clientId }) {
     this.state.users.delete(clientId);
+    if (this.state.failAnswers[clientId]) {
+      this.state.failAnswers.delete(clientId);
+    }
+    if (this.state.passAnswers[clientId]) {
+      this.state.passAnswers.delete(clientId);
+    }
+    if (this.state.failVotes[clientId]) {
+      this.state.failVotes.delete(clientId);
+    }
+    if (this.state.passVotes[clientId]) {
+      this.state.passVotes.delete(clientId);
+    }
   }
 }
 
