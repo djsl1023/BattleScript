@@ -31,7 +31,7 @@ import ChatBtn from './ChatBtn';
  * OF THE GAME
  */
 const Game = () => {
-  console.log('Rendering game');
+  // console.log('Rendering game');
   const dispatch = useDispatch();
   const client = useColyseus();
   // const client = useSelector((state) => state.client);

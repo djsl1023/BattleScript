@@ -3,6 +3,9 @@
   bottom: 3rem;
   right: 5em;
   color: black;
+  border-style: outset;
+  background-color: transparent;
+  border-color: transparent;
 }
 
 #icon {
@@ -11,12 +14,13 @@
   border: none;
 }
 #chatComp {
+  display: flex;
   position: absolute;
-  height: 50em;
-  width: 15em;
-  top: -12em;
-  right: 0em;
+  height: 35em;
+  width: 27em;
+  top: -37.75em;
+  right: 1.9em;
   background-color: #6d8790a0;
-  height: 12em;
+  border-radius: 0.75em;
   overflow: auto;
 }
