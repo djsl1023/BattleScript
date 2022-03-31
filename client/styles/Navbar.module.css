@@ -10,10 +10,12 @@
   width: 90%;
   margin: auto;
   height: 4rem;
-  background-color: rgba(44, 47, 49, 0.65);
+  background-color: rgba(0, 0, 0, 0.65);
   color: gray;
   align-items: center;
   justify-content: space-between;
+  border: rgba(255, 255, 255, 1);
+  border-style: solid;
 }
 
 .navList {
@@ -53,9 +55,14 @@
 }
 #rulesComp {
   position: absolute;
-  top: 3em;
-  background-color: rgba(44, 47, 49, 0.65);
+  top: 4.47em;
+  background-color: rgba(0, 0, 0, 0.95);
+  border-radius: 25px;
+  border: white;
+  border-style: solid;
+  width: 50%;
   color: #d1d3d4;
+  z-index: 1;
 }
 
 #centerLogo {

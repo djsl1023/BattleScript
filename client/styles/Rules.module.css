@@ -1,0 +1,9 @@
+.voteRules {
+  display: flex;
+  flex-direction: row;
+}
+
+.voteTitle {
+  font-style: italic;
+  text-decoration: underline;
+}

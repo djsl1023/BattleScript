@@ -1,33 +1,45 @@
 import React from 'react';
-
+import styles from '../styles/Rules.module.css';
 const Rules = () => {
   return (
     <div className="rules">
       <ul>
-        <p>TO START A NEW GAME AS HOST:</p>
-        <li>Enter name and click the 'Create Room' button </li>
-        <p>TO JOIN A GAME:</p>
+        <p>TO START, CREATE OR JOIN A GAME</p>
+        <h3>Overview</h3>
+        <text>
+          Welcome to BattleScript! In this game, you will be given timed
+          algorithm prompts to solve, which can be viewed and voted on by
+          others. The more votes you get for your answer, the more points you
+          gain!{' '}
+        </text>
+        <h3>Objectives:</h3>
+        <li>Obtain the most points by the end of the game</li>
         <li>
-          Enter name, the room ID that was shared with you by the host, and
-          click the 'Join Room' button{' '}
+          Learn to solve algorithms, and the different ways they can be solved
         </li>
-        <h3>Game Rules</h3>
+        <li>Most of all, have fun!</li>
+        <h3>Prompt Round:</h3>
         <li>
-          For each round, players are presented with a prompt to solve before
-          the timer expires. If you don't know the answer, try to write
-          something funny or creative! You'll have a chance to earn points
-          anyway
+          <text>{`Read the prompt, and see if you can
+          figure out a solution.  If you can't try to think of
+          something clever, funny, or try your best to get close!
+          You can still earn some points if your tests dont pass.`}</text>
         </li>
-        <li>
-          Following this, players vote annoymously on their favorite solutions
-          that passed. Following this (if any players failed the tests), players
-          vote on their favorite solutions that didn't pass.
-        </li>
-        <li>
-          At the conclusion of the round, players' names and their votes are
-          revealed. The host of the current game can now start a new game if
-          they desire.
-        </li>
+        <h3>Voting Rounds:</h3>
+        <div className={styles.voteRules}>
+          <div>
+            <text className={styles.voteTitle}>Fail Voting Round</text>
+            <li>Code that did not pass are viewed in this round</li>
+            <li>Vote on clever, funny, or close answers, your choice!</li>
+            <li>75 Pts per vote</li>
+          </div>
+          <div>
+            <text className={styles.voteTitle}>Pass Voting Round</text>
+            <li>Code that pass are viewed in this round</li>
+            <li>Vote on efficiency, cleverness, cleanliness, your choice!</li>
+            <li>250 Pts per vote</li>
+          </div>
+        </div>
       </ul>
     </div>
   );

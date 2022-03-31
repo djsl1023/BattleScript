@@ -24,7 +24,7 @@ const Navbar = () => {
             onMouseEnter={() => setShown(true)}
             onClick={() => setShown(true)}
             onMouseLeave={() => setShown(false)}>
-            Rules
+            How To Play
           </button>
           {isShown && (
             <div id={styles.rulesComp}>
