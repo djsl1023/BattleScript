@@ -13,6 +13,7 @@ class QuestionSchema extends Schema {
     this.question = '';
     this.testSpecs = '';
     this.solution = ``;
+    this.starterCode = ``;
   }
 }
 schema.defineTypes(QuestionSchema, {
@@ -22,6 +23,7 @@ schema.defineTypes(QuestionSchema, {
   question: 'string',
   testSpecs: 'string',
   solution: 'string',
+  starterCode: 'string',
 });
 
 async function getQuestions() {
@@ -43,6 +45,7 @@ class insertQuestion extends command.Command {
     temp.title = currQuestion.title;
     temp.question = currQuestion.question;
     temp.testSpecs = currQuestion.testSpecs;
+    temp.starterCode = currQuestion.starterCode
     this.state.question = temp;
   }
 }
