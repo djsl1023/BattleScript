@@ -11,14 +11,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const options = {
   responsive: true,
@@ -31,12 +24,29 @@ const options = {
       text: 'Total Points',
     },
   },
+  scales: {
+    x: {
+      stacked: true,
+    },
+    y: {
+      stacked: true,
+    },
+  },
 };
 
 export default function Tally() {
   const users = useSelector((state) => state.users);
+  const failedVotes = useSelector((state) => state.failedVotes);
+  const passedVotes = useSelector((state) => state.passedVotes);
 
   const clientIds = Object.keys(users);
+
+  const allFailedVotes = clientIds.map((client) => {
+    return failedVotes[client];
+  });
+  const allPassedVotes = clientIds.map((client) => {
+    return passedVotes[client];
+  });
 
   /*
   create array of client usernames
@@ -65,11 +75,25 @@ export default function Tally() {
         label: 'Fail score',
         data: incorrectPoints,
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        stack: 'Stack 0',
       },
       {
         label: 'Pass score',
         data: correctPoints,
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        stack: 'Stack 0',
+      },
+      {
+        label: 'Total pass votes',
+        data: allPassedVotes,
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        stack: 'Stack 1',
+      },
+      {
+        label: 'Total fail votes',
+        data: allFailedVotes,
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        stack: 'Stack 1',
       },
     ],
   };
