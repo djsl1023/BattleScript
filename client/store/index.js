@@ -42,8 +42,6 @@ const rootReducer = (state, action) => {
         answer,
         timer,
         hostKey,
-        passedVotes,
-        failedVotes,
       } = state;
       state = {
         room,
@@ -54,8 +52,6 @@ const rootReducer = (state, action) => {
         answer,
         timer,
         hostKey,
-        passedVotes,
-        failedVotes,
       };
       return reducer(state, action);
     }
