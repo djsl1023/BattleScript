@@ -31,8 +31,17 @@ const HostBar = () => {
   };
   const renderSwitch = (gameStatus) => {
     switch (gameStatus) {
+      case 'nonepass': {
+        if (!timer) {
+          return (
+            <div className="continue-btn">
+              <button onClick={handleContinueGame}>Continue</button>
+            </div>
+          );
+        }
+        return;
+      }
       case 'tally':
-      case 'nonepass':
       case 'nonefail': {
         return (
           <div className="continue-btn">

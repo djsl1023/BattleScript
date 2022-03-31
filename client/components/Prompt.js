@@ -124,17 +124,13 @@ const Prompt = () => {
 
       {submitted ? (
         <div className="prompt-solution">
-          <iframe
-            id="mochaTester"
-            srcDoc={testHTML}
-            sandbox="allow-scripts allow-same-origin"
-          />
+          <iframe id="mochaTester" srcDoc={testHTML} sandbox="allow-scripts allow-same-origin" />
         </div>
       ) : (
         <div className="prompt-solution">
           <Editor
             defaultLanguage="javascript"
-            defaultValue="//Code Here"
+            defaultValue={currPrompt.starterCode}
             onChange={onChangeHandler}
             options={{
               readOnly: false,

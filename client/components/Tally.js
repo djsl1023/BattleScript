@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
   Chart as ChartJS,
@@ -31,12 +31,35 @@ const options = {
       text: 'Total Points',
     },
   },
+  scales: {
+    x: {
+      stacked: true,
+    },
+    y: {
+      stacked: true,
+    },
+  },
 };
 
 export default function Tally() {
   const users = useSelector((state) => state.users);
+  const failedVotes = useSelector((state) => state.failedVotes);
+  const passedVotes = useSelector((state) => state.passedVotes);
+  const room = useSelector((state) => state.room);
+
+  useEffect(() => {
+    room.send('resetTimer');
+  }, []);
 
   const clientIds = Object.keys(users);
+
+  const allFailedVotes = clientIds.map((client) => {
+    return failedVotes[client] * 75;
+  });
+  // console.log(allFailedVotes);
+  const allPassedVotes = clientIds.map((client) => {
+    return passedVotes[client] * 250;
+  });
 
   /*
   create array of client usernames
@@ -65,11 +88,25 @@ export default function Tally() {
         label: 'Fail score',
         data: incorrectPoints,
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        stack: 'Stack 0',
       },
       {
         label: 'Pass score',
         data: correctPoints,
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        stack: 'Stack 0',
+      },
+      {
+        label: 'Total pass votes',
+        data: allPassedVotes,
+        backgroundColor: 'rgba(44,126,155, 0.5)',
+        stack: 'Stack 1',
+      },
+      {
+        label: 'Total fail votes',
+        data: allFailedVotes,
+        backgroundColor: 'rgba(168,49,20,0.5)',
+        stack: 'Stack 1',
       },
     ],
   };
