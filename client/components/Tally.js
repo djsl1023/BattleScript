@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
   Chart as ChartJS,
@@ -38,14 +38,20 @@ export default function Tally() {
   const users = useSelector((state) => state.users);
   const failedVotes = useSelector((state) => state.failedVotes);
   const passedVotes = useSelector((state) => state.passedVotes);
+  const room = useSelector((state) => state.room);
+
+  useEffect(() => {
+    room.send('resetTimer');
+  }, []);
 
   const clientIds = Object.keys(users);
 
   const allFailedVotes = clientIds.map((client) => {
-    return failedVotes[client];
+    return failedVotes[client] * 75;
   });
+  console.log(allFailedVotes);
   const allPassedVotes = clientIds.map((client) => {
-    return passedVotes[client];
+    return passedVotes[client] * 250;
   });
 
   /*
