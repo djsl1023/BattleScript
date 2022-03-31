@@ -16,7 +16,9 @@ const Navbar = () => {
     <div className={styles.navbar}>
       <div className={styles.navBlock}>
         <Link to="/" onClick={handleClick}>
-          <div className={styles.navList}> Home </div>
+          <div className={styles.navList}>
+            <button className={styles.rulesBtn}>Home</button>
+          </div>
         </Link>
         <div className={styles.navList}>
           <button
