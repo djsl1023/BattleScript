@@ -118,7 +118,7 @@ class GameRoom extends colyseus.Room {
     //StartTimer in each round
     this.onMessage('startTimer', (client, data) => {
       this.clock.clear();
-      //amount of time to answer each question.
+      this.state.timer = 1;
       let timeToAnswer = 150000;
       this.state.timer = timeToAnswer / 1000;
       this.clock.setTimeout(() => {
@@ -140,15 +140,26 @@ class GameRoom extends colyseus.Room {
       this.clock.setTimeout(() => {
         this.delayedInterval;
         this.clock.stop(() => {
-          this.state.timer = 0;
+          this.state.timer = 1;
         });
       }, timeToAnswer);
       this.clock.setTimeout(() => {
         this.clock.clear();
-        this.state.timer = 1;
+        if (this.state.gameStatus === 'nonepass') {
+          this.state.timer = 0;
+        } else {
+          this.state.timer = 1;
+        }
         console.log('last clock', this.clock);
       }, timeToAnswer + 1000);
     });
+
+    //Reset timer
+    this.onMessage('resetTimer', (client, data) => {
+      this.clock.clear();
+      this.state.timer = 1;
+    });
+
     // START GAME
     this.onMessage('start', (client, { gameStatus }) => {
       this.state.gameStatus = gameStatus;
