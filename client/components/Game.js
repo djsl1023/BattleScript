@@ -37,7 +37,7 @@ const Game = () => {
   // const client = useSelector((state) => state.client);
   const room = useSelector((state) => state.room);
   const users = useSelector((state) => state.users);
-
+  console.log('roooooooom ', room);
   const gameStatus = useSelector((state) => state.gameStatus);
   useEffect(() => {
     room.state.users.onAdd = (user, key) => {

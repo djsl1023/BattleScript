@@ -11,55 +11,59 @@
   justify-content: center;
 }
 
-.input {
-  position: absolute;
-  top: 50%;
-  left: 40%;
+.inputSection {
+  position: relative;
 }
 .welcome {
-  position: absolute;
-  top: 30%;
-  left: 33%;
+  position: relative;
+  text-align: center;
+  margin: auto;
+  max-width: 60%;
+  padding-top: 10%;
+  padding-bottom: 5%;
 }
 .joincreateform {
   color: white;
-  width: 35em;
-  margin: 0 auto;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
+  flex-direction: column;
+}
+input {
+  border: none;
+  height: 3em;
+  box-sizing: border-box;
+  border-bottom: 2px solid #ccc;
+  border-top: 2px solid #ccc;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  border-radius: 4px;
+  background-color: rgba(1, 1, 1, 0.75);
+  background-repeat: no-repeat;
 }
 
-.formwtitle {
-  margin-left: auto;
-  margin-right: auto;
+.createRoom {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
 }
-
-.namelabel {
-  position: relative;
-}
-.roomIDlabel {
-  position: relative;
-}
-
-.createroombtn:hover {
-  background-color: #ffffff;
-}
-
-.createroombtn:active {
-  background-color: #e9ecea;
-}
-/* <!-- HTML !-->
-<button class="button-49" role="button">Button 49</button> */
 
 /* CSS */
-.homeButton,
-.homeButton:after {
+.submitBtn,
+.submitBtn:after {
   width: 150px;
   height: 76px;
   line-height: 78px;
   font-size: 20px;
   font-family: 'Bebas Neue', sans-serif;
-  background: linear-gradient(45deg, transparent 5%, #000000 5%);
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.75) 5%,
+    rgba(1, 1, 1, 0.75) 5%
+  );
   border: 0;
   color: #fff;
   letter-spacing: 3px;
@@ -73,9 +77,14 @@
 .buttonContainer {
   display: flex;
   flex-direction: row;
+  width: 50%;
   justify-content: space-evenly;
+  align-items: center;
+  gap: 4rem;
+  margin: auto;
 }
-.homeButton:after {
+
+.submitBtn:after {
   --slice-0: inset(50% 50% 50% 50%);
   --slice-1: inset(80% -6px 0 0);
   --slice-2: inset(50% -6px 30% 0);
@@ -101,7 +110,7 @@
   clip-path: var(--slice-0);
 }
 
-.homeButton:hover:after {
+.submitBtn:hover:after {
   animation: 1s glitch;
   animation-timing-function: steps(2, end);
 }
@@ -154,8 +163,8 @@
 }
 
 @media (min-width: 768px) {
-  .homeButton,
-  .homeButton:after {
+  .submitBtn,
+  .submitBtn:after {
     width: 200px;
     height: 86px;
     line-height: 88px;

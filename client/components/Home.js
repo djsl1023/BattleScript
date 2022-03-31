@@ -21,7 +21,6 @@ const Home = () => {
    function from redux store*/
 
   const dispatch = useDispatch();
-
   /* set username state to value
   from username input*/
 
@@ -79,66 +78,66 @@ const Home = () => {
       case 'create': {
         return (
           <div className={styles.createRoom}>
-            <form>
-              <div className={styles.joincreateform}>
-                <div className={styles.formwtitle}>
-                  <label htmlFor="username" className={styles.namelabel}>
-                    Name{' '}
-                  </label>
-                  <input
-                    name="username"
-                    onChange={handleUsername}
-                    value={username}
-                  />
-                </div>
-              </div>
-            </form>
             <div className={styles.joincreateform}>
-              <div className={styles.formwtitle}>
-                <button
-                  className={styles.homeButton}
-                  type="submit"
-                  onClick={handleCreateRoom}>
-                  Create Room
-                </button>
-              </div>
+              <label htmlFor="username" className={styles.namelabel}>
+                Name{' '}
+              </label>
+              <input
+                className={styles.inputStyle}
+                type="text"
+                name="username"
+                onChange={handleUsername}
+                value={username}
+              />
             </div>
+            <button
+              className={styles.submitBtn}
+              type="submit"
+              onClick={handleCreateRoom}>
+              Create Room
+            </button>
+            <button
+              className={styles.submitBtn}
+              onClick={() => setCreateOrJoin('')}>
+              Back
+            </button>
           </div>
         );
       }
       case 'join': {
         return (
-          <div>
-            <form>
-              <div className={styles.joincreateform}>
-                <div className={styles.formwtitle}>
-                  <label htmlFor="username" className={styles.namelabel}>
-                    Name{' '}
-                  </label>
-                  <input
-                    name="username"
-                    onChange={handleUsername}
-                    value={username}
-                  />
-                </div>
-                <div className={styles.formwtitle}>
-                  <label htmlFor="roomID" className={styles.roomIDlabel}>
-                    Room ID{' '}
-                  </label>
-                  <input name="roomID" onChange={handleRoomID} value={roomID} />
-                </div>
-              </div>
-            </form>
+          <div className={styles.createRoom}>
             <div className={styles.joincreateform}>
-              <div className={styles.formwtitle}>
-                <button
-                  type="submit"
-                  className={styles.homeButton}
-                  onClick={handleJoinRoom}>
-                  Join Room
-                </button>
-              </div>
+              <label htmlFor="username" className={styles.namelabel}>
+                Name{' '}
+              </label>
+              <input
+                type="text"
+                name="username"
+                onChange={handleUsername}
+                value={username}
+              />
+              <label htmlFor="roomID" className={styles.roomIDlabel}>
+                Room ID{' '}
+              </label>
+              <input
+                name="roomID"
+                type="text"
+                onChange={handleRoomID}
+                value={roomID}
+              />
             </div>
+            <button
+              type="submit"
+              className={styles.submitBtn}
+              onClick={handleJoinRoom}>
+              Join Room
+            </button>
+            <button
+              className={styles.submitBtn}
+              onClick={() => setCreateOrJoin('')}>
+              Back
+            </button>
           </div>
         );
       }
@@ -147,14 +146,14 @@ const Home = () => {
           <div className={styles.buttonContainer}>
             <div>
               <button
-                className={styles.homeButton}
+                className={styles.submitBtn}
                 onClick={() => setCreateOrJoin('create')}>
                 Create Lobby
               </button>
             </div>
-            <div className={styles.buttonContainer}>
+            <div>
               <button
-                className={styles.homeButton}
+                className={styles.submitBtn}
                 onClick={() => setCreateOrJoin('join')}>
                 Join A Lobby
               </button>
@@ -172,7 +171,7 @@ const Home = () => {
       <div className={styles.welcome}>
         <Welcome />
       </div>
-      <div className={styles.input}>{renderSwitch(createOrJoin)}</div>
+      <div className={styles.inputSection}>{renderSwitch(createOrJoin)}</div>
       <video
         autoPlay
         muted
@@ -180,43 +179,6 @@ const Home = () => {
         id={styles.bgVideo}
         src="./homebg.mp4"
         type="video/mp4"></video>
-      {/* <div>
-        <form>
-          <div className={styles.joincreateform}>
-            <div className={styles.formwtitle}>
-              <label htmlFor="username" className={styles.namelabel}>
-                Name{' '}
-              </label>
-              <input
-                name="username"
-                onChange={handleUsername}
-                value={username}
-              />
-            </div>
-            <div className={styles.formwtitle}>
-              <label htmlFor="roomID" className={styles.roomIDlabel}>
-                Room ID{' '}
-              </label>
-              <input name="roomID" onChange={handleRoomID} value={roomID} />
-            </div>
-          </div>
-        </form>
-      </div>
-      <div className={styles.joincreateform}>
-        <div className={styles.formwtitle}>
-          <button
-            type="submit"
-            className={styles.createroombtn}
-            onClick={handleJoinRoom}>
-            Join Room
-          </button>
-        </div>
-        <div className={styles.formwtitle}>
-          <button className={styles.createroombtn} onClick={handleCreateRoom}>
-            Create Room
-          </button>
-        </div>
-      </div> */}
     </div>
   );
 };
