@@ -11,7 +11,14 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const options = {
   responsive: true,
@@ -49,7 +56,7 @@ export default function Tally() {
   const allFailedVotes = clientIds.map((client) => {
     return failedVotes[client] * 75;
   });
-  console.log(allFailedVotes);
+  // console.log(allFailedVotes);
   const allPassedVotes = clientIds.map((client) => {
     return passedVotes[client] * 250;
   });
@@ -92,13 +99,13 @@ export default function Tally() {
       {
         label: 'Total pass votes',
         data: allPassedVotes,
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        backgroundColor: 'rgba(44,126,155, 0.5)',
         stack: 'Stack 1',
       },
       {
         label: 'Total fail votes',
         data: allFailedVotes,
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        backgroundColor: 'rgba(168,49,20,0.5)',
         stack: 'Stack 1',
       },
     ],

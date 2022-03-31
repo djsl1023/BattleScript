@@ -94,13 +94,6 @@ const Game = () => {
           </div>
         );
       }
-      case 'nonefail': {
-        return (
-          <div>
-            <NoneFail />
-          </div>
-        );
-      }
       case 'failvote': {
         return (
           <div>
@@ -120,6 +113,13 @@ const Game = () => {
         return (
           <div>
             <Vote key="2" />
+          </div>
+        );
+      }
+      case 'nonefail': {
+        return (
+          <div>
+            <NoneFail />
           </div>
         );
       }

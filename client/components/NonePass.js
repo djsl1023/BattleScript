@@ -21,7 +21,10 @@ const NonePass = () => {
         '0'
       )}`}
       . Please use this time wisely and review some common docs linked below:
-      <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration">
+      <a
+        href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration"
+        target="_blank"
+      >
         {' '}
         Loops and Iteration
       </a>
