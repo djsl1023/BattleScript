@@ -14,8 +14,6 @@ const Navbar = () => {
   return (
     <div>
       <nav>
-        {console.log(styles)}
-        {console.log(styles.navbar)}
         <div className={styles.navbar}>
           <Link to="/" onClick={handleClick}>
             <li className={styles.navList}> Home </li>

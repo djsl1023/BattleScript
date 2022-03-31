@@ -7,19 +7,95 @@
   padding-bottom: 0.2em;
   padding-top: 0;
   margin-top: 0.15em;
+  background-color: #8b8b8b;
 }
 
 .messages {
+  background-color: #3c3c3c;
+  height: 3.3em;
   align-items: left;
   list-style-type: none;
   margin: 0.15em;
-  padding: 0.15em;
+  margin-left: 0.05em;
+  padding: 0.55em;
   border-bottom-style: groove;
-  border-radius: 0.25em;
+  border-left-style: groove;
+  border-right-style: groove;
+  border-radius: 1.25em;
   font-family: 'Monaco', 'Courier New', monospace;
+  display: flex;
+  flex-direction: row;
+}
+
+.myMessage {
+  background-color: #0d47a9;
+  height: 3.3em;
+  align-items: left;
+  list-style-type: none;
+  margin: 0.15em;
+  margin-left: -1.95em;
+  padding: 0.55em;
+  border-bottom-style: groove;
+  border-left-style: groove;
+  border-right-style: groove;
+  border-radius: 1.25em;
+  font-family: 'Monaco', 'Courier New', monospace;
+  display: flex;
+  flex-direction: row;
+  margin-right: 2em;
+}
+
+#listDiv {
+  background-color: #000000d4;
+  border-radius: 1.5em;
+  height: 24em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#messageForm {
+  position: absolute;
+  bottom: 1em;
+}
+
+.input {
+  color: black;
+  background-color: #d1f2f7;
+  padding: 1em;
+  position: sticky;
+  height: 3em;
+  font-size: 1.15em;
+  width: 18em;
+  font-family: 'Monaco', 'Courier New', monospace;
+  border-radius: 1em;
+}
+
+#chatComp {
+  background-color: #000e07b8;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.submit {
+  background-color: #8b8b8b;
+  width: 5em;
+  height: 4em;
+  border-radius: 2.25em;
 }
 
 #chatList {
-  padding: 0.25em;
-  margin: 0.25em;
+  display: flex;
+  flex-direction: column;
+}
+
+.listUser {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.listMessage {
+  text-align: center;
+  flex: 9;
 }
