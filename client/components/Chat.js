@@ -3,6 +3,7 @@ import * as Colyseus from 'colyseus.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { addMessage } from '../store/message';
 import styles from '../styles/Chat.module.css';
+import { useColyseus } from './ColyseusContext';
 
 const AlwaysScrollToBottom = () => {
   const elementRef = useRef();
@@ -15,6 +16,9 @@ const Chat = () => {
   const [currMessage, setCurrMessage] = useState('');
   const messages = useSelector((state) => state.message);
   const room = useSelector((state) => state.room);
+  const users = useSelector((state) => state.users);
+
+  const client = useColyseus();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,31 +32,45 @@ const Chat = () => {
   };
 
   return (
-    <div>
+    <div id={styles.chatComp}>
+      {console.log(users[room.sessionId].username)}
       <h1 id={styles.partyChat}> Party Chat </h1>
-      {!messages.length ? (
-        <div>Trash Talking Encouraged </div>
-      ) : (
+      <div id={styles.listDiv}>
         <ul id={styles.chatList}>
-          {messages.map((message, index) => {
-            return (
-              <li key={index} className={styles.messages}>
-                {message.username}: {message.message}
-                <AlwaysScrollToBottom />
-              </li>
-            );
-          })}
+          {!messages.length ? (
+            <li className={styles.messages}>Trash Talking Encouraged </li>
+          ) : (
+            messages.map((message, index) => {
+              return (
+                <li
+                  key={index}
+                  className={
+                    message.username === users[room.sessionId].username
+                      ? styles.myMessage
+                      : styles.messages
+                  }
+                >
+                  <div className={styles.listUser}> {message.username}</div>{' '}
+                  <div className={styles.listMessage}> {message.message}</div>
+                  <AlwaysScrollToBottom />
+                </li>
+              );
+            })
+          )}
         </ul>
-      )}
-      <form id="form" onSubmit={(e) => handleSubmit(e)}>
-        <input
-          name="newMessage"
-          type="text"
-          onChange={(e) => handleChange(e)}
-          value={currMessage || ''}
-        />
-        <input type="submit" value="Send" />
-      </form>
+      </div>
+      <div id={styles.formDiv}>
+        <form id={styles.messageForm} onSubmit={(e) => handleSubmit(e)}>
+          <input
+            name="newMessage"
+            type="text"
+            className={styles.input}
+            onChange={(e) => handleChange(e)}
+            value={currMessage || ''}
+          />
+          <input className={styles.submit} type="submit" value="Send" />
+        </form>
+      </div>
     </div>
   );
 };
