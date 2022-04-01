@@ -76,24 +76,26 @@ const Vote = () => {
           }}
         />
       </div>
-      <div className="prompt-solution">
-        <Editor
-          defaultLanguage="javascript"
-          theme="vs-dark"
-          defaultValue="//Select a user from the side to see their code! ----------------->"
-          options={{
-            readOnly: true,
-            wordWrap: true,
-          }}
-          onMount={handleEditorDidMount}
-        />
-        <button
-          className="submit-prompt-button"
-          onClick={(e) => voteHandler(e, userFocus, room.state.gameStatus)}
-          disabled={userFocus === '' || voted}
-        >
-          {voted ? `You've already voted for ${votedFor}!` : 'Vote!'}
-        </button>
+      <div>
+        <div className="prompt-solution">
+          <Editor
+            defaultLanguage="javascript"
+            theme="vs-dark"
+            defaultValue="//Select a user from the side to see their code! ----------------->"
+            options={{
+              readOnly: true,
+              wordWrap: true,
+            }}
+            onMount={handleEditorDidMount}
+          />
+        </div>
+        <div className="submit-prompt-button">
+          <button
+            onClick={(e) => voteHandler(e, userFocus, room.state.gameStatus)}
+            disabled={userFocus === '' || voted}>
+            {voted ? `You've already voted for ${votedFor}!` : 'Vote!'}
+          </button>
+        </div>
       </div>
 
       <div className="finished-submission-list">
@@ -104,12 +106,8 @@ const Vote = () => {
               return (
                 <li>
                   <div key={userKey}>
-                    <button
-                      value={userKey}
-                      onClick={() => changeFocus(userKey)}
-                    >
-                      {users[userKey].username}:{' '}
-                      {voteList[userKey] ? voteList[userKey] : 0}
+                    <button value={userKey} onClick={() => changeFocus(userKey)}>
+                      {users[userKey].username}: {voteList[userKey] ? voteList[userKey] : 0}
                     </button>
                   </div>
                 </li>
