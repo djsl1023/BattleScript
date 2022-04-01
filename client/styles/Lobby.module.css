@@ -1,0 +1,5 @@
+.lobbyWrapper {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  height: 50em;
+}

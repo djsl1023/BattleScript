@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addUser } from '../store/users';
+import styles from '../styles/Lobby.module.css';
 
 const Lobby = () => {
   const dispatch = useDispatch();
@@ -9,7 +10,18 @@ const Lobby = () => {
 
   return (
     <div>
-      <h4> Lobby: room Id : {room.id} </h4>
+      {/* <h4> Lobby: room Id : {room.id} </h4>
+      <div className={styles.lobbyWrapper}>
+        {['cody', 'chris', 'mike', 'sam', 'liam', 'ryan', 'smith', 'chloe'].map(
+          (clientId) => {
+            return (
+              <div>
+                {clientId} <img src="./Images/Avatars/doge.png" />{' '}
+              </div>
+            );
+          }
+        )}
+      </div> */}
       <div className="lobby-container">
         <div className="table">
           <div id="abv-table">
