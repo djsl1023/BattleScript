@@ -5,11 +5,7 @@ const Schema = schema.Schema;
 const ArraySchema = schema.ArraySchema;
 //const ArraySchema = schema.ArraySchema;
 const MapSchema = schema.MapSchema;
-const {
-  QuestionSchema,
-  getQuestions,
-  insertQuestion,
-} = require('./schemas/question');
+const { QuestionSchema, getQuestions, insertQuestion } = require('./schemas/question');
 const { UserSchema, AddUser, RemoveUser } = require('./schemas/user');
 const { MessagesSchema, AddMessage } = require('./schemas/messages');
 const { AnswerSchema, AddAnswer } = require('./schemas/answer');
@@ -127,13 +123,8 @@ class GameRoom extends colyseus.Room {
       }, 0);
 
       this.delayedInterval = this.clock.setInterval(() => {
-        console.log(
-          'Time now ' +
-            Math.floor((timeToAnswer - this.clock.elapsedTime) / 1000)
-        );
-        this.state.timer = Math.floor(
-          (timeToAnswer - this.clock.elapsedTime) / 1000
-        );
+        console.log('Time now ' + Math.floor((timeToAnswer - this.clock.elapsedTime) / 1000));
+        this.state.timer = Math.floor((timeToAnswer - this.clock.elapsedTime) / 1000);
       }, 1000);
 
       // After timeToAnswer is finished clear the timeout;
@@ -185,10 +176,7 @@ class GameRoom extends colyseus.Room {
       /**After submission, check if all users have submitted, if so
        * move onto failvoting round
        */
-      if (
-        this.state.users.size ===
-        this.state.failAnswers.size + this.state.passAnswers.size
-      ) {
+      if (this.state.users.size === this.state.failAnswers.size + this.state.passAnswers.size) {
         if (this.state.failAnswers.size === 0) {
           this.state.gameStatus = 'nonefail';
         } else {
@@ -264,9 +252,7 @@ class GameRoom extends colyseus.Room {
   // When client successfully join the room
   onJoin(client, options, auth) {
     if (this.state.gameStatus !== 'lobby') {
-      throw new Error(
-        'Game is ongoing, please try again when the game is finished'
-      );
+      throw new Error('Game is ongoing, please try again when the game is finished');
     }
     this.dispatcher.dispatch(new AddUser(), {
       username: options.username,
