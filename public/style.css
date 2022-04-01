@@ -1,9 +1,13 @@
 * {
   box-sizing: border-box;
 }
+
+html,
 body {
-  background-color: #d1d3d4;
   font-family: sans-serif;
+
+  width: 100%;
+  height: 100%;
 }
 
 a {
@@ -106,22 +110,47 @@ a {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 .prompt-solution {
   display: flex;
   flex-direction: column;
-  margin: 3em 0 0 2em;
+  margin: 1em 0 0 2em;
   width: 35vw;
-  height: 80vh;
+  height: 75vh;
 }
-.submit-prompt-button {
-  position: relative;
-  top: -3em;
-  width: 80%;
-}
-.finished-submission-list {
-  margin: 3em 0 0 2em;
+
+#mochaTester {
   display: flex;
   flex-direction: column;
+  margin: 1em 0 0 2em;
+  width: 35vw;
+  height: 75vh;
+}
+.submit-prompt-button {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em 0 0 2em;
+}
+.finished-submission-list {
+  margin: 1em 0 0 2em;
+  display: flex;
+  flex-direction: column;
+}
+.passed-users {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+.failed-users {
+  margin-top: 7em;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+.user-container {
+  height: 2em;
+  width: 10em;
+  border: 0.25 solid black;
 }
 
 #chat-comp {
@@ -164,6 +193,15 @@ a {
   transition: all 200ms ease-in;
   margin-left: auto;
   margin-right: 2rem;
+}
+
+#bgVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
 }
 
 /* .messages {

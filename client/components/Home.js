@@ -90,15 +90,10 @@ const Home = () => {
                 value={username}
               />
             </div>
-            <button
-              className={styles.submitBtn}
-              type="submit"
-              onClick={handleCreateRoom}>
+            <button className={styles.submitBtn} type="submit" onClick={handleCreateRoom}>
               Create Room
             </button>
-            <button
-              className={styles.submitBtn}
-              onClick={() => setCreateOrJoin('')}>
+            <button className={styles.submitBtn} onClick={() => setCreateOrJoin('')}>
               Back
             </button>
           </div>
@@ -111,31 +106,16 @@ const Home = () => {
               <label htmlFor="username" className={styles.namelabel}>
                 Name{' '}
               </label>
-              <input
-                type="text"
-                name="username"
-                onChange={handleUsername}
-                value={username}
-              />
+              <input type="text" name="username" onChange={handleUsername} value={username} />
               <label htmlFor="roomID" className={styles.roomIDlabel}>
                 Room ID{' '}
               </label>
-              <input
-                name="roomID"
-                type="text"
-                onChange={handleRoomID}
-                value={roomID}
-              />
+              <input name="roomID" type="text" onChange={handleRoomID} value={roomID} />
             </div>
-            <button
-              type="submit"
-              className={styles.submitBtn}
-              onClick={handleJoinRoom}>
+            <button type="submit" className={styles.submitBtn} onClick={handleJoinRoom}>
               Join Room
             </button>
-            <button
-              className={styles.submitBtn}
-              onClick={() => setCreateOrJoin('')}>
+            <button className={styles.submitBtn} onClick={() => setCreateOrJoin('')}>
               Back
             </button>
           </div>
@@ -145,16 +125,12 @@ const Home = () => {
         return (
           <div className={styles.buttonContainer}>
             <div>
-              <button
-                className={styles.submitBtn}
-                onClick={() => setCreateOrJoin('create')}>
+              <button className={styles.submitBtn} onClick={() => setCreateOrJoin('create')}>
                 Create Lobby
               </button>
             </div>
             <div>
-              <button
-                className={styles.submitBtn}
-                onClick={() => setCreateOrJoin('join')}>
+              <button className={styles.submitBtn} onClick={() => setCreateOrJoin('join')}>
                 Join A Lobby
               </button>
             </div>
@@ -172,13 +148,6 @@ const Home = () => {
         <Welcome />
       </div>
       <div className={styles.inputSection}>{renderSwitch(createOrJoin)}</div>
-      <video
-        autoPlay
-        muted
-        loop
-        id={styles.bgVideo}
-        src="./homebg.mp4"
-        type="video/mp4"></video>
     </div>
   );
 };

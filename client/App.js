@@ -8,6 +8,13 @@ const App = () => {
     <div>
       <Navbar />
       <Routes />
+      <video
+        autoPlay
+        muted
+        loop
+        id='bgVideo'
+        src="./homebg.mp4"
+        type="video/mp4"></video>
     </div>
   );
 };

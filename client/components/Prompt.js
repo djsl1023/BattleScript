@@ -124,47 +124,50 @@ const Prompt = () => {
       </div>
 
       {submitted ? (
-        <div className="prompt-solution">
-          <iframe
-            id="mochaTester"
-            srcDoc={testHTML}
-            sandbox="allow-scripts allow-same-origin"
-          />
+        <div>
+          <iframe id="mochaTester" srcDoc={testHTML} sandbox="allow-scripts allow-same-origin" />
         </div>
       ) : (
-        <div className="prompt-solution">
-          <Editor
-            defaultLanguage="javascript"
-            theme="vs-dark"
-            defaultValue={currPrompt.starterCode}
-            onChange={onChangeHandler}
-            options={{
-              readOnly: false,
-              wordWrap: true,
-            }}
-          />
-          <button
-            className="submit-prompt-button"
-            onClick={() => clickHandler()}
-          >
-            Submit
-          </button>
+        <div>
+          <div className="prompt-solution">
+            <Editor
+              defaultLanguage="javascript"
+              theme="vs-dark"
+              defaultValue={currPrompt.starterCode}
+              onChange={onChangeHandler}
+              options={{
+                readOnly: false,
+                wordWrap: true,
+              }}
+            />
+          </div>
+          <div className="submit-prompt-button">
+            <button onClick={() => clickHandler()}>Submit</button>
+          </div>
         </div>
       )}
       <div className="finished-submission-list">
-        <div>
+        <div className="passed-users">
           <div>Passed</div>
           <div>
             {Object.keys(passedAnswers).map((userKey) => {
-              return <div key={userKey}>{users[userKey].username}</div>;
+              return (
+                <div key={userKey} className="user-container">
+                  <p>{users[userKey].username}</p>
+                </div>
+              );
             })}
           </div>
         </div>
-        <div>
+        <div className="failed-users">
           <div>Failed</div>
           <div>
             {Object.keys(failedAnswers).map((userKey) => {
-              return <div key={userKey}>{users[userKey].username}</div>;
+              return (
+                <div className="user-container" key={userKey}>
+                  <p>{users[userKey].username}</p>
+                </div>
+              );
             })}
           </div>
         </div>
