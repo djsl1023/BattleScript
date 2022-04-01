@@ -10,8 +10,8 @@ const Lobby = () => {
 
   return (
     <div>
-      {/* <h4> Lobby: room Id : {room.id} </h4>
-      <div className={styles.lobbyWrapper}>
+      <h4> Lobby: room Id : {room.id} </h4>
+      {/* <div className={styles.lobbyWrapper}>
         {['cody', 'chris', 'mike', 'sam', 'liam', 'ryan', 'smith', 'chloe'].map(
           (clientId) => {
             return (
@@ -31,9 +31,7 @@ const Lobby = () => {
                   <li key={clientId} className="seat">
                     <p>{users[clientId].username}</p>
                     <img
-                      src={
-                        'https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg'
-                      }
+                      src={users[clientId].avatarURL}
                       className="player-avatar"
                     />
                   </li>
@@ -44,8 +42,7 @@ const Lobby = () => {
             id="table-img"
             src={
               'https://betandbeat.com/wp-content/uploads/2021/03/oval-poker-table.svg'
-            }
-          ></img>
+            }></img>
           <div id="below-table">
             {Object.keys(users).map((clientId, idx) => {
               if (idx >= 3)

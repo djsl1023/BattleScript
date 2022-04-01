@@ -10,7 +10,9 @@
   align-items: center;
   justify-content: center;
 }
-
+.error {
+  color: red;
+}
 .inputSection {
   position: relative;
 }
@@ -50,7 +52,33 @@ input {
   gap: 1rem;
   justify-content: center;
 }
+/* typewriter */
 
+.typewriterText {
+  font-family: Courier, monospace;
+  text-decoration: bold;
+  color: rgb(255, 0, 0);
+  display: inline-block;
+  overflow: hidden;
+  letter-spacing: 2px;
+  animation: blink 0.75s step-end infinite;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 700;
+  border-right: 1px solid orange;
+  box-sizing: border-box;
+  position: relative;
+}
+
+@keyframes blink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
 /* CSS */
 .submitBtn,
 .submitBtn:after {
