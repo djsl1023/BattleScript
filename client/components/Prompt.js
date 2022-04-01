@@ -124,29 +124,24 @@ const Prompt = () => {
       </div>
 
       {submitted ? (
-        <div className="prompt-solution">
-          <iframe
-            id="mochaTester"
-            srcDoc={testHTML}
-            sandbox="allow-scripts allow-same-origin"
-          />
+        <div>
+          <iframe id="mochaTester" srcDoc={testHTML} sandbox="allow-scripts allow-same-origin" />
         </div>
       ) : (
-        <div className="prompt-solution">
-          <Editor
-            defaultLanguage="javascript"
-            theme="vs-dark"
-            defaultValue={currPrompt.starterCode}
-            onChange={onChangeHandler}
-            options={{
-              readOnly: false,
-              wordWrap: true,
-            }}
-          />
-          <button
-            className="submit-prompt-button"
-            onClick={() => clickHandler()}
-          >
+        <div>
+          <div className="prompt-solution">
+            <Editor
+              defaultLanguage="javascript"
+              theme="vs-dark"
+              defaultValue={currPrompt.starterCode}
+              onChange={onChangeHandler}
+              options={{
+                readOnly: false,
+                wordWrap: true,
+              }}
+            />
+          </div>
+          <button className="submit-prompt-button" onClick={() => clickHandler()}>
             Submit
           </button>
         </div>
