@@ -5,6 +5,7 @@ import Rules from './components/Rules';
 import Game from './components/Game';
 import Lobby from './components/Lobby';
 import Prompt from './components/Prompt';
+import Final from './components/Final';
 
 const Routes = (props) => {
   return (
