@@ -67,44 +67,6 @@ a {
   background-color: #e9ecea;
 }
 
-.lobby-container {
-  display: flex;
-  margin-top: 30px;
-}
-
-.table {
-  list-style: none;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: flex-start;
-  align-items: center;
-  height: 40px;
-}
-#abv-table {
-  padding-bottom: 0em;
-  display: flex;
-}
-#below-table {
-  padding-top: 0em;
-  display: flex;
-}
-#table-img {
-  display: block;
-  margin: -100px 0px -100px 0px;
-}
-.seat {
-  display: inline;
-  list-style: none;
-  margin-right: 2rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.player-avatar {
-  width: 3em;
-  border-radius: 50%;
-}
-
 .prompt-container {
   display: flex;
   flex-direction: row;

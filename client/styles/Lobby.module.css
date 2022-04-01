@@ -1,5 +1,26 @@
 .lobbyWrapper {
   display: grid;
   grid-template-columns: auto auto auto;
-  height: 50em;
+  height: 10em;
+}
+.element {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.avatar {
+  position: absolute;
+  bottom: 30%;
+  left: 25%;
+  width: 45%;
+  height: 85%;
+}
+.name {
+  position: absolute;
+  bottom: 1em;
+  left: 43%;
+  color: #ff6347;
+  text-transform: uppercase;
+  font-family: fantasy, monospace;
+  letter-spacing: 0.15em;
 }
