@@ -33,8 +33,7 @@ const Chat = () => {
 
   return (
     <div id={styles.chatComp}>
-      {console.log(users[room.sessionId].username)}
-      <h1 id={styles.partyChat}> Party Chat </h1>
+      <h1 id={styles.partyChat}> BATTLESCRIPT </h1>
       <div id={styles.listDiv}>
         <ul id={styles.chatList}>
           {!messages.length ? (

@@ -45,7 +45,7 @@ async function seed() {
     expect(returnedValue).to.equal(0);
   });
 });`,
-      difficulty: 'easy',
+      difficulty: 'medium',
       starterCode: `/* These prompts are provided to get you started,
 but are not the only way to attak the problem.
 Feel free to delete all of the below and start your own code. */
@@ -102,7 +102,7 @@ crazyCaps('fullstack is amazing'); // => fUlLsTaCk iS AmAzInG!`,
   });
 });
 `,
-      difficulty: 'easy',
+      difficulty: 'medium',
       starterCode: `/* These prompts are provided to get you started,
 but are not the only way to attak the problem.
 Feel free to delete all of the below and start your own code. */
@@ -206,7 +206,7 @@ exponentiate(3, 4)    // => 81`,
     expect(returnedValue).to.equal(1);
   });
 });`,
-      difficulty: 'easy',
+      difficulty: 'medium',
       starterCode: `/* These prompts are provided to get you started,
 but are not the only way to attak the problem.
 Feel free to delete all of the below and start your own code. */
@@ -436,6 +436,7 @@ function myIndexOf2(source, searchValue, startIdx = 0) {
   return -1;
 }`,
     },
+    // BoilerPlate Code For Adding Questions ---------------------------------
     // {
     //   title: ``,
     //   question: ``,
@@ -446,6 +447,184 @@ function myIndexOf2(source, searchValue, startIdx = 0) {
     //   difficulty: ``,
     //   solution: ``,
     // }
+
+    // MATTS EASY QUESTIONS ------------------------------
+    // --------------------------------------------------
+    // --------------------------------------------------
+
+    {
+      title: `Sum of all in an Array`,
+      question: `Define a funciton sumAll, that accepts an array as an argument.
+      the function should return the sum of all the items in the given array
+      For ex: 
+      sumAll([1,2,3]) ---> return 6
+      sumAll([7,3,4]) ---> return 14
+      sumAll([1]) -------> return 1`,
+      starterCode: `/* These prompts are provided to get you started,
+    but are not the only way to attak the problem.
+    Feel free to delete all of the below and start your own code. */
+    const sumAll = (arr) => {
+      let sum = 0;
+      return sum;
+        }`,
+      testSpecs: `describe('sumAll', ()=> {
+        it('is a function', () => {
+          expect(typeof sumAll).to.equal('function');
+        });
+        it('returns a number', () => {
+          let returnedValue = sumAll([1]);
+          expect(typeof returnedValue).to.equal('number');
+        });
+        it('returns the sum of all elements in an array', ()=> {
+          let returnedValue = sumAll([1,2,3]);
+          expect(returnedValue).to.equal(6);
+        });
+        it('returns the sum of all elements of large array, ()=> {
+          let returnedValue = sumAll([1,2,3,4,1,2,3,4,1,2,3,4]);
+          expect(returnedValue).to.equal(30);
+        });
+        it('returns the value of single array', () => {
+          let returnValue = sumAll([1]);
+          expect(returnedValue).to.equal(1);
+        })
+      })`,
+      difficulty: `easy`,
+      solution: `//Option 1 
+      const sumAll = (arr) => {
+           let sum = 0;
+           for (let i = 0; i < array.length; i++) {
+               sum += array[i];
+                      }
+                return sum;
+        }`,
+    },
+    {
+      title: `Is it a OO word?`,
+      question: `Define a function, 'doubleO, that accepts one argument;
+      a string. 
+      From the given string determine if the letters "oo" occur next to each other.
+      If 'oo' does occur in the string return true if not return false
+      For example:
+      doubleO("Hello, what is up") ---> return false
+      doubleO('Hey what's good') -----> returns true
+      doubleo('good') ----> return true`,
+      starterCode: `/* These prompts are provided to get you started,
+    but are not the only way to attak the problem.
+    Feel free to delete all of the below and start your own code. */
+    const doubleO = (str) => {
+      // return true or false
+    }`,
+      testSpecs: `describe('doubleO', () => {
+        it('is a function', () => {
+        expect(typeof doubleO).to.equal('function');
+      });
+        it('returns a boolean', () => {
+          let returnedValue = doubleO('yoooooo');
+          expect(typeof returnedValue).to.equal('boolean');
+        });
+        it('returns true if oo appears in string',() => {
+          let returnedValue = doubleO('cool guy');
+          expect(returnedValue).to.equal(true);
+        })
+        it('returns false if oo does not appear in string', () =>{
+          let returnedValue = doubleO('hola guapo');
+          expect(returnedValue).to.equal(false);
+        })
+      });`,
+      difficulty: `easy`,
+      solution: `// Option 1 
+      const doubleO = (str) => {
+        if(str.indexOf('oo') !== -1){
+               return true
+               }
+            return false
+          }
+      `,
+    },
+    {
+      title: `Who let the dog out???`,
+      question: `Define a function named whoWho, the function accepts on argument
+      an array of strings. Everytime the word dog appears, move it to a second arr and return
+      the new array. If there are no dogs to be let out return an empty array;
+      For example: 
+      whoWho(['hi','how', 'is', 'it', 'going']) ===> return []
+      whoWho(['cat','cat', 'dog', 'snake', 'raptop', 'dog']) ===> return [dog, dog]
+      whoWho(['you','got','this','dog']) ====> return [dog]`,
+      starterCode: `/* These prompts are provided to get you started,
+    but are not the only way to attak the problem.
+    Feel free to delete all of the below and start your own code. */
+    function whoWho(arr){
+      let newArr = [];
+      return  newArr;
+    }
+    `,
+      testSpecs: `describe('whoWho', () => {
+        it('is a function', () => {
+          expect(typeof whoWho).to.equal('function');
+        })
+        it('returns an array', () => {
+          let returnedValue = whoWho([]);
+          expect(typeof returnedValue).to.equal('object');
+        })
+        it('returns an empty array if there are no dogs', () => {
+          let returnedValue = whoWho(['only','cats','here']);
+          expect(returnedValue).to.equal([]);
+        })
+        it('returns an array containing all the dogs from the first array', () => {
+          let returnedValue = whoWhol(['dog', 'dog', 'dog', 'cat', 'dog' ]);
+          expect(returnedValue).to.equal(['dog','dog','dog','dog']);
+        })
+
+      })`,
+      difficulty: `easy`,
+      solution: `// Option 1 :
+      const whoWho = (arr) => {
+        let newArr = [];
+        arr.forEach(element => {
+          if(element === 'dog'){
+            newArr.push('dog')
+          }
+        })
+        return newArr
+      }`,
+    },
+    {
+      title: `Double the Array`,
+      question: `Write a funciton called doubleIt that takes one parameter,
+      an array of numbers and returns a new array with all the values insided being doubled.
+      For example:
+      doubleIt([1,2,3]) ====> return [2,4,6]
+      doubleIt([5,5,5]) ====> return [10 , 10 ,10 ]`,
+      starterCode: `/* These prompts are provided to get you started,
+    but are not the only way to attak the problem.
+    Feel free to delete all of the below and start your own code. 
+    */
+   function doubleIt(array) {
+      }`,
+      testSpecs: `describe('doubleIt', () => {
+        it('is a function', () => {
+          expect(typeof doubleIt).to.equal('function');
+        });
+        it('returns an array', () => {
+          let returnedValue = doubleIt([1,2]);
+          expect(typeof returnedValue).to.equal('object');
+        });
+        it('returns a doubled single element array', () => {
+          let returnedValue = doubleIt([4]);
+          expect(returnedValue).to.equal([8]);
+        })
+        it('returns a double multi element array', () => {
+          let returnedValue = doubleIt([1,2,3,4,5,6]);
+          expect(returnedValue).to.equal([2,4,6,8,10,12]);
+        })
+      })`,
+      difficulty: `easy`,
+      solution: `//Option 1:
+      const doubleIt = (arr) => {
+        return arr.map(x => x*2)
+      }
+      `,
+    },
   ];
 
   await Promise.all(

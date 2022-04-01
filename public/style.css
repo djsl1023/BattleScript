@@ -10,6 +10,9 @@ a {
   text-decoration: none;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
 .hostbar {
   background-color: #6d8790;
   display: flex;
