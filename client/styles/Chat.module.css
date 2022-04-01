@@ -1,55 +1,47 @@
 #partyChat {
-  color: black;
-  font-family: 'Monaco', 'Courier New', monospace;
-  border-bottom: solid;
-  border-bottom-left-radius: 0.25em;
-  border-bottom-right-radius: 0.25em;
-  padding-bottom: 0.2em;
+  color: rgb(255, 99, 71);
   padding-top: 0;
-  margin-top: 0.15em;
-  background-color: #8b8b8b;
+  margin-top: -0.05em;
+  font-family: fantasy, monospace;
+  font-size: 3em;
+  text-align: center;
+  letter-spacing: 0.25em;
 }
 
 .messages {
-  background-color: #3c3c3c;
+  background-color: rgb(34, 99, 112);
   height: 3.3em;
-  align-items: left;
   list-style-type: none;
   margin: 0.15em;
   margin-left: 0.05em;
-  padding: 0.55em;
-  border-bottom-style: groove;
-  border-left-style: groove;
-  border-right-style: groove;
-  border-radius: 1.25em;
+  padding: 1em;
+  border-radius: 2.25em;
   font-family: 'Monaco', 'Courier New', monospace;
   display: flex;
   flex-direction: row;
+  color: white;
 }
 
 .myMessage {
-  background-color: #0d47a9;
+  background-color: rgb(255, 99, 71);
   height: 3.3em;
-  align-items: left;
   list-style-type: none;
   margin: 0.15em;
   margin-left: -1.95em;
-  padding: 0.55em;
-  border-bottom-style: groove;
-  border-left-style: groove;
-  border-right-style: groove;
+  padding: 1em;
+  margin-right: 4.55em;
   border-radius: 1.25em;
   font-family: 'Monaco', 'Courier New', monospace;
   display: flex;
   flex-direction: row;
-  margin-right: 2em;
+  color: white;
 }
 
 #listDiv {
   background-color: #000000d4;
   border-radius: 1.5em;
   height: 24em;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
@@ -59,13 +51,13 @@
 }
 
 .input {
-  color: black;
-  background-color: #d1f2f7;
+  color: white;
+  background-color: #348b9d;
   padding: 1em;
   position: sticky;
-  height: 3em;
+  height: 2em;
   font-size: 1.15em;
-  width: 18em;
+  width: 19em;
   font-family: 'Monaco', 'Courier New', monospace;
   border-radius: 1em;
 }
@@ -80,8 +72,8 @@
 
 .submit {
   background-color: #8b8b8b;
-  width: 5em;
-  height: 4em;
+  width: 4em;
+  height: 3em;
   border-radius: 2.25em;
 }
 
