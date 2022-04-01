@@ -12,7 +12,7 @@ const App = () => {
         autoPlay
         muted
         loop
-        id='bgVideo'
+        id="bgVideo"
         src="./homebg.mp4"
         type="video/mp4"></video>
     </div>

@@ -8,6 +8,7 @@ class UserSchema extends Schema {
     super();
     this.username = '';
     this.isHost = false;
+    this.avatarURL = '';
     this.correctPoints = 0;
     this.incorrectPoints = 0;
   }
@@ -16,6 +17,7 @@ class UserSchema extends Schema {
 schema.defineTypes(UserSchema, {
   username: 'string',
   isHost: 'boolean',
+  avatarURL: 'string',
   correctPoints: 'number',
   incorrectPoints: 'number',
 });
@@ -32,6 +34,23 @@ class AddUser extends command.Command {
       newUser.isHost = true;
       this.state.hostKey = clientId;
     }
+    //get random avatar
+    let avatarURL = `./Images/Avatars/avatar${
+      Math.floor(Math.random() * (12 - 1)) + 1
+    }.png`;
+
+    //check if avatar is in use
+    const usersListAvatars = Object.keys(this.state.users).map((userId) => {
+      return this.state.users[userId].avatarURL;
+    });
+    while (usersListAvatars.includes(avatarURL)) {
+      avatarURL = `./Images/Avatars/avatar${
+        Math.floor(Math.random() * (12 - 1)) + 1
+      }.png`;
+    }
+    //if not, add to user
+    newUser.avatarURL = avatarURL;
+
     //set new user in game state
     /**users: {client.id, newUser,
      *         client2.id, newUser,
