@@ -1,0 +1,42 @@
+.promptContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.promptSolution {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0 0 2em;
+  width: 35vw;
+  height: 75vh;
+}
+
+.submitPromptButton {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em 0 0 2em;
+}
+
+.finishedSubmissionList {
+  margin: 1em 0 0 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.passedUsers {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+.userContainer {
+  height: 2em;
+  width: 10em;
+  border: 0.25 solid black;
+}
+
+.failedUsers {
+  margin-top: 7em;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}

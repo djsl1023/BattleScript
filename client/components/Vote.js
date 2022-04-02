@@ -3,6 +3,7 @@ import Editor from '@monaco-editor/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setFailedVotes } from '../store/failVoting';
 import { setPassedVotes } from '../store/passVoting';
+import styles from '../styles/Vote.module.css';
 
 const Vote = () => {
   const editorRef = useRef(null);
@@ -64,8 +65,8 @@ const Vote = () => {
   };
 
   return (
-    <div className="prompt-container">
-      <div className="prompt-solution">
+    <div className={styles.promptContainer}>
+      <div className={styles.promptSolution}>
         <Editor
           defaultLanguage="javascript"
           theme="vs-dark"
@@ -77,7 +78,7 @@ const Vote = () => {
         />
       </div>
       <div>
-        <div className="prompt-solution">
+        <div className={styles.promptSolution}>
           <Editor
             defaultLanguage="javascript"
             theme="vs-dark"
@@ -89,7 +90,7 @@ const Vote = () => {
             onMount={handleEditorDidMount}
           />
         </div>
-        <div className="submit-prompt-button">
+        <div className={styles.submitPromptButton}>
           <button
             onClick={(e) => voteHandler(e, userFocus, room.state.gameStatus)}
             disabled={userFocus === '' || voted}>
@@ -98,7 +99,7 @@ const Vote = () => {
         </div>
       </div>
 
-      <div className="finished-submission-list">
+      <div className={styles.finishedSubmissionList}>
         <div>
           Players
           <ul>
