@@ -1,13 +1,12 @@
 .promptContainer {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
 }
 
 .promptSolution {
   display: flex;
   flex-direction: column;
-  margin: 1em 0 0 2em;
+  margin: 4em 0 0 2em;
   width: 35vw;
   height: 75vh;
 }
@@ -19,24 +18,78 @@
 }
 
 .finishedSubmissionList {
-  margin: 1em 0 0 2em;
-  display: flex;
-  flex-direction: column;
+  margin: 4em 0 0 1.5em;
+  height: 33em;
+  width: 19em;
+  background-color: rgba(28, 28, 28, 0.5);
+  border: 1px solid rgba(28, 128, 145, 0.5);
 }
 
-.passedUsers {
+.users {
+  display: grid;
+  grid-template-columns: auto auto;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
+  color: rgb(205, 133, 111);
+  position: relative;
+  left: 3.75em;
 }
 
 .userContainer {
-  height: 2em;
-  width: 10em;
-  border: 0.25 solid black;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 1em 0 1em 1em;
+  line-height: 3em;
+  height: 6em;
+  width: 8em;
+  position: relative;
+  top: -3em;
+  left: -4em;
+  background-color: rgba(28, 128, 145, 0.25);
 }
 
-.failedUsers {
-  margin-top: 7em;
+.finishedSubmissionList > h4 {
+  position: relative;
+  top: -2.5em;
+}
+
+.avatar {
+  height: 2em;
+  width: 2em;
+}
+
+.userKeyButton {
+  width: 8em;
+}
+
+.userContainer > p {
+  font-size: 0.75em;
+  position: relative;
+  top: -1.75em;
+}
+
+.username {
+  font-size: 0.75em;
+}
+
+.totalVotes {
+  position: relative;
+  top: -8em;
+  font-size: 0.75em;
+}
+
+.finishedSubmissionList > h4 {
+  color: rgb(205, 133, 111);
   font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
+  font-size: 0.75em;
+  text-align: center;
+}
+
+.userContainer:hover {
+  background-color: rgba(28, 128, 145, 0.5);
+}
+.userContainer:active {
+  background-color: rgba(28, 28, 28, 0.5);
 }

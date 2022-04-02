@@ -14,6 +14,7 @@ const Vote = () => {
   const users = useSelector((state) => state.users);
   const room = useSelector((state) => state.room);
   const currPrompt = useSelector((state) => state.prompt);
+  const gameStatus = useSelector((state) => state.gameStatus);
   //Get Current Round's user: vote Object
   const voteList = useSelector((state) => {
     if (state.gameStatus === 'failvote') {
@@ -100,21 +101,25 @@ const Vote = () => {
       </div>
 
       <div className={styles.finishedSubmissionList}>
-        <div>
-          Players
-          <ul>
-            {Object.keys(submissions).map((userKey) => {
-              return (
-                <li>
-                  <div key={userKey}>
-                    <button value={userKey} onClick={() => changeFocus(userKey)}>
-                      {users[userKey].username}: {voteList[userKey] ? voteList[userKey] : 0}
-                    </button>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
+        <h4>
+          Vote on your favorite
+          {gameStatus == 'failvote' ? ' failed solution.' : ' passed solution.'}
+        </h4>
+        <div className={styles.users}>
+          {Object.keys(submissions).map((userKey) => {
+            return (
+              <div
+                key={userKey}
+                className={styles.userContainer}
+                onClick={() => changeFocus(userKey)}>
+                <img className={styles.avatar} src={users[userKey].avatarURL} />
+                <p>{users[userKey].username}</p>
+                <div className={styles.totalVotes}>
+                  Total Votes: {voteList[userKey] ? voteList[userKey] : 0}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
