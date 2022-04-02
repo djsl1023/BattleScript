@@ -1,7 +1,7 @@
 .promptContainer {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 
 .promptSolution {
@@ -19,24 +19,72 @@
 }
 
 .finishedSubmissionList {
-  margin: 1em 0 0 2em;
   display: flex;
-  flex-direction: column;
+
+  margin: 1em 0 0 1.5em;
+
+  height: 26em;
+  width: 24em;
+  background-color: rgba(28, 28, 28, 0.5);
+  border: 1px solid rgba(28, 128, 145, 0.5);
 }
 
 .passedUsers {
+  /* display: inline-block; */
+
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
-}
-
-.userContainer {
-  height: 2em;
-  width: 10em;
-  border: 0.25 solid black;
+  color: rgb(205, 133, 111);
+  /* padding-right: 11.5em; */
+  position: relative;
+  left: 3.75em;
 }
 
 .failedUsers {
-  margin-top: 7em;
+  /* display: inline-block; */
+  /* margin-top: 7em;
+  position: relative;
+  top: -6.75em; */
+
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
+  color: rgb(205, 133, 111);
+  position: relative;
+
+  right: -12em;
+}
+
+.divider {
+  border-left: 1px solid rgba(28, 128, 145, 0.5);
+
+  height: 25.875em;
+  margin-left: 4.5em;
+}
+
+.passedUserContainer {
+  position: relative;
+  top: -3em;
+  margin-bottom: -4em;
+}
+.failedUserContainer {
+  position: relative;
+  top: -3em;
+  margin-bottom: -4em;
+}
+
+h4 {
+  position: relative;
+  top: -2.5em;
+}
+
+.username {
+  text-align: center;
+  position: relative;
+  top: -0.65em;
+}
+
+.avatar {
+  position: relative;
+  top: 0em;
+  left: 1.25em;
 }

@@ -138,29 +138,31 @@ const Prompt = () => {
       )}
       <div className={styles.finishedSubmissionList}>
         <div className={styles.passedUsers}>
-          <div>Passed</div>
-          <div>
-            {Object.keys(passedAnswers).map((userKey) => {
-              return (
-                <div key={userKey} className={styles.userContainer}>
-                  <p>{users[userKey].username}</p>
-                </div>
-              );
-            })}
-          </div>
+          <h4>Passed</h4>
+
+          {Object.keys(passedAnswers).map((userKey) => {
+            return (
+              <div key={userKey} className={styles.passedUserContainer}>
+                <img className={styles.avatar} src={users[userKey].avatarURL} />
+                <p className={styles.username}> {users[userKey].username}</p>
+              </div>
+            );
+          })}
         </div>
+
         <div className={styles.failedUsers}>
-          <div>Failed</div>
-          <div>
-            {Object.keys(failedAnswers).map((userKey) => {
-              return (
-                <div className={styles.userContainer} key={userKey}>
-                  <p>{users[userKey].username}</p>
-                </div>
-              );
-            })}
-          </div>
+          <h4>Failed</h4>
+
+          {Object.keys(failedAnswers).map((userKey) => {
+            return (
+              <div key={userKey} className={styles.failedUserContainer}>
+                <img className={styles.avatar} src={users[userKey].avatarURL} />
+                <p className={styles.username}> {users[userKey].username}</p>
+              </div>
+            );
+          })}
         </div>
+        <div className={styles.divider}></div>
       </div>
     </div>
   );
