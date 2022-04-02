@@ -7,6 +7,7 @@ import { addPassedAnswers } from '../store/passAnswers';
 import { setFailedVotes } from '../store/failVoting';
 import { setPassedVotes } from '../store/passVoting';
 import { userNewRound } from '../store';
+import styles from '../styles/Prompt.module.css';
 
 const Prompt = () => {
   const dispatch = useDispatch();
@@ -99,19 +100,8 @@ const Prompt = () => {
   }
 
   return (
-    <div className="prompt-container">
-      {/* <div>
-        {submitted ? (
-          <iframe
-            id="mochaTester"
-            srcDoc={testHTML}
-            sandbox="allow-scripts allow-same-origin"
-          />
-        ) : (
-          ''
-        )}
-      </div> */}
-      <div className="prompt-solution">
+    <div className={styles.promptContainer}>
+      <div className={styles.promptSolution}>
         <Editor
           defaultLanguage="javascript"
           theme="vs-dark"
@@ -129,7 +119,7 @@ const Prompt = () => {
         </div>
       ) : (
         <div>
-          <div className="prompt-solution">
+          <div className={styles.promptSolution}>
             <Editor
               defaultLanguage="javascript"
               theme="vs-dark"
@@ -141,30 +131,30 @@ const Prompt = () => {
               }}
             />
           </div>
-          <div className="submit-prompt-button">
+          <div className={styles.submitPromptButton}>
             <button onClick={() => clickHandler()}>Submit</button>
           </div>
         </div>
       )}
-      <div className="finished-submission-list">
-        <div className="passed-users">
+      <div className={styles.finishedSubmissionList}>
+        <div className={styles.passedUsers}>
           <div>Passed</div>
           <div>
             {Object.keys(passedAnswers).map((userKey) => {
               return (
-                <div key={userKey} className="user-container">
+                <div key={userKey} className={styles.userContainer}>
                   <p>{users[userKey].username}</p>
                 </div>
               );
             })}
           </div>
         </div>
-        <div className="failed-users">
+        <div className={styles.failedUsers}>
           <div>Failed</div>
           <div>
             {Object.keys(failedAnswers).map((userKey) => {
               return (
-                <div className="user-container" key={userKey}>
+                <div className={styles.userContainer} key={userKey}>
                   <p>{users[userKey].username}</p>
                 </div>
               );

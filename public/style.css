@@ -88,7 +88,7 @@ a {
   width: 35vw;
   height: 75vh;
 }
-.submit-prompt-button {
+/* .submit-prompt-button {
   display: flex;
   flex-direction: column;
   margin: 0.5em 0 0 2em;
@@ -113,7 +113,7 @@ a {
   height: 2em;
   width: 10em;
   border: 0.25 solid black;
-}
+} */
 
 #chat-comp {
   position: absolute;
