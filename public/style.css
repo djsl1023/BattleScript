@@ -67,52 +67,12 @@ a {
   background-color: #e9ecea;
 }
 
-.prompt-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.prompt-solution {
-  display: flex;
-  flex-direction: column;
-  margin: 1em 0 0 2em;
-  width: 35vw;
-  height: 75vh;
-}
-
 #mochaTester {
   display: flex;
   flex-direction: column;
   margin: 1em 0 0 2em;
   width: 35vw;
   height: 75vh;
-}
-.submit-prompt-button {
-  display: flex;
-  flex-direction: column;
-  margin: 0.5em 0 0 2em;
-}
-.finished-submission-list {
-  margin: 1em 0 0 2em;
-  display: flex;
-  flex-direction: column;
-}
-.passed-users {
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
-}
-
-.failed-users {
-  margin-top: 7em;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
-}
-
-.user-container {
-  height: 2em;
-  width: 10em;
-  border: 0.25 solid black;
 }
 
 #chat-comp {
