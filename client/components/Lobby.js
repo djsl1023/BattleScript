@@ -11,10 +11,12 @@ const Lobby = () => {
   useEffect(() => {
     room.send('resetTimer');
   }, []);
-
+  useEffect(() => {
+    room.send('round');
+  }, []);
   return (
     <div>
-      <h4 className={styles.lobbyText}> Lobby Id: {room.id} </h4>
+      <h4 className={styles.lobbyText}></h4>
       <div className={styles.lobbyWrapper}>
         {Object.keys(users).map((clientId) => {
           return (
