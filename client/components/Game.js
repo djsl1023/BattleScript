@@ -151,7 +151,6 @@ const Game = () => {
       <div id={styles.chatButton}>
         <ChatBtn />
       </div>
-      {/* <Footer room={room} /> */}
     </div>
   );
 };

@@ -1,7 +1,10 @@
+.roomId {
+  color: #ff6347;
+}
 .lobbyWrapper {
   display: grid;
   grid-template-columns: auto auto auto;
-  height: 10em;
+  height: 25em;
 }
 .element {
   width: 100%;
@@ -11,9 +14,9 @@
 .avatar {
   position: absolute;
   bottom: 30%;
-  left: 25%;
-  width: 45%;
-  height: 85%;
+  left: 27%;
+  width: 13em;
+  height: 8em;
 }
 .name {
   position: absolute;

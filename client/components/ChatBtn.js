@@ -14,7 +14,7 @@ const ChatBtn = () => {
         </div>
       ) : null}
       <button id={styles.chatButton} onClick={() => setShown(!isShown)}>
-        <img id={styles.icon} src="./Images/cIcon.png" />
+        <img id={styles.icon} src="./Images/BlueChatIcon.png" />
       </button>
     </div>
   );
