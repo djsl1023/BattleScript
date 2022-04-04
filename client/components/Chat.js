@@ -33,7 +33,7 @@ const Chat = () => {
 
   return (
     <div id={styles.chatComp}>
-      <h1 id={styles.partyChat}> BATTLESCRIPT </h1>
+      <h1 id={styles.partyChat}> Chatroom </h1>
       <div id={styles.listDiv}>
         <ul id={styles.chatList}>
           {!messages.length ? (
@@ -47,10 +47,18 @@ const Chat = () => {
                     message.username === users[room.sessionId].username
                       ? styles.myMessage
                       : styles.messages
-                  }
-                >
-                  <div className={styles.listUser}>{message.username}</div>
-                  <div className={styles.listMessage}> {message.message}</div>
+                  }>
+                  {message.username === users[room.sessionId].username ? (
+                    <p className={styles.messageDiv}>
+                      {message.message}
+                      <br />
+                    </p>
+                  ) : (
+                    <p className={styles.messageDiv}>
+                      {message.username}: {message.message}
+                      <br />
+                    </p>
+                  )}
                   <AlwaysScrollToBottom />
                 </li>
               );
