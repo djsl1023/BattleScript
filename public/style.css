@@ -18,11 +18,40 @@ a {
   display: none;
 }
 .hostbar {
-  background-color: #6d8790;
+  border-radius: 25px;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: row;
+  width: 50%;
+  margin: auto;
+  height: 4rem;
+  background-color: rgba(3, 28, 41, 0.9);
+  color: white;
   align-items: center;
-  height: 40px;
+  justify-content: space-between;
+  border: rgba(255, 255, 255, 1);
+  border-style: solid;
+}
+
+.hostbutton {
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  background-color: rgba(44, 47, 49, 0);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 200ms ease-in;
+}
+.hostlogo {
+  list-style: none;
+  width: 50%;
+  text-decoration: none;
+  color: white;
+  transition: all 200ms ease-in;
+  cursor: pointer;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 1rem;
 }
 
 .join-create-form {
@@ -144,26 +173,14 @@ a {
   }
   50% {
     width: 50%;
-    background: #04bf0d;
-  }
-  75% {
-    width: 75%;
-    background: #04bf0d;
-    box-shadow: 0 0 10px #04bf0d;
-  }
-
-  90% {
-    width: 90%;
     background: darkgoldenrod;
     box-shadow: 0 0 10px darkgoldenrod;
   }
-
-  95% {
-    width: 95%;
+  75% {
+    width: 75%;
     background: #f91616;
     box-shadow: 0 0 20px #f91616;
   }
-
   100% {
     width: 100%;
     background: darkred;
