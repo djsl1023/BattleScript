@@ -27,6 +27,7 @@ a {
   background-color: rgba(3, 28, 41, 0.9);
   color: white;
   align-items: center;
+  align-content: center;
   justify-content: space-between;
   border: rgba(255, 255, 255, 1);
   border-style: solid;
@@ -41,7 +42,9 @@ a {
   color: white;
   border: none;
   cursor: pointer;
+  justify-content: start;
   transition: all 200ms ease-in;
+  z-index: 2;
 }
 .hostlogo {
   list-style: none;
@@ -52,6 +55,12 @@ a {
   cursor: pointer;
   font-family: 'Monaco', 'Courier New', monospace;
   font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  top: 10%;
 }
 
 .congratsFail {

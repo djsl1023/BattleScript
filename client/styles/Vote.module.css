@@ -30,9 +30,15 @@
   grid-template-columns: auto auto;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
-  color: rgb(205, 133, 111);
+  color: #ff6347;
   position: relative;
   left: 3.75em;
+  justify-content: center;
+  align-items: center;
+
+  text-transform: uppercase;
+  font-family: Marker Felt, fantasy, monospace;
+  font-weight: bolder;
 }
 
 .userContainer {
@@ -90,6 +96,7 @@
 .userContainer:hover {
   background-color: rgba(28, 128, 145, 0.5);
 }
+
 .userContainer:active {
-  background-color: rgba(28, 28, 28, 0.5);
+  background-color: rgba(28, 128, 145, 0.5);
 }
