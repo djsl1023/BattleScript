@@ -173,7 +173,10 @@ const Prompt = () => {
           <div className={styles.divider}></div>
         </div>
         <div className={styles.submitPromptButton}>
-          <button disabled={submitted} onClick={() => clickHandler()}>
+          <button
+            className={styles.submitBtn}
+            disabled={submitted}
+            onClick={() => clickHandler()}>
             Submit
           </button>
         </div>

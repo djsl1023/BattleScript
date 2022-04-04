@@ -77,9 +77,7 @@ const HostBar = () => {
   return hostKey === room.sessionId ? (
     <div className="hostbar">
       <div>{renderSwitch(gameStatus)}</div>
-      <div className="hostlogo">
-        <li>HOST</li>
-      </div>
+      <div className="hostlogo">HOST</div>
     </div>
   ) : (
     ''
