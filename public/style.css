@@ -54,6 +54,20 @@ a {
   font-size: 1rem;
 }
 
+.congratsFail {
+  list-style: none;
+  width: 50%;
+  text-decoration: none;
+  color: white;
+  margin: auto;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 200ms ease-in;
+  cursor: pointer;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 1rem;
+}
+
 .join-create-form {
   width: 35em;
   margin: 0 auto;

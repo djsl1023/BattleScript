@@ -257,8 +257,7 @@ const NoneFail = () => {
 
   return (
     <div>
-      {' '}
-      <div>
+      <div className="congratsFail">
         CONGRATS! Everyone passed all of the test specs for this round! Take a
         minute to pat yourself on the back.
         <div></div>

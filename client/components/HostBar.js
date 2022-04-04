@@ -78,7 +78,7 @@ const HostBar = () => {
     <div className="hostbar">
       <div>{renderSwitch(gameStatus)}</div>
       <div className="hostlogo">
-        <li>Host Controls</li>
+        <li>HOST</li>
       </div>
     </div>
   ) : (

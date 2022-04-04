@@ -120,9 +120,11 @@ class GameRoom extends colyseus.Room {
     this.onMessage('startTimer', (client, data) => {
       this.clock.clear();
       this.state.timer = 1;
-      let timeToAnswer = 150000;
+      let timeToAnswer;
       if (this.state.gameStatus === 'nonepass') {
         timeToAnswer = 15000;
+      } else {
+        timeToAnswer = 150000;
       }
 
       this.state.timer = timeToAnswer / 1000;
