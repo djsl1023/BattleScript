@@ -115,7 +115,11 @@ const Prompt = () => {
 
       {submitted ? (
         <div>
-          <iframe id="mochaTester" srcDoc={testHTML} sandbox="allow-scripts allow-same-origin" />
+          <iframe
+            id="mochaTester"
+            srcDoc={testHTML}
+            sandbox="allow-scripts allow-same-origin"
+          />
         </div>
       ) : (
         <div>
