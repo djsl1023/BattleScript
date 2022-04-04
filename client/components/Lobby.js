@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addUser } from '../store/users';
 import styles from '../styles/Lobby.module.css';
@@ -7,6 +7,10 @@ const Lobby = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
   const room = useSelector((state) => state.room);
+
+  useEffect(() => {
+    room.send('resetTimer');
+  }, []);
 
   return (
     <div>

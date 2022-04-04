@@ -15,12 +15,10 @@ const HostBar = () => {
     room.send('start', {
       gameStatus: 'prompt',
     });
-    // room.send('startTimer');
   };
   const handleContinueGame = () => {
     if (gameStatus === 'tally') {
       room.send('continue');
-      // room.send('startTimer');
     } else {
       room.send('continue');
     }
@@ -35,7 +33,9 @@ const HostBar = () => {
         if (!timer) {
           return (
             <div className="continue-btn">
-              <button onClick={handleContinueGame}>Continue</button>
+              <button className="hostbutton" onClick={handleContinueGame}>
+                Continue
+              </button>
             </div>
           );
         }
@@ -45,21 +45,27 @@ const HostBar = () => {
       case 'nonefail': {
         return (
           <div className="continue-btn">
-            <button onClick={handleContinueGame}>Continue</button>
+            <button className="hostbutton" onClick={handleContinueGame}>
+              Continue
+            </button>
           </div>
         );
       }
       case 'lobby': {
         return (
           <div className="start-game-btn ">
-            <button onClick={handleStartGame}>Start Game</button>
+            <button className="hostbutton" onClick={handleStartGame}>
+              Start Game
+            </button>
           </div>
         );
       }
       case 'final': {
         return (
           <div className="restart-game-btn ">
-            <button onClick={handleRestartGame}>Restart Game</button>
+            <button className="hostbutton" onClick={handleRestartGame}>
+              Restart Game
+            </button>
           </div>
         );
       }
@@ -69,7 +75,12 @@ const HostBar = () => {
     }
   };
   return hostKey === room.sessionId ? (
-    <div className="hostbar">{renderSwitch(gameStatus)}</div>
+    <div className="hostbar">
+      <div>{renderSwitch(gameStatus)}</div>
+      <div className="hostlogo">
+        <li>HOST</li>
+      </div>
+    </div>
   ) : (
     ''
   );

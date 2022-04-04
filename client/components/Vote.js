@@ -15,6 +15,10 @@ const Vote = () => {
   const room = useSelector((state) => state.room);
   const currPrompt = useSelector((state) => state.prompt);
   const gameStatus = useSelector((state) => state.gameStatus);
+
+  useEffect(() => {
+    room.send('resetTimer');
+  }, []);
   //Get Current Round's user: vote Object
   const voteList = useSelector((state) => {
     if (state.gameStatus === 'failvote') {
@@ -94,7 +98,8 @@ const Vote = () => {
         <div className={styles.submitPromptButton}>
           <button
             onClick={(e) => voteHandler(e, userFocus, room.state.gameStatus)}
-            disabled={userFocus === '' || voted}>
+            disabled={userFocus === '' || voted}
+          >
             {voted ? `You've already voted for ${votedFor}!` : 'Vote!'}
           </button>
         </div>
@@ -111,7 +116,8 @@ const Vote = () => {
               <div
                 key={userKey}
                 className={styles.userContainer}
-                onClick={() => changeFocus(userKey)}>
+                onClick={() => changeFocus(userKey)}
+              >
                 <img className={styles.avatar} src={users[userKey].avatarURL} />
                 <p>{users[userKey].username}</p>
                 <div className={styles.totalVotes}>

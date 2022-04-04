@@ -10,19 +10,26 @@ const NonePass = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    room.send('startTimer', {data: 10000});
+    room.send('startTimer');
   }, []);
   return (
-    <div>
-      Womp Womp, unfortunately no one passed all of the tests in this round. Your game can continue
-      in {`${Math.floor(timer / 60)}:${String(Math.ceil(timer % 60)).padStart(2, '0')}`}. Please use
-      this time wisely and review some common docs linked below:
-      <a
-        href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration"
-        target="_blank">
-        {' '}
-        Loops and Iteration
-      </a>
+    <div className="congratsFail">
+      Womp Womp, unfortunately no one passed all of the tests in this round.
+      Your game can continue in{' '}
+      {`${Math.floor(timer / 60)}:${String(Math.ceil(timer % 60)).padStart(
+        2,
+        '0'
+      )}`}
+      . Please use this time wisely and review some common docs linked below:
+      <li>
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration"
+          target="_blank"
+        >
+          {' '}
+          Loops and Iteration
+        </a>
+      </li>
     </div>
   );
 };
