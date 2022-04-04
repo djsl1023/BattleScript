@@ -14,6 +14,11 @@ a {
   text-decoration: none;
 }
 
+.nonelinks {
+  list-style-type: circle;
+  color: lightgray;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -32,6 +37,10 @@ a {
 
   border: rgba(255, 255, 255, 1);
   border-style: solid;
+}
+
+a.nonelinks {
+  color: white;
 }
 
 .hostbutton {

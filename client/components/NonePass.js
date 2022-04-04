@@ -21,15 +21,34 @@ const NonePass = () => {
         '0'
       )}`}
       . Please use this time wisely and review some common docs linked below:
-      <li>
+      <ul>
+        <hr />
+        <br />
         <a
           href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration"
           target="_blank"
         >
-          {' '}
-          Loops and Iteration
+          <li className="nonelinks">Loops and Iteration</li>
         </a>
-      </li>
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Addition_assignment"
+          target="_blank"
+        >
+          <li className="nonelinks">Addition assignment (+=)</li>
+        </a>
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function"
+          target="_blank"
+        >
+          <li className="nonelinks">Function expression</li>
+        </a>
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#"
+          target="_blank"
+        >
+          <li className="nonelinks">Array Methods</li>
+        </a>
+      </ul>
     </div>
   );
 };

@@ -76,10 +76,7 @@ class GameRoom extends colyseus.Room {
 
     //CLIENT SENDS MESSAGE TO GET QUESTION, SENDS QUESTION TO CLIENT
     this.onMessage('round', (client, data) => {
-      console.log(data);
-
-      this.state.round = this.roundNumber;
-      this.roundNumber++;
+      this.state.round = 0;
       this.broadcast('round', this.state.round);
     });
     this.onMessage('getPrompt', (client, data) => {
