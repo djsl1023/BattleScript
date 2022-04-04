@@ -1,3 +1,6 @@
+.roomId {
+  color: #ff6347;
+}
 .lobbyWrapper {
   display: grid;
   grid-template-columns: auto auto;
