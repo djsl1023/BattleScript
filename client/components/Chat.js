@@ -49,7 +49,7 @@ const Chat = () => {
                       : styles.messages
                   }
                 >
-                  <div className={styles.listUser}> {message.username}</div>{' '}
+                  <div className={styles.listUser}>{message.username}</div>
                   <div className={styles.listMessage}> {message.message}</div>
                   <AlwaysScrollToBottom />
                 </li>
