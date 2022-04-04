@@ -16,7 +16,10 @@
   flex-direction: column;
   margin: 0.5em 0 0 2em;
 }
-
+.votingSubmitContainer {
+  display: flex;
+  flex-direction: column;
+}
 .finishedSubmissionList {
   display: flex;
   margin: 1em 0 0 1.5em;
