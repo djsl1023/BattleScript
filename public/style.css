@@ -55,12 +55,9 @@ a {
   cursor: pointer;
   font-family: 'Monaco', 'Courier New', monospace;
   font-size: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  z-index: 1;
-  top: 10%;
+  position: relative;
+  top: 0em;
+  right: 1em;
 }
 
 .congratsFail {
@@ -114,7 +111,10 @@ a {
 .create-room-btn:hover {
   background-color: #ffffff;
 }
-
+a.faillinks {
+  color: lightgray;
+  list-style-type: square;
+}
 .create-room-btn:active {
   background-color: #e9ecea;
 }
