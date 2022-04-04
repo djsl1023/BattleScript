@@ -21,14 +21,15 @@ a {
   border-radius: 25px;
   display: flex;
   flex-direction: row;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
   width: 50%;
   margin: auto;
   height: 4rem;
   background-color: rgba(3, 28, 41, 0.9);
   color: white;
-  align-items: center;
-  align-content: center;
-  justify-content: space-between;
+
   border: rgba(255, 255, 255, 1);
   border-style: solid;
 }
@@ -36,28 +37,45 @@ a {
 .hostbutton {
   font-family: 'Monaco', 'Courier New', monospace;
   font-size: 1rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  /* margin-left: 1rem;
+  margin-right: 1rem; */
   background-color: rgba(44, 47, 49, 0);
   color: white;
   border: none;
   cursor: pointer;
-  justify-content: start;
+  /* align-content: end; */
   transition: all 200ms ease-in;
   z-index: 2;
+  border: 1px solid lime;
 }
-.hostlogo {
+.hostdetails {
   list-style: none;
-  width: 50%;
+  width: 100%;
   text-decoration: none;
+  align-content: center;
+  margin: auto;
+  margin-right: 1em;
   color: white;
   transition: all 200ms ease-in;
   cursor: pointer;
   font-family: 'Monaco', 'Courier New', monospace;
   font-size: 1rem;
-  position: relative;
-  top: 0em;
-  right: 1em;
+  /* position: relative; */
+  /* top: 0em;
+  right: 1em; */
+}
+.gameControl {
+  list-style: none;
+  width: 100%;
+  text-decoration: none;
+  margin: auto;
+  /* align-content: end; */
+  color: white;
+  transition: all 200ms ease-in;
+  cursor: pointer;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 1rem;
+  /* position: relative; */
 }
 
 .congratsFail {
