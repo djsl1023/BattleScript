@@ -98,8 +98,7 @@ const Vote = () => {
         <div className={styles.submitPromptButton}>
           <button
             onClick={(e) => voteHandler(e, userFocus, room.state.gameStatus)}
-            disabled={userFocus === '' || voted}
-          >
+            disabled={userFocus === '' || voted}>
             {voted ? `You've already voted for ${votedFor}!` : 'Vote!'}
           </button>
         </div>
@@ -116,10 +115,9 @@ const Vote = () => {
               <div
                 key={userKey}
                 className={styles.userContainer}
-                onClick={() => changeFocus(userKey)}
-              >
+                onClick={() => changeFocus(userKey)}>
                 <img className={styles.avatar} src={users[userKey].avatarURL} />
-                <p>{users[userKey].username}</p>
+                <p>{users[userKey].username == '' ? <br /> : users[userKey].username}</p>
                 <div className={styles.totalVotes}>
                   Total Votes: {voteList[userKey] ? voteList[userKey] : 0}
                 </div>
