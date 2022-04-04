@@ -95,35 +95,48 @@ const Vote = () => {
             onMount={handleEditorDidMount}
           />
         </div>
+      </div>
+      <div className={styles.votingSubmitContainer}>
+        <div className={styles.finishedSubmissionList}>
+          <h4>
+            Vote on your favorite
+            {gameStatus == 'failvote'
+              ? ' failed solution.'
+              : ' passed solution.'}
+          </h4>
+          <div className={styles.users}>
+            {Object.keys(submissions).map((userKey) => {
+              return (
+                <div
+                  key={userKey}
+                  className={styles.userContainer}
+                  onClick={() => changeFocus(userKey)}>
+                  <img
+                    className={styles.avatar}
+                    src={users[userKey].avatarURL}
+                  />
+                  <p>
+                    {users[userKey].username == '' ? (
+                      <br />
+                    ) : (
+                      users[userKey].username
+                    )}
+                  </p>
+                  <div className={styles.totalVotes}>
+                    Total Votes: {voteList[userKey] ? voteList[userKey] : 0}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
         <div className={styles.submitPromptButton}>
           <button
+            className={styles.submitBtn}
             onClick={(e) => voteHandler(e, userFocus, room.state.gameStatus)}
             disabled={userFocus === '' || voted}>
             {voted ? `You've already voted for ${votedFor}!` : 'Vote!'}
           </button>
-        </div>
-      </div>
-
-      <div className={styles.finishedSubmissionList}>
-        <h4>
-          Vote on your favorite
-          {gameStatus == 'failvote' ? ' failed solution.' : ' passed solution.'}
-        </h4>
-        <div className={styles.users}>
-          {Object.keys(submissions).map((userKey) => {
-            return (
-              <div
-                key={userKey}
-                className={styles.userContainer}
-                onClick={() => changeFocus(userKey)}>
-                <img className={styles.avatar} src={users[userKey].avatarURL} />
-                <p>{users[userKey].username == '' ? <br /> : users[userKey].username}</p>
-                <div className={styles.totalVotes}>
-                  Total Votes: {voteList[userKey] ? voteList[userKey] : 0}
-                </div>
-              </div>
-            );
-          })}
         </div>
       </div>
     </div>

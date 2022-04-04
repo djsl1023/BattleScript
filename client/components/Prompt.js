@@ -135,38 +135,51 @@ const Prompt = () => {
               }}
             />
           </div>
-          <div className={styles.submitPromptButton}>
-            <button onClick={() => clickHandler()}>Submit</button>
-          </div>
         </div>
       )}
-      <div className={styles.finishedSubmissionList}>
-        <div className={styles.passedUsers}>
-          <h4>Passed</h4>
+      <div className={styles.votingSubmitContainer}>
+        <div className={styles.finishedSubmissionList}>
+          <div className={styles.passedUsers}>
+            <h4>Passed</h4>
 
-          {Object.keys(passedAnswers).map((userKey) => {
-            return (
-              <div key={userKey} className={styles.passedUserContainer}>
-                <img className={styles.avatar} src={users[userKey].avatarURL} />
-                <p className={styles.username}> {users[userKey].username}</p>
-              </div>
-            );
-          })}
+            {Object.keys(passedAnswers).map((userKey) => {
+              return (
+                <div key={userKey} className={styles.passedUserContainer}>
+                  <img
+                    className={styles.avatar}
+                    src={users[userKey].avatarURL}
+                  />
+                  <p className={styles.username}> {users[userKey].username}</p>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className={styles.failedUsers}>
+            <h4>Failed</h4>
+
+            {Object.keys(failedAnswers).map((userKey) => {
+              return (
+                <div key={userKey} className={styles.failedUserContainer}>
+                  <img
+                    className={styles.avatar}
+                    src={users[userKey].avatarURL}
+                  />
+                  <p className={styles.username}> {users[userKey].username}</p>
+                </div>
+              );
+            })}
+          </div>
+          <div className={styles.divider}></div>
         </div>
-
-        <div className={styles.failedUsers}>
-          <h4>Failed</h4>
-
-          {Object.keys(failedAnswers).map((userKey) => {
-            return (
-              <div key={userKey} className={styles.failedUserContainer}>
-                <img className={styles.avatar} src={users[userKey].avatarURL} />
-                <p className={styles.username}> {users[userKey].username}</p>
-              </div>
-            );
-          })}
+        <div className={styles.submitPromptButton}>
+          <button
+            className={styles.submitBtn}
+            disabled={submitted}
+            onClick={() => clickHandler()}>
+            Submit
+          </button>
         </div>
-        <div className={styles.divider}></div>
       </div>
     </div>
   );
