@@ -10,9 +10,5 @@ export function useColyseus() {
 }
 
 export default function ColyseusProvider(props) {
-  return (
-    <ColyseusContext.Provider value={client}>
-      {props.children}
-    </ColyseusContext.Provider>
-  );
+  return <ColyseusContext.Provider value={client}>{props.children}</ColyseusContext.Provider>;
 }
