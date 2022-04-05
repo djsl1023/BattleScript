@@ -10,7 +10,7 @@
 .messages {
   display: inline-block;
   max-width: 23em;
-  height: 1em;
+  height: auto;
   list-style-type: none;
   font-family: 'Monaco', 'Courier New', monospace;
   color: white;
@@ -20,12 +20,12 @@
 .myMessage {
   display: inline-block;
   max-width: 23em;
-  height: 1em;
+  height: auto;
   list-style-type: none;
   font-family: 'Monaco', 'Courier New', monospace;
   color: white;
   text-align: right;
-  padding: 1em;
+  /* padding: 1em; */
 }
 
 #listDiv {
@@ -61,8 +61,3 @@ input {
   width: 3em;
 }
 
-#chatList {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-}

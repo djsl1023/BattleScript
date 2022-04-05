@@ -33,7 +33,7 @@
   height: 3em;
 }
 
-p {
+.totalPoints {
   align-self: center;
   padding-bottom: 3em;
   font-family: 'Share Tech Mono', monospace;
