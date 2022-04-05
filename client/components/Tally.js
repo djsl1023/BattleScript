@@ -22,23 +22,39 @@ ChartJS.register(
 
 const options = {
   responsive: true,
+  maintainAspectRatio: true,
   plugins: {
     legend: {
       position: 'top',
+      color: `rgba(255, 255, 255, 1)`,
+      labels: {
+        color: `rgba(255, 255, 255, .95)`,
+        fontSize: '20px',
+      },
     },
     title: {
       display: true,
       text: 'Total Points',
+      color: `rgba(255, 255, 255, 1)`,
+    },
+  },
+  legend: {
+    labels: {
+      color: `rgba(255, 255, 255, .95)`,
+      fontSize: '20px',
     },
   },
   scales: {
     x: {
       stacked: true,
+      color: `rgba(255, 255, 255, 1)`,
     },
     y: {
       stacked: true,
+      color: `rgba(255, 255, 255, 1)`,
     },
   },
+  color: `rgba(255, 255, 255, 1)`,
 };
 
 export default function Tally() {
@@ -111,5 +127,9 @@ export default function Tally() {
     ],
   };
 
-  return <Bar options={options} data={data} />;
+  return (
+    <div className="tallyChart">
+      <Bar options={options} data={data} height="140px" />{' '}
+    </div>
+  );
 }
