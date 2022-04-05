@@ -25,7 +25,8 @@ const Navbar = () => {
             className={styles.rulesBtn}
             onMouseEnter={() => setShown(true)}
             onClick={() => setShown(true)}
-            onMouseLeave={() => setShown(false)}>
+            onMouseLeave={() => setShown(false)}
+          >
             How To Play
           </button>
           {isShown && (
@@ -42,7 +43,7 @@ const Navbar = () => {
       </div>
       <div className={styles.navLogo}>
         <span className={styles.navList} id={styles.githubLogo}>
-          <a href="https://github.com/FSCapstone/Capstone_Team_14_JS">
+          <a href="https://github.com/FSCapstone/BattleScript">
             <img
               id={styles.githubLogo}
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN0Uu0auB-_30X62d-vUYM-jhN4TkqPqgv6A&usqp=CAU"
