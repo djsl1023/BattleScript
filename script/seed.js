@@ -484,13 +484,13 @@ function onlyOdds2(num) {
           expect(returnedValue).to.equal(30);
         });
         it('returns the value of single array', () => {
-          let returnValue = sumAll([1]);
+          let returnedValue = sumAll([1]);
           expect(returnedValue).to.equal(1);
         });
       });`,
       difficulty: `easy`,
       solution: `//Option 1
-      const sumAll = (arr) => {
+      const sumAll = (array) => {
            let sum = 0;
            for (let i = 0; i < array.length; i++) {
                sum += array[i];
@@ -567,11 +567,11 @@ function onlyOdds2(num) {
         });
         it('returns an empty array if there are no dogs', () => {
           let returnedValue = whoWho(['only','cats','here']);
-          expect(returnedValue).to.equal([]);
+          expect(returnedValue).to.deep.equal([]);
         });
         it('returns an array containing all the dogs from the first array', () => {
-          let returnedValue = whoWhol(['dog', 'dog', 'dog', 'cat', 'dog' ]);
-          expect(returnedValue).to.equal(['dog','dog','dog','dog']);
+          let returnedValue = whoWho(['dog', 'dog', 'dog', 'cat', 'dog' ]);
+          expect(returnedValue).to.deep.equal(['dog','dog','dog','dog']);
         });
 
       });`,
@@ -611,11 +611,11 @@ function onlyOdds2(num) {
         });
         it('returns a doubled single element array', () => {
           let returnedValue = doubleIt([4]);
-          expect(returnedValue).to.equal([8]);
+          expect(returnedValue).to.deep.equal([8]);
         });
         it('returns a double multi element array', () => {
           let returnedValue = doubleIt([1,2,3,4,5,6]);
-          expect(returnedValue).to.equal([2,4,6,8,10,12]);
+          expect(returnedValue).to.deep.equal([2, 4, 6, 8, 10, 12]);
         });
       });`,
       difficulty: `easy`,
