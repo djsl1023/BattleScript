@@ -40,23 +40,6 @@ const Game = () => {
   console.log('roooooooom ', room);
   const gameStatus = useSelector((state) => state.gameStatus);
   useEffect(() => {
-    room.state.users.onAdd = (user, key) => {
-      dispatch(addUser(key, user));
-      user.onChange = (changes) => {
-        changes.forEach((change) => {
-          dispatch(
-            updateUser({ key: key, field: change.field, value: change.value })
-          );
-        });
-      };
-      console.log(user, 'has been added at', key);
-    };
-
-    room.state.users.onRemove = (user, key) => {
-      delete users[key];
-
-      dispatch(removeUser(users));
-    };
     room.state.listen('gameStatus', (curr, prev) => {
       dispatch(setGameStatus(curr));
     });
@@ -77,6 +60,25 @@ const Game = () => {
       dispatch(setPrompt(prompt));
     });
   }, [room]);
+  useEffect(() => {
+    room.state.users.onAdd = (user, key) => {
+      dispatch(addUser(key, user));
+      user.onChange = (changes) => {
+        changes.forEach((change) => {
+          dispatch(
+            updateUser({ key: key, field: change.field, value: change.value })
+          );
+        });
+      };
+      console.log(user, 'has been added at', key);
+    };
+    room.state.users.onRemove = (user, key) => {
+      console.log(users);
+      delete users[key];
+      console.log(users);
+      dispatch(removeUser(users));
+    };
+  }, [users]);
   const renderSwitch = (gameStatus) => {
     switch (gameStatus) {
       case 'lobby': {
