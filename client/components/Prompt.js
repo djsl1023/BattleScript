@@ -123,11 +123,7 @@ const Prompt = () => {
 
       {submitted ? (
         <div>
-          <iframe
-            id="mochaTester"
-            srcDoc={testHTML}
-            sandbox="allow-scripts allow-same-origin"
-          />
+          <iframe id="mochaTester" srcDoc={testHTML} sandbox="allow-scripts allow-same-origin" />
         </div>
       ) : (
         <div>
@@ -152,11 +148,8 @@ const Prompt = () => {
 
             {Object.keys(passedAnswers).map((userKey) => {
               return (
-                <div key={userKey} className={styles.passedUserContainer}>
-                  <img
-                    className={styles.avatar}
-                    src={users[userKey].avatarURL}
-                  />
+                <div key={userKey}>
+                  <img className={styles.avatar} src={users[userKey].avatarURL} />
                   <p className={styles.username}> {users[userKey].username}</p>
                 </div>
               );
@@ -169,10 +162,7 @@ const Prompt = () => {
             {Object.keys(failedAnswers).map((userKey) => {
               return (
                 <div key={userKey} className={styles.failedUserContainer}>
-                  <img
-                    className={styles.avatar}
-                    src={users[userKey].avatarURL}
-                  />
+                  <img className={styles.avatar} src={users[userKey].avatarURL} />
                   <p className={styles.username}> {users[userKey].username}</p>
                 </div>
               );
@@ -181,10 +171,7 @@ const Prompt = () => {
           <div className={styles.divider}></div>
         </div>
         <div className={styles.submitPromptButton}>
-          <button
-            className={styles.submitBtn}
-            disabled={submitted}
-            onClick={() => clickHandler()}>
+          <button className={styles.submitBtn} disabled={submitted} onClick={() => clickHandler()}>
             Submit
           </button>
         </div>
