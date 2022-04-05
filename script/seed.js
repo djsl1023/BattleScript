@@ -82,360 +82,360 @@ function onlyOdds2(num) {
   }
 }`,
     },
-    {
-      title: 'Crazy Caps',
-      question: `Define a function, "crazyCaps", that accepts a string as an argument.
-"crazyCaps" should return a string in which every other character is
-capitalized. The first letter should be lower-cased.
-crazyCaps('fullstack is amazing'); // => fUlLsTaCk iS AmAzInG!`,
-      testSpecs: `describe('crazyCaps', () => {
-  it('is a function', () => {
-    expect(typeof crazyCaps).to.equal('function');
-  });
-  it('returns a string', () => {
-    let returnedValue = crazyCaps('any value');
-    expect(typeof returnedValue).to.equal('string');
-  });
-  it('returns a string with alternating lower-case and upper-case letters', () => {
-    let returnedValue = crazyCaps('this is crazy');
-    expect(returnedValue).to.equal('tHiS Is cRaZy');
-  });
-});
-`,
-      difficulty: 'medium',
-      starterCode: `/* These prompts are provided to get you started,
-but are not the only way to attak the problem.
-Feel free to delete all of the below and start your own code. */
-      function crazyCaps(/* your code here*/) {
-  for (/* your code here*/) {
-    if (/* your code here*/) {
-    } else {
-    }
-  }
-  return
-}`,
-      solution: `function crazyCaps(originalString) {
-  let crazyString = '';
-  for (let i = 0; i < originalString.length; i++) {
-    let char = originalString[i];
-    if (i % 2 === 0) {
-      crazyString += char;
-    } else {
-      char = char.toUpperCase();
-      crazyString += char;
-    }
-  }
-  return crazyString;
-}`,
-    },
-    {
-      title: 'Bacteria Time',
-      question: `Define a function, "bacteriaTime", that accepts two arguments:
-  1. currentNum (num) - number of starting bacteria
-  2. targetNum (num) - desired number of bacteria
-Assuming that the number of bacteria double every 20 minutes, "bacteriaTime" should
-return the number of minutes required for the number of bacteria to grow from
-the currentNum to a number equal to or larger than the targetNum.
-You can assume the currentNum will be a positive integer. If the targetNum is
-smaller than the currentNum, return the string 'targetNum must be larger than currentNum'.
-bacteriaTime(1, 8); // => 60`,
-      testSpecs: `describe('bacteriaTime', () => {
-  it('is a function', () => {
-    expect(typeof bacteriaTime).to.equal('function');
-  });
-  it('returns the number of minutes required to reach the target', () => {
-    let returnedValue = bacteriaTime(1, 8);
-    expect(returnedValue).to.equal(60);
-  });
-  it('returns the number of minutes required to reach a large target', () => {
-    let returnedValue = bacteriaTime(3, 6000);
-    expect(returnedValue).to.equal(220);
-  });
-});`,
-      difficulty: 'medium',
-      starterCode: `/* These prompts are provided to get you started,
-but are not the only way to attak the problem.
-Feel free to delete all of the below and start your own code. */
-function bacteriaTime(currentNum, targetNum) {
-  if (/* your code here*/) {
-    return 'targetNum must be larger than currentNum';
-  }
-  while (/* your code here*/) {
-    currentNum *= /* your code here*/
-    numMinutes += /* your code here*/
-  }
-  return ;
-}`,
-      solution: `function bacteriaTime(currentNum, targetNum) {
-  if (targetNum < currentNum) {
-    return 'targetNum must be larger than currentNum';
-  }
-  let numMinutes = 0;
-  while (currentNum < targetNum) {
-    currentNum *= 2;
-    numMinutes += 20;
-  }
-  return numMinutes;
-}`,
-    },
-    {
-      title: 'Exponentiate',
-      question: `Write a function "exponentiate" that accepts two arguments:
-1. base (number)
-2. power (number)
-"exponentiate" should return the result of raising the base by the power.
-Assume the power argument will always be an integer greater than or equal to zero.
-Don't forget that any number raised to the 0th power is equal to 1!
-Do not use the built-in [Math.pow() method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow), but feel free to use it moving forward!
-exponentiate(2, 2)    // => 4
-exponentiate(3, 4)    // => 81`,
-      testSpecs: `describe('exponentiate', () => {
-  it('is a function', () => {
-    expect(typeof exponentiate).to.equal('function');
-  });
-  it('returns a number', () => {
-    let returnedValue = exponentiate(1, 1);
-    expect(typeof returnedValue).to.equal('number');
-  });
-  it('returns the value of the first num raised to the second', () => {
-    let returnedValue = exponentiate(3, 6);
-    expect(returnedValue).to.equal(Math.pow(3, 6));
-  });
-  it('returns 1 if the power is 0', () => {
-    let returnedValue = exponentiate(20, 0);
-    expect(returnedValue).to.equal(1);
-  });
-});`,
-      difficulty: 'medium',
-      starterCode: `/* These prompts are provided to get you started,
-but are not the only way to attak the problem.
-Feel free to delete all of the below and start your own code. */
-function exponentiate(base, power) {
-  let result =
-  for (/* your code here*/) {
-    result *= base;
-  }
-  return ;
-}`,
-      solution: `// Option 1
-function exponentiate(base, power) {
-  let result = 1;
-  for (let i = 0; i < power; i++) {
-    result *= base;
-  }
-  return result;
-}
-// Option 2
-function exponentiate2(base, power) {
-  if (power === 0) {
-    return 1;
-  }
-  let result = base;
-  while (power > 1) {
-    result *= base;
-    power--;
-  }
-  return result;
-}`,
-    },
-    {
-      title: 'My Slice',
-      question: `Write a function "mySlice" that accepts up to three arguments:
-1. originalString (string)
-2. startIdx (number, optional)
-3. endIdx (number, optional)
-"mySlice" should return a string. The returned string should be a copy of the
-original string. If the user defines a startIdx, the returned string should
-start at that index:
-mySlice('slice and dice', 2)    // => ice and dice
-If the user defined an endIdx, the returned string should end at the last index
-before the endIdx:
-mySlice('slice and dice', 2, 5)    // => ice
-If the user doesn't define either the startIdx or the endIdx, return the entire
-originalString:
-"""javascript
-mySlice('slice and dice')    // => slice and dice
-"""
-You can assume the startIdx will always be less than or equal to the endIdx.
-Do not use the built in [.slice string method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice). Feel free to use it in all future
-workshop problems, though!
-`,
-      testSpecs: `describe('mySlice', () => {
-  it('is a function', () => {
-    expect(typeof mySlice).to.equal('function');
-  });
-  it('returns a string', () => {
-    let returnedValue = mySlice('a piece of pie');
-    expect(typeof returnedValue).to.equal('string');
-  });
-  it('returns a new string starting at the startIdx', () => {
-    let returnedValue = mySlice('a piece of pie', 2);
-    expect(returnedValue).to.equal('piece of pie');
-  });
-  it('returns a new string with the correct starting and ending indices', () => {
-    let returnedValue = mySlice('a piece of pie', 2, 7);
-    expect(returnedValue).to.equal('piece');
-  });
-  it('returns the original string if no indices are inputted', () => {
-    let returnedValue = mySlice('a piece of pie');
-    expect(returnedValue).to.equal('a piece of pie');
-  });
-});`,
-      difficulty: 'medium',
-      solution: `function mySlice(originalString, startIdx, endIdx) {
-  if (startIdx === undefined && endIdx === undefined) {
-    return originalString;
-  }
-  if (startIdx === undefined) {
-    startIdx = 0;
-  }
-  if (endIdx === undefined) {
-    endIdx = originalString.length;
-  }
-  let slicedString = '';
-  for (let i = startIdx; i < endIdx; i++) {
-    let char = originalString[i];
-    slicedString += char;
-  }
-  return slicedString;
-}
-`,
-    },
-    {
-      title: `Most Vowels`,
-      question: `Define a function, "mostVowels", that accepts one argument, a string of words.
-"mostVowels" should return the word that has the most vowels.
-mostVowels('I am a keeper with some real rhythms'); // => keeper
-If none of the words have any vowels, return an empty string.
-mostVowels('try my gym'); // => ''`,
-      testSpecs: `describe('mostVowels', () => {
-  it('is a function', () => {
-    expect(typeof mostVowels).to.equal('function');
-  });
-  it('returns a string', () => {
-    let returnedValue = mostVowels('Wit beyond measure is mans greatest treasure.');
-    expect(typeof returnedValue).to.equal('string');
-  });
-  it('returns the word with the most vowels', () => {
-    let returnedValue = mostVowels('Wit beyond measure is mans greatest treasure.');
-    expect(returnedValue).to.equal('measure');
-  });
-  it('returns the word with the most vowels even if its the last string in the sentence', () => {
-    let returnedValue = mostVowels('Give her hell from us, Peeves.');
-    expect(returnedValue).to.equal('Peeves');
-  });
-  it('returns an empty string if none of the inputted words have vowels', () => {
-    let returnedValue = mostVowels('why dry my sly lynx?');
-    expect(returnedValue).to.equal('');
-  });
-});
-`,
-      difficulty: `hard`,
-      solution: `function mostVowels(sentence) {
-  let currentWord = '';
-  let currentVowelCount = 0;
-  let maxWord = '';
-  let maxVowelCount = 0;
-  for (let i = 0; i < sentence.length; i++) {
-    let char = sentence[i];
-    if (char !== ' ' && i !== sentence.length - 1) {
-      currentWord += char;
-      if (isVowel(char)) {
-        currentVowelCount += 1;
-      }
-    } else {
-      if (currentVowelCount > maxVowelCount) {
-        maxVowelCount = currentVowelCount;
-        maxWord = currentWord;
-      }
-      currentWord = '';
-      currentVowelCount = 0;
-    }
-  };
-  return maxWord;
-  function isVowel(char) {
-    let vowels = 'aeiouAEIOU';
-    if (vowels.indexOf(char) >= 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-};
-`,
-    },
-    {
-      title: `My Index Of`,
-      question: `Define a function, "myIndexOf", that accepts three arguments:
-  1. source (string)
-  2. searchValue (string)
-  3. startIdx (number) - optional
-If the "source" contains the "searchValue", return the index at which the
-"searchValue" starts. If the "searchValue" appears more than once in the
-"source", return the index from the first occurance of the "searchValue".
-If the "searchValue" doesn't exist in the "source", return -1.
-If a startIdx is passed into the function, ignore any instances of the
-"searchValue" that occur before that index. If no "startIdx" is provided,
-start searching from the beginning of the "source".
-Do not use the built-in [".indexOf" string method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf) in your answer. Feel free to
-use it in all future workshop problems though!
-myIndexOf('hello', 'h'); // => 0
-myIndexOf('hello', 'e'); // => 1
-myIndexOf('hello', 'l'); // => 2
-myIndexOf('hello', 'l'); // => 2
-myIndexOf('hello', 'o'); // => 4
-myIndexOf('twice twice', 'ice'); => 2
-// find the index of the first instance of 'ice' starting at index 5.
-myIndexOf('twice twice', 'ice', 5); => 8
-myIndexOf('happy string', 'sad'); => -1`,
-      testSpecs: `describe('myIndexOf', () => {
-  it('is a function', () => {
-    expect(typeof myIndexOf).to.equal('function');
-  });
-  it('returns a number', () => {
-    let returnedValue = myIndexOf('i love apples', 'apples');
-    expect(typeof returnedValue).to.equal('number');
-  });
-  it('returns the first instance of the searchValue in the source', () => {
-    let returnedValue = myIndexOf('here and there', 'here');
-    expect(returnedValue).to.equal(0);
-  });
-  it('returns the first instance of the searchValue at or after the startIdx', () => {
-    let returnedValue = myIndexOf('here and there', 'here', 4);
-    expect(returnedValue).to.equal(10);
-  });
-  it('returns -1 if the searchValue is not in the source', () => {
-    let returnedValue = myIndexOf('here and there', 'nowhere');
-    expect(returnedValue).to.equal(-1);
-  });
-})
-`,
-      difficulty: `medium`,
-      solution: `// Option 1
-function myIndexOf(source, searchValue, startIdx) {
-  if (startIdx === undefined) {
-    startIdx = 0;
-  }
-  for (let i = startIdx; i <= source.length - searchValue.length; i++) {
-    let substring = source.slice(i, i + searchValue.length);
-    if (substring === searchValue) {
-      // ...return the current index
-      return i;
-    }
-  }
-  return -1;
-}
-// Option 2
-function myIndexOf2(source, searchValue, startIdx = 0) {
-  for (let i = startIdx; i <= source.length - searchValue.length; i++) {
-    let substring = source.slice(i, i + searchValue.length);
-    if (substring === searchValue) {
-      return i;
-    }
-  }
-  return -1;
-}`,
-    },
+    //     {
+    //       title: 'Crazy Caps',
+    //       question: `Define a function, "crazyCaps", that accepts a string as an argument.
+    // "crazyCaps" should return a string in which every other character is
+    // capitalized. The first letter should be lower-cased.
+    // crazyCaps('fullstack is amazing'); // => fUlLsTaCk iS AmAzInG!`,
+    //       testSpecs: `describe('crazyCaps', () => {
+    //   it('is a function', () => {
+    //     expect(typeof crazyCaps).to.equal('function');
+    //   });
+    //   it('returns a string', () => {
+    //     let returnedValue = crazyCaps('any value');
+    //     expect(typeof returnedValue).to.equal('string');
+    //   });
+    //   it('returns a string with alternating lower-case and upper-case letters', () => {
+    //     let returnedValue = crazyCaps('this is crazy');
+    //     expect(returnedValue).to.equal('tHiS Is cRaZy');
+    //   });
+    // });
+    // `,
+    //       difficulty: 'medium',
+    //       starterCode: `/* These prompts are provided to get you started,
+    // but are not the only way to attak the problem.
+    // Feel free to delete all of the below and start your own code. */
+    //       function crazyCaps(/* your code here*/) {
+    //   for (/* your code here*/) {
+    //     if (/* your code here*/) {
+    //     } else {
+    //     }
+    //   }
+    //   return
+    // }`,
+    //       solution: `function crazyCaps(originalString) {
+    //   let crazyString = '';
+    //   for (let i = 0; i < originalString.length; i++) {
+    //     let char = originalString[i];
+    //     if (i % 2 === 0) {
+    //       crazyString += char;
+    //     } else {
+    //       char = char.toUpperCase();
+    //       crazyString += char;
+    //     }
+    //   }
+    //   return crazyString;
+    // }`,
+    //     },
+    //     {
+    //       title: 'Bacteria Time',
+    //       question: `Define a function, "bacteriaTime", that accepts two arguments:
+    //   1. currentNum (num) - number of starting bacteria
+    //   2. targetNum (num) - desired number of bacteria
+    // Assuming that the number of bacteria double every 20 minutes, "bacteriaTime" should
+    // return the number of minutes required for the number of bacteria to grow from
+    // the currentNum to a number equal to or larger than the targetNum.
+    // You can assume the currentNum will be a positive integer. If the targetNum is
+    // smaller than the currentNum, return the string 'targetNum must be larger than currentNum'.
+    // bacteriaTime(1, 8); // => 60`,
+    //       testSpecs: `describe('bacteriaTime', () => {
+    //   it('is a function', () => {
+    //     expect(typeof bacteriaTime).to.equal('function');
+    //   });
+    //   it('returns the number of minutes required to reach the target', () => {
+    //     let returnedValue = bacteriaTime(1, 8);
+    //     expect(returnedValue).to.equal(60);
+    //   });
+    //   it('returns the number of minutes required to reach a large target', () => {
+    //     let returnedValue = bacteriaTime(3, 6000);
+    //     expect(returnedValue).to.equal(220);
+    //   });
+    // });`,
+    //       difficulty: 'medium',
+    //       starterCode: `/* These prompts are provided to get you started,
+    // but are not the only way to attak the problem.
+    // Feel free to delete all of the below and start your own code. */
+    // function bacteriaTime(currentNum, targetNum) {
+    //   if (/* your code here*/) {
+    //     return 'targetNum must be larger than currentNum';
+    //   }
+    //   while (/* your code here*/) {
+    //     currentNum *= /* your code here*/
+    //     numMinutes += /* your code here*/
+    //   }
+    //   return ;
+    // }`,
+    //       solution: `function bacteriaTime(currentNum, targetNum) {
+    //   if (targetNum < currentNum) {
+    //     return 'targetNum must be larger than currentNum';
+    //   }
+    //   let numMinutes = 0;
+    //   while (currentNum < targetNum) {
+    //     currentNum *= 2;
+    //     numMinutes += 20;
+    //   }
+    //   return numMinutes;
+    // }`,
+    //     },
+    //     {
+    //       title: 'Exponentiate',
+    //       question: `Write a function "exponentiate" that accepts two arguments:
+    // 1. base (number)
+    // 2. power (number)
+    // "exponentiate" should return the result of raising the base by the power.
+    // Assume the power argument will always be an integer greater than or equal to zero.
+    // Don't forget that any number raised to the 0th power is equal to 1!
+    // Do not use the built-in [Math.pow() method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/pow), but feel free to use it moving forward!
+    // exponentiate(2, 2)    // => 4
+    // exponentiate(3, 4)    // => 81`,
+    //       testSpecs: `describe('exponentiate', () => {
+    //   it('is a function', () => {
+    //     expect(typeof exponentiate).to.equal('function');
+    //   });
+    //   it('returns a number', () => {
+    //     let returnedValue = exponentiate(1, 1);
+    //     expect(typeof returnedValue).to.equal('number');
+    //   });
+    //   it('returns the value of the first num raised to the second', () => {
+    //     let returnedValue = exponentiate(3, 6);
+    //     expect(returnedValue).to.equal(Math.pow(3, 6));
+    //   });
+    //   it('returns 1 if the power is 0', () => {
+    //     let returnedValue = exponentiate(20, 0);
+    //     expect(returnedValue).to.equal(1);
+    //   });
+    // });`,
+    //       difficulty: 'medium',
+    //       starterCode: `/* These prompts are provided to get you started,
+    // but are not the only way to attak the problem.
+    // Feel free to delete all of the below and start your own code. */
+    // function exponentiate(base, power) {
+    //   let result =
+    //   for (/* your code here*/) {
+    //     result *= base;
+    //   }
+    //   return ;
+    // }`,
+    //       solution: `// Option 1
+    // function exponentiate(base, power) {
+    //   let result = 1;
+    //   for (let i = 0; i < power; i++) {
+    //     result *= base;
+    //   }
+    //   return result;
+    // }
+    // // Option 2
+    // function exponentiate2(base, power) {
+    //   if (power === 0) {
+    //     return 1;
+    //   }
+    //   let result = base;
+    //   while (power > 1) {
+    //     result *= base;
+    //     power--;
+    //   }
+    //   return result;
+    // }`,
+    //     },
+    //     {
+    //       title: 'My Slice',
+    //       question: `Write a function "mySlice" that accepts up to three arguments:
+    // 1. originalString (string)
+    // 2. startIdx (number, optional)
+    // 3. endIdx (number, optional)
+    // "mySlice" should return a string. The returned string should be a copy of the
+    // original string. If the user defines a startIdx, the returned string should
+    // start at that index:
+    // mySlice('slice and dice', 2)    // => ice and dice
+    // If the user defined an endIdx, the returned string should end at the last index
+    // before the endIdx:
+    // mySlice('slice and dice', 2, 5)    // => ice
+    // If the user doesn't define either the startIdx or the endIdx, return the entire
+    // originalString:
+    // """javascript
+    // mySlice('slice and dice')    // => slice and dice
+    // """
+    // You can assume the startIdx will always be less than or equal to the endIdx.
+    // Do not use the built in [.slice string method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice). Feel free to use it in all future
+    // workshop problems, though!
+    // `,
+    //       testSpecs: `describe('mySlice', () => {
+    //   it('is a function', () => {
+    //     expect(typeof mySlice).to.equal('function');
+    //   });
+    //   it('returns a string', () => {
+    //     let returnedValue = mySlice('a piece of pie');
+    //     expect(typeof returnedValue).to.equal('string');
+    //   });
+    //   it('returns a new string starting at the startIdx', () => {
+    //     let returnedValue = mySlice('a piece of pie', 2);
+    //     expect(returnedValue).to.equal('piece of pie');
+    //   });
+    //   it('returns a new string with the correct starting and ending indices', () => {
+    //     let returnedValue = mySlice('a piece of pie', 2, 7);
+    //     expect(returnedValue).to.equal('piece');
+    //   });
+    //   it('returns the original string if no indices are inputted', () => {
+    //     let returnedValue = mySlice('a piece of pie');
+    //     expect(returnedValue).to.equal('a piece of pie');
+    //   });
+    // });`,
+    //       difficulty: 'medium',
+    //       solution: `function mySlice(originalString, startIdx, endIdx) {
+    //   if (startIdx === undefined && endIdx === undefined) {
+    //     return originalString;
+    //   }
+    //   if (startIdx === undefined) {
+    //     startIdx = 0;
+    //   }
+    //   if (endIdx === undefined) {
+    //     endIdx = originalString.length;
+    //   }
+    //   let slicedString = '';
+    //   for (let i = startIdx; i < endIdx; i++) {
+    //     let char = originalString[i];
+    //     slicedString += char;
+    //   }
+    //   return slicedString;
+    // }
+    // `,
+    //     },
+    //     {
+    //       title: `Most Vowels`,
+    //       question: `Define a function, "mostVowels", that accepts one argument, a string of words.
+    // "mostVowels" should return the word that has the most vowels.
+    // mostVowels('I am a keeper with some real rhythms'); // => keeper
+    // If none of the words have any vowels, return an empty string.
+    // mostVowels('try my gym'); // => ''`,
+    //       testSpecs: `describe('mostVowels', () => {
+    //   it('is a function', () => {
+    //     expect(typeof mostVowels).to.equal('function');
+    //   });
+    //   it('returns a string', () => {
+    //     let returnedValue = mostVowels('Wit beyond measure is mans greatest treasure.');
+    //     expect(typeof returnedValue).to.equal('string');
+    //   });
+    //   it('returns the word with the most vowels', () => {
+    //     let returnedValue = mostVowels('Wit beyond measure is mans greatest treasure.');
+    //     expect(returnedValue).to.equal('measure');
+    //   });
+    //   it('returns the word with the most vowels even if its the last string in the sentence', () => {
+    //     let returnedValue = mostVowels('Give her hell from us, Peeves.');
+    //     expect(returnedValue).to.equal('Peeves');
+    //   });
+    //   it('returns an empty string if none of the inputted words have vowels', () => {
+    //     let returnedValue = mostVowels('why dry my sly lynx?');
+    //     expect(returnedValue).to.equal('');
+    //   });
+    // });
+    // `,
+    //       difficulty: `hard`,
+    //       solution: `function mostVowels(sentence) {
+    //   let currentWord = '';
+    //   let currentVowelCount = 0;
+    //   let maxWord = '';
+    //   let maxVowelCount = 0;
+    //   for (let i = 0; i < sentence.length; i++) {
+    //     let char = sentence[i];
+    //     if (char !== ' ' && i !== sentence.length - 1) {
+    //       currentWord += char;
+    //       if (isVowel(char)) {
+    //         currentVowelCount += 1;
+    //       }
+    //     } else {
+    //       if (currentVowelCount > maxVowelCount) {
+    //         maxVowelCount = currentVowelCount;
+    //         maxWord = currentWord;
+    //       }
+    //       currentWord = '';
+    //       currentVowelCount = 0;
+    //     }
+    //   };
+    //   return maxWord;
+    //   function isVowel(char) {
+    //     let vowels = 'aeiouAEIOU';
+    //     if (vowels.indexOf(char) >= 0) {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //   }
+    // };
+    // `,
+    //     },
+    //     {
+    //       title: `My Index Of`,
+    //       question: `Define a function, "myIndexOf", that accepts three arguments:
+    //   1. source (string)
+    //   2. searchValue (string)
+    //   3. startIdx (number) - optional
+    // If the "source" contains the "searchValue", return the index at which the
+    // "searchValue" starts. If the "searchValue" appears more than once in the
+    // "source", return the index from the first occurance of the "searchValue".
+    // If the "searchValue" doesn't exist in the "source", return -1.
+    // If a startIdx is passed into the function, ignore any instances of the
+    // "searchValue" that occur before that index. If no "startIdx" is provided,
+    // start searching from the beginning of the "source".
+    // Do not use the built-in [".indexOf" string method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf) in your answer. Feel free to
+    // use it in all future workshop problems though!
+    // myIndexOf('hello', 'h'); // => 0
+    // myIndexOf('hello', 'e'); // => 1
+    // myIndexOf('hello', 'l'); // => 2
+    // myIndexOf('hello', 'l'); // => 2
+    // myIndexOf('hello', 'o'); // => 4
+    // myIndexOf('twice twice', 'ice'); => 2
+    // // find the index of the first instance of 'ice' starting at index 5.
+    // myIndexOf('twice twice', 'ice', 5); => 8
+    // myIndexOf('happy string', 'sad'); => -1`,
+    //       testSpecs: `describe('myIndexOf', () => {
+    //   it('is a function', () => {
+    //     expect(typeof myIndexOf).to.equal('function');
+    //   });
+    //   it('returns a number', () => {
+    //     let returnedValue = myIndexOf('i love apples', 'apples');
+    //     expect(typeof returnedValue).to.equal('number');
+    //   });
+    //   it('returns the first instance of the searchValue in the source', () => {
+    //     let returnedValue = myIndexOf('here and there', 'here');
+    //     expect(returnedValue).to.equal(0);
+    //   });
+    //   it('returns the first instance of the searchValue at or after the startIdx', () => {
+    //     let returnedValue = myIndexOf('here and there', 'here', 4);
+    //     expect(returnedValue).to.equal(10);
+    //   });
+    //   it('returns -1 if the searchValue is not in the source', () => {
+    //     let returnedValue = myIndexOf('here and there', 'nowhere');
+    //     expect(returnedValue).to.equal(-1);
+    //   });
+    // })
+    // `,
+    //       difficulty: `medium`,
+    //       solution: `// Option 1
+    // function myIndexOf(source, searchValue, startIdx) {
+    //   if (startIdx === undefined) {
+    //     startIdx = 0;
+    //   }
+    //   for (let i = startIdx; i <= source.length - searchValue.length; i++) {
+    //     let substring = source.slice(i, i + searchValue.length);
+    //     if (substring === searchValue) {
+    //       // ...return the current index
+    //       return i;
+    //     }
+    //   }
+    //   return -1;
+    // }
+    // // Option 2
+    // function myIndexOf2(source, searchValue, startIdx = 0) {
+    //   for (let i = startIdx; i <= source.length - searchValue.length; i++) {
+    //     let substring = source.slice(i, i + searchValue.length);
+    //     if (substring === searchValue) {
+    //       return i;
+    //     }
+    //   }
+    //   return -1;
+    // }`,
+    //     },
     // BoilerPlate Code For Adding Questions ---------------------------------
     // {
     //   title: ``,
@@ -463,10 +463,10 @@ function myIndexOf2(source, searchValue, startIdx = 0) {
       starterCode: `/* These prompts are provided to get you started,
     but are not the only way to attak the problem.
     Feel free to delete all of the below and start your own code. */
-    const sumAll = (arr) => {
-      let sum = 0;
-      return sum;
-        }`,
+      function sumAll () {
+
+      }
+    `,
       testSpecs: `describe('sumAll', ()=> {
         it('is a function', () => {
           expect(typeof sumAll).to.equal('function');
@@ -511,8 +511,8 @@ function myIndexOf2(source, searchValue, startIdx = 0) {
       starterCode: `/* These prompts are provided to get you started,
     but are not the only way to attak the problem.
     Feel free to delete all of the below and start your own code. */
-    const doubleO = (str) => {
-      // return true or false
+    function doubleO (str) {
+
     }`,
       testSpecs: `describe('doubleO', () => {
         it('is a function', () => {
@@ -553,9 +553,8 @@ function myIndexOf2(source, searchValue, startIdx = 0) {
       starterCode: `/* These prompts are provided to get you started,
     but are not the only way to attak the problem.
     Feel free to delete all of the below and start your own code. */
-    function whoWho(arr){
-      let newArr = [];
-      return  newArr;
+    function whoWho (arr) {
+
     }
     `,
       testSpecs: `describe('whoWho', () => {
@@ -599,7 +598,8 @@ function myIndexOf2(source, searchValue, startIdx = 0) {
     but are not the only way to attak the problem.
     Feel free to delete all of the below and start your own code.
     */
-   function doubleIt(array) {
+   function doubleIt (array) {
+
       }`,
       testSpecs: `describe('doubleIt', () => {
         it('is a function', () => {

@@ -364,3 +364,20 @@ a.faillinks {
 svg {
   width: 300px;
 }
+
+.tallyChart {
+  margin-right: 4em;
+  margin-left: 4em;
+  /* margin-bottom: 20 em; */
+  height: 95%;
+  color: white;
+}
+
+canvas {
+  margin-right: 4em;
+  margin-left: 4em;
+  margin-top: 1em;
+  margin-bottom: 1 em;
+  color: white;
+  position: absolute;
+}
