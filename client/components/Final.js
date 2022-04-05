@@ -39,7 +39,9 @@ const Final = () => {
         </div>
         <p>{users[winner].username}</p>
 
-        <p>Total Points: {users[winner].correctPoints + users[winner].incorrectPoints}</p>
+        <p className={styles.totalPoints}>
+          Total Points: {users[winner].correctPoints + users[winner].incorrectPoints}
+        </p>
       </div>
     </div>
   );
