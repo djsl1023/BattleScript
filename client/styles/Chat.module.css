@@ -8,7 +8,6 @@
 }
 
 .messages {
-  display: inline-block;
   max-width: 23em;
   height: auto;
   list-style-type: none;
@@ -18,14 +17,12 @@
 }
 
 .myMessage {
-  display: inline-block;
   max-width: 23em;
   height: auto;
   list-style-type: none;
   font-family: 'Monaco', 'Courier New', monospace;
-  color: white;
+  color: limegreen;
   text-align: right;
-  /* padding: 1em; */
 }
 
 #listDiv {
@@ -60,4 +57,3 @@ input {
   height: 3em;
   width: 3em;
 }
-
