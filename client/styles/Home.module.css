@@ -42,6 +42,7 @@ input {
   border-radius: 4px;
   background-color: rgba(1, 1, 1, 0.75);
   background-repeat: no-repeat;
+  padding: 0.5em;
 }
 
 .createRoom {

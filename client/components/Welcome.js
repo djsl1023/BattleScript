@@ -9,7 +9,7 @@ const Welcome = () => {
           Hello, Welcome To BATTLESCRIPT
         </h1>
       </div>
-      <div>
+      <div className={styles.typewriter}>
         <h2 className={styles.typewriterText2}>Select An Option Below</h2>
       </div>
     </div>

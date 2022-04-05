@@ -4,7 +4,10 @@
 .lobbyWrapper {
   display: grid;
   grid-template-columns: auto auto;
-  height: 10em;
+  grid-template-rows: auto auto auto auto;
+  height: 35em;
+  width: 65%;
+  margin: auto;
 }
 .element {
   width: 60%;
