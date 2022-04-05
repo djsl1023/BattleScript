@@ -77,7 +77,10 @@
 }
 
 .username {
-  font-size: 0.75em;
+  align-self: center;
+  padding-bottom: 3em;
+  font-family: 'Share Tech Mono', monospace;
+  color: white;
 }
 .votingSubmitContainer {
   display: flex;
@@ -110,11 +113,7 @@
   line-height: 78px;
   font-size: 20px;
   font-family: 'Bebas Neue', sans-serif;
-  background: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.75) 5%,
-    rgba(1, 1, 1, 0.75) 5%
-  );
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.75) 5%, rgba(1, 1, 1, 0.75) 5%);
   border: 0;
   color: #fff;
   letter-spacing: 3px;
@@ -150,13 +149,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    45deg,
-    transparent 3%,
-    #ffffff 3%,
-    #1531af 5%,
-    #1aa71a 5%
-  );
+  background: linear-gradient(45deg, transparent 3%, #ffffff 3%, #1531af 5%, #1aa71a 5%);
   text-shadow: -3px -3px 0px #f8f005, 3px 3px 0px #62dd57;
   clip-path: var(--slice-0);
 }

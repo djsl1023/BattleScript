@@ -100,9 +100,7 @@ const Vote = () => {
         <div className={styles.finishedSubmissionList}>
           <h4>
             Vote on your favorite
-            {gameStatus == 'failvote'
-              ? ' failed solution.'
-              : ' passed solution.'}
+            {gameStatus == 'failvote' ? ' failed solution.' : ' passed solution.'}
           </h4>
           <div className={styles.users}>
             {Object.keys(submissions).map((userKey) => {
@@ -111,16 +109,9 @@ const Vote = () => {
                   key={userKey}
                   className={styles.userContainer}
                   onClick={() => changeFocus(userKey)}>
-                  <img
-                    className={styles.avatar}
-                    src={users[userKey].avatarURL}
-                  />
-                  <p>
-                    {users[userKey].username == '' ? (
-                      <br />
-                    ) : (
-                      users[userKey].username
-                    )}
+                  <img className={styles.avatar} src={users[userKey].avatarURL} />
+                  <p className={styles.username}>
+                    {users[userKey].username == '' ? <br /> : users[userKey].username}
                   </p>
                   <div className={styles.totalVotes}>
                     Total Votes: {voteList[userKey] ? voteList[userKey] : 0}
