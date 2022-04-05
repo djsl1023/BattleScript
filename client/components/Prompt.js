@@ -8,6 +8,7 @@ import { setFailedVotes } from '../store/failVoting';
 import { setPassedVotes } from '../store/passVoting';
 import { userNewRound } from '../store';
 import styles from '../styles/Prompt.module.css';
+import { setRoundNumber } from '../store/roundNumber';
 
 const Prompt = () => {
   const dispatch = useDispatch();
@@ -23,12 +24,19 @@ const Prompt = () => {
   const timer = useSelector((state) => state.timer);
 
   const users = useSelector((state) => state.users);
+  const round = useSelector((state) => state.round);
   const didMountRef = useRef(false);
 
   useEffect(() => {
     room.send('startTimer');
     dispatch(userNewRound());
   }, []);
+
+  useEffect(() => {
+    room.send('round');
+    dispatch(setRoundNumber(round + 1));
+  }, []);
+
   room.state.failVotes.onAdd = (votes, key) => {
     dispatch(setFailedVotes(key, votes));
   };
