@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Lobby, Question, Solution },
+  models: { Question },
 } = require('../server/db');
 
 /**
@@ -12,11 +12,7 @@ const {
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log('db synced!');
-  const lobbies = [{ name: 'test' }, { name: 'test2' }];
-  const users = [
-    { username: 'cody', lobbyId: 1 },
-    { username: 'murphy', lobbyId: 1 },
-  ];
+
   const questions = [
     {
       title: 'Only Odds',
@@ -611,18 +607,6 @@ function onlyOdds2(num) {
       `,
     },
   ];
-
-  await Promise.all(
-    lobbies.map((lobby) => {
-      return Lobby.create(lobby);
-    })
-  );
-
-  await Promise.all(
-    users.map((user) => {
-      return User.create(user);
-    })
-  );
 
   await Promise.all(
     questions.map((question) => {
