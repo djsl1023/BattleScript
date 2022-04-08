@@ -46,16 +46,8 @@ async function seed() {
   });
 });`,
       difficulty: 'medium',
-      starterCode: `/* These prompts are provided to get you started,
-but are not the only way to attak the problem.
-Feel free to delete all of the below and start your own code. */
-function onlyOdds(/* your code here*/) {
-  let sum = 0;
-  for (/* your code here*/) {
-    if (/* your code here*/) {
-    }
-  }
-  return;
+      starterCode: `function onlyOdds() {
+
 }`,
       solution: `//Option 1
 function onlyOdds(num) {
@@ -508,9 +500,7 @@ function onlyOdds2(num) {
       doubleO("Hello, what is up") ---> return false
       doubleO('Hey what's good') -----> returns true
       doubleo('good') ----> return true`,
-      starterCode: `/* These prompts are provided to get you started,
-    but are not the only way to attak the problem.
-    Feel free to delete all of the below and start your own code. */
+      starterCode: `
     function doubleO (str) {
 
     }`,
@@ -550,9 +540,7 @@ function onlyOdds2(num) {
       whoWho(['hi','how', 'is', 'it', 'going']) ===> return []
       whoWho(['cat','cat', 'dog', 'snake', 'raptop', 'dog']) ===> return [dog, dog]
       whoWho(['you','got','this','dog']) ====> return [dog]`,
-      starterCode: `/* These prompts are provided to get you started,
-    but are not the only way to attak the problem.
-    Feel free to delete all of the below and start your own code. */
+      starterCode: `
     function whoWho (arr) {
 
     }
@@ -594,10 +582,7 @@ function onlyOdds2(num) {
       For example:
       doubleIt([1,2,3]) ====> return [2,4,6]
       doubleIt([5,5,5]) ====> return [10 , 10 ,10 ]`,
-      starterCode: `/* These prompts are provided to get you started,
-    but are not the only way to attak the problem.
-    Feel free to delete all of the below and start your own code.
-    */
+      starterCode: `
    function doubleIt (array) {
 
       }`,
