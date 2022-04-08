@@ -9,6 +9,7 @@ import { setPassedVotes } from '../store/passVoting';
 import { userNewRound } from '../store';
 import styles from '../styles/Prompt.module.css';
 import { setRoundNumber } from '../store/roundNumber';
+import { toast } from 'react-toastify';
 
 const Prompt = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const Prompt = () => {
   useEffect(() => {
     room.send('round');
     dispatch(setRoundNumber(round + 1));
+    toast('Prompt round! Answer the question, good luck!');
   }, []);
 
   room.state.failVotes.onAdd = (votes, key) => {

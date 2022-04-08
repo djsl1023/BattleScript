@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addUser } from '../store/users';
 import styles from '../styles/Lobby.module.css';
-
+import { toast } from 'react-toastify';
 const Lobby = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);

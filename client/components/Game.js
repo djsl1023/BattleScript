@@ -104,7 +104,7 @@ const Game = () => {
       case 'failvote': {
         return (
           <div>
-            <Vote key="1" />
+            <Vote key="1" type={'fail'} />
           </div>
         );
       }
@@ -119,7 +119,7 @@ const Game = () => {
       case 'passvote': {
         return (
           <div>
-            <Vote key="2" />
+            <Vote key="2" type={'pass'} />
           </div>
         );
       }

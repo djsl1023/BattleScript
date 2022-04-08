@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as Colyseus from 'colyseus.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { setRoundNumber } from '../store/roundNumber';
+import { toast } from 'react-toastify';
 
 const HostBar = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,10 @@ const HostBar = () => {
       room.send('continue');
     }
   };
-
+  const handleLobbyIdClick = () => {
+    navigator.clipboard.writeText(room.id);
+    toast('Copied Lobby Id to clipboard!');
+  };
   const handleRestartGame = () => {
     room.send('restart');
   };
@@ -92,9 +96,7 @@ const HostBar = () => {
     <div className="hostbar">
       <div className="hostdetails">
         {`Lobby Id: `}
-        <button
-          className="hostbutton"
-          onClick={() => navigator.clipboard.writeText(room.id)}>
+        <button className="hostbutton" onClick={() => handleLobbyIdClick()}>
           {room.id}
         </button>
       </div>

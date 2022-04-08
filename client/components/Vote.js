@@ -4,8 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setFailedVotes } from '../store/failVoting';
 import { setPassedVotes } from '../store/passVoting';
 import styles from '../styles/Vote.module.css';
+import { toast } from 'react-toastify';
 
-const Vote = () => {
+const Vote = (props) => {
   const editorRef = useRef(null);
   const dispatch = useDispatch();
   const [voted, setVoted] = useState(false);
@@ -15,9 +16,14 @@ const Vote = () => {
   const room = useSelector((state) => state.room);
   const currPrompt = useSelector((state) => state.prompt);
   const gameStatus = useSelector((state) => state.gameStatus);
-
+  console.log(props);
   useEffect(() => {
     room.send('resetTimer');
+    if (props.type === 'fail') {
+      toast(`Fail vote round! Vote for your favorite code that didn't pass!`);
+    } else {
+      toast(`Pass vote round! Vote for your favorite code that passed!`);
+    }
   }, []);
   //Get Current Round's user: vote Object
   const voteList = useSelector((state) => {
@@ -113,13 +119,13 @@ const Vote = () => {
                   onClick={() => changeFocus(userKey)}>
                   <img
                     className={styles.avatar}
-                    src={users[userKey].avatarURL}
+                    src={users[userKey]?.avatarURL}
                   />
                   <p className={styles.username}>
-                    {users[userKey].username == '' ? (
+                    {users[userKey]?.username == '' ? (
                       <br />
                     ) : (
-                      users[userKey].username
+                      users[userKey]?.username
                     )}
                   </p>
                   <div className={styles.totalVotes}>
