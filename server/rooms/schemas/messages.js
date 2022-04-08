@@ -7,18 +7,21 @@ class MessagesSchema extends Schema {
     super();
     this.username;
     this.message = '';
+    this.clientId;
   }
 }
 schema.defineTypes(MessagesSchema, {
   username: 'string',
   message: 'string',
+  clientId: 'string',
 });
 
 class AddMessage extends command.Command {
-  execute({ username, message }) {
+  execute({ username, message, clientId }) {
     const newMessage = new MessagesSchema();
     newMessage.message = message;
     newMessage.username = username;
+    newMessage.clientId = clientId;
     this.state.messages.push(newMessage);
   }
 }

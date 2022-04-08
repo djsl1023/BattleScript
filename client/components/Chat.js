@@ -44,11 +44,9 @@ const Chat = () => {
                 <li
                   key={index}
                   className={
-                    message.username === users[room.sessionId].username
-                      ? styles.myMessage
-                      : styles.messages
+                    message.clientId === room.sessionId ? styles.myMessage : styles.messages
                   }>
-                  {message.username === users[room.sessionId].username ? (
+                  {message.clientId === room.sessionId ? (
                     <p className={styles.messageDiv}>{message.message}</p>
                   ) : (
                     <p className={styles.messageDiv}>

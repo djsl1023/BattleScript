@@ -179,7 +179,7 @@ const Prompt = () => {
 
             {Object.keys(passedAnswers).map((userKey) => {
               return (
-                <div key={userKey} className={styles.passedUserContainer}>
+                <div key={userKey}>
                   <img
                     className={styles.avatar}
                     src={users[userKey]?.avatarURL}
