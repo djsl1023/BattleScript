@@ -90,7 +90,14 @@ const HostBar = () => {
 
   return (
     <div className="hostbar">
-      <div className="hostdetails">{`Lobby Id: ${room.id}`}</div>
+      <div className="hostdetails">
+        {`Lobby Id: `}
+        <button
+          className="hostbutton"
+          onClick={() => navigator.clipboard.writeText(room.id)}>
+          {room.id}
+        </button>
+      </div>
       <div className="hostdetails">
         {round === undefined ? 'Round: 1' : `Round: ${round}`}{' '}
       </div>
