@@ -10,6 +10,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { toast } from 'react-toastify';
 
 ChartJS.register(
   CategoryScale,
@@ -65,6 +66,7 @@ export default function Tally() {
 
   useEffect(() => {
     room.send('resetTimer');
+    toast('Time to tally your scores....');
   }, []);
 
   const clientIds = Object.keys(users);

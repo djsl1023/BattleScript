@@ -19,7 +19,8 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/i,
+        test: /\.css$/,
+        exclude: [/node_modules/],
         use: [
           {
             loader: 'style-loader',
@@ -28,6 +29,21 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        exclude: [/client/],
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
             },
           },
         ],
