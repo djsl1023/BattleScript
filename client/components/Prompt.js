@@ -91,6 +91,32 @@ const Prompt = () => {
         <meta charset="utf-8">
         <title>Mocha Tests</title>
         <link href="https://unpkg.com/mocha@4.0.1/mocha.css" rel="stylesheet" />
+        <style>
+          em{
+            color: white !important;
+          }
+          .passes, .failures, .duration{
+            color: white !important;
+          }
+          .test.fail{
+            color: white !important;
+          }
+          body{
+            color: white !important;
+          }
+          .error{
+            color: white !important;
+          }
+          // .test.pass.fast{
+          //   color: white;
+          // }
+          // .suite h1{
+          //   color: white;
+          // }
+          // #mocha-stats{
+          //   color:white;
+          // }
+        </style>
       </head>
       <body>
         <div id="mocha"></div>
@@ -123,7 +149,12 @@ const Prompt = () => {
 
       {submitted ? (
         <div>
-          <iframe id="mochaTester" srcDoc={testHTML} sandbox="allow-scripts allow-same-origin" />
+          <iframe
+            style={{ pointerEvents: 'none' }}
+            id="mochaTester"
+            srcDoc={testHTML}
+            sandbox="allow-scripts allow-same-origin"
+          />
         </div>
       ) : (
         <div>
@@ -149,8 +180,11 @@ const Prompt = () => {
             {Object.keys(passedAnswers).map((userKey) => {
               return (
                 <div key={userKey}>
-                  <img className={styles.avatar} src={users[userKey].avatarURL} />
-                  <p className={styles.username}> {users[userKey].username}</p>
+                  <img
+                    className={styles.avatar}
+                    src={users[userKey]?.avatarURL}
+                  />
+                  <p className={styles.username}> {users[userKey]?.username}</p>
                 </div>
               );
             })}
@@ -162,8 +196,11 @@ const Prompt = () => {
             {Object.keys(failedAnswers).map((userKey) => {
               return (
                 <div key={userKey} className={styles.failedUserContainer}>
-                  <img className={styles.avatar} src={users[userKey].avatarURL} />
-                  <p className={styles.username}> {users[userKey].username}</p>
+                  <img
+                    className={styles.avatar}
+                    src={users[userKey]?.avatarURL}
+                  />
+                  <p className={styles.username}> {users[userKey]?.username}</p>
                 </div>
               );
             })}
@@ -171,7 +208,10 @@ const Prompt = () => {
           <div className={styles.divider}></div>
         </div>
         <div className={styles.submitPromptButton}>
-          <button className={styles.submitBtn} disabled={submitted} onClick={() => clickHandler()}>
+          <button
+            className={styles.submitBtn}
+            disabled={submitted}
+            onClick={() => clickHandler()}>
             Submit
           </button>
         </div>
