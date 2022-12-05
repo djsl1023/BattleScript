@@ -9,8 +9,8 @@ after(function(){
   if(failResults.length > 0){
     // for testing on local host
     window.parent.postMessage('false')
-    // for heroku deployment
-    // window.parent.postMessage('false', "capstone-battlescript.herokuapp.com/")
+    // for deployment
+    //window.parent.postMessage('false', "battlescript.onrender.com/")
   }
   else{
     // for testing on local host
